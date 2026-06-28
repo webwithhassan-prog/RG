@@ -248,19 +248,26 @@ export default function Home() {
   return (
     <main className="overflow-x-hidden">
       {/* ── HERO ── */}
+      {/* ── HERO ── */}
       <section
-        className="relative min-h-[92vh] flex items-center justify-center text-white"
+        className="relative min-h-[92vh] flex items-center justify-center text-white overflow-hidden"
         style={{
-          background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+          backgroundImage: `url('https://images.pexels.com/photos/31339194/pexels-photo-31339194.jpeg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed", // subtle parallax feel
         }}
       >
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
+
+        {/* Existing decorative blurred orbs - keep them */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-20 w-72 h-72 rounded-full bg-amber-400/5 blur-2xl" />
+          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-amber-500/20 blur-3xl" />
+          <div className="absolute bottom-0 -left-20 w-72 h-72 rounded-full bg-amber-400/10 blur-2xl" />
         </div>
 
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
           <p
             className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em] mb-6"
             style={{ animation: "fadeDown 0.8s ease forwards" }}
@@ -275,7 +282,7 @@ export default function Home() {
             <span className="text-amber-400">Our Commitment</span>
           </h1>
           <p
-            className="text-stone-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
             style={{ animation: "fadeDown 0.8s ease 0.3s both" }}
           >
             RG Tours & Travels has guided thousands of pilgrims to Makkah and
@@ -294,33 +301,34 @@ export default function Home() {
             </Link>
             <Link
               to="/umrah/packages"
-              className="border border-white/25 hover:border-amber-400/60 hover:bg-white/5 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200"
+              className="border border-white/40 hover:border-amber-400 hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200"
             >
               Umrah Packages
             </Link>
           </div>
         </div>
 
+        {/* Scroll indicator */}
         <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-70"
           style={{ animation: "bounce 2s infinite" }}
         >
-          <div className="w-px h-10 bg-white/40" />
-          <span className="text-xs text-white/60 tracking-widest uppercase">
+          <div className="w-px h-10 bg-white/50" />
+          <span className="text-xs text-white/70 tracking-widest uppercase">
             Scroll
           </span>
         </div>
 
         <style>{`
-          @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to   { opacity: 1; transform: translateY(0); }
-          }
-          @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50%       { transform: translateX(-50%) translateY(8px); }
-          }
-        `}</style>
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+  `}</style>
       </section>
 
       {/* ── STATS ── */}
