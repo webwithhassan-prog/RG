@@ -216,7 +216,7 @@ export default function AboutUs() {
                   value:
                     "12-E 2nd Basement, Nabi Center, Chowk Rang Mahal, Lahore",
                 },
-                { label: "Phone", value: "+92 42 37643771-72-73" },
+                { label: "Phone", value: "+92 321-8485159" },
                 { label: "Email", value: "rg-travels@hotmail.com" },
                 { label: "Website", value: "www.rgtravels.pk" },
               ].map((item) => (

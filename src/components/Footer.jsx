@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -59,12 +58,12 @@ const Footer = () => {
             <div>
               <h4 className="text-white font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm">
-                <li>info@rgtravels.com</li>
-                <li>+92-300-000-0000</li>
+                <li>rg-travels@hotmail.com</li>
+                <li>+92-321 8485159</li>
                 <li className="leading-relaxed">
-                  123 Travel Street,
+                  12-E 2nd Basement, Nabi Cente
                   <br />
-                  Lahore, Pakistan
+                  Chowk Rang Mahal, Lahore
                 </li>
               </ul>
             </div>
