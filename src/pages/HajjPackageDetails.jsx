@@ -232,12 +232,20 @@ export default function HajjPackageDetail() {
 
   return (
     <main className="overflow-x-hidden">
+      {/* ── PAST SEASON NOTICE ── */}
+      <div className="bg-stone-200 border-b border-stone-300 py-2.5 px-6 text-center">
+        <p className="text-stone-600 text-sm font-semibold">
+          📁 Hajj 2026 — Past Season &nbsp;·&nbsp; This package is for reference
+          only. Bookings for this season are closed.
+        </p>
+      </div>
+
       {/* ── HERO IMAGE ── */}
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img
           src={pkg.image}
           alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover grayscale-[20%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
@@ -256,15 +264,15 @@ export default function HajjPackageDetail() {
             {pkg.tier}
           </span>
           {pkg.badge && (
-            <span className="bg-amber-500 text-[#162718] text-xs font-bold px-3 py-1.5 rounded-lg">
+            <span className="bg-stone-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">
               {pkg.badge}
             </span>
           )}
         </div>
 
         <div className="absolute bottom-6 left-6">
-          <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-1">
-            Hajj 2027 · {pkg.duration}
+          <p className="text-stone-300 text-xs font-semibold uppercase tracking-widest mb-1">
+            Hajj 2026 · {pkg.duration}
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-white">
             Maktab {pkg.maktab} — {pkg.tier} Package
@@ -408,10 +416,15 @@ export default function HajjPackageDetail() {
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
               {/* Pricing */}
-              <div className="bg-white rounded-2xl border-2 border-[#162718] shadow-lg p-6">
-                <p className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">
-                  Package Pricing
-                </p>
+              <div className="bg-white rounded-2xl border-2 border-stone-300 shadow-lg p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">
+                    Package Pricing
+                  </p>
+                  <span className="bg-stone-100 text-stone-500 text-xs font-bold px-2.5 py-1 rounded-full">
+                    2026
+                  </span>
+                </div>
                 <div className="space-y-4">
                   {[
                     ["Double", pkg.pkr.double, pkg.usd.double],
@@ -435,19 +448,22 @@ export default function HajjPackageDetail() {
                 <p className="text-xs text-stone-400 mt-4">
                   * Without air ticket & Qurbani
                 </p>
-                <Link
-                  to="/contact"
-                  className="mt-5 block w-full bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
-                >
-                  Book This Package
-                </Link>
+
+                {/* Past season notice instead of Book button */}
+                <div className="mt-5 bg-stone-100 border border-stone-200 rounded-xl px-4 py-3 text-center">
+                  <p className="text-stone-500 text-xs font-semibold">
+                    📁 Bookings for Hajj 2026 are closed
+                  </p>
+                </div>
+
+                {/* Hajj 2027 interest CTA */}
                 <a
                   href="https://wa.me/923218485159"
                   target="_blank"
                   rel="noreferrer"
                   className="mt-3 block w-full bg-green-500 hover:bg-green-400 text-white font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
                 >
-                  WhatsApp Us
+                  Inquire for Hajj 2027
                 </a>
               </div>
 
@@ -482,7 +498,7 @@ export default function HajjPackageDetail() {
         <div className="max-w-5xl mx-auto px-6">
           <Reveal className="mb-8">
             <h2 className="text-2xl font-bold text-stone-900">
-              Other Packages
+              Other 2026 Packages
             </h2>
           </Reveal>
           <div className="grid sm:grid-cols-3 gap-4">
@@ -492,12 +508,12 @@ export default function HajjPackageDetail() {
                 <Reveal key={key} delay={i * 80}>
                   <Link
                     to={`/hajj/${key}`}
-                    className="group bg-white rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-md transition-all overflow-hidden"
+                    className="group bg-white rounded-2xl border border-stone-200 hover:border-stone-400 hover:shadow-md transition-all overflow-hidden"
                   >
                     <img
                       src={p.image}
                       alt=""
-                      className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500 grayscale-[20%]"
                     />
                     <div className="p-4">
                       <div className="flex gap-2 mb-2">
@@ -507,11 +523,11 @@ export default function HajjPackageDetail() {
                         <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
                           {p.tier}
                         </span>
-                        <span className="bg-amber-50 text-amber-700 text-xs font-bold px-2 py-0.5 rounded">
+                        <span className="bg-stone-50 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
                           {p.duration}
                         </span>
                       </div>
-                      <p className="text-sm font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                      <p className="text-sm font-bold text-stone-900 group-hover:text-stone-600 transition-colors">
                         Maktab {p.maktab} — {p.tier}
                       </p>
                       <p className="text-xs text-stone-400 mt-0.5">

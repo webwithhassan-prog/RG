@@ -80,27 +80,36 @@ export default function Contact() {
     <main className="overflow-x-hidden">
       {/* ── HERO ── */}
       <section
-        className="relative py-20 text-white text-center"
+        className="relative py-24 md:py-32 text-white text-center overflow-hidden"
         style={{
-          background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+          background: `
+      linear-gradient(rgba(15, 31, 16, 0.75), rgba(22, 39, 24, 0.85)),
+      url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070') center/cover no-repeat
+    `,
         }}
       >
-        <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
-        <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+        {/* Decorative Orbs */}
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl" />
+
+        <div className="relative max-w-3xl mx-auto px-6 z-10">
+          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
             We're Here to Help
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Contact & Book Now
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Contact & Book Your
+            <br />
+            Sacred Journey
           </h1>
-          <p className="text-stone-300 text-lg">
+          <p className="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto">
             Reach out to our team and we'll guide you through every step of your
-            sacred journey.
+            <span className="text-amber-300"> Hajj or Umrah</span>.
           </p>
         </div>
-      </section>
 
+        {/* Subtle bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-stone-50 to-transparent" />
+      </section>
       {/* ── MAIN CONTENT ── */}
       <section className="py-20 bg-stone-50">
         <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12">

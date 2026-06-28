@@ -121,43 +121,129 @@ export default function HajjPackages() {
     <main className="overflow-x-hidden">
       {/* ── HERO ── */}
       <section
-        className="relative py-24 text-white text-center"
+        className="relative py-32 text-white text-center overflow-hidden"
         style={{
-          background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+          backgroundImage: `url('https://images.pexels.com/photos/26436662/pexels-photo-26436662.jpeg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
         }}
       >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/65 to-black/80" />
+
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
           <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-amber-400/5 blur-2xl" />
         </div>
+
         <div className="relative max-w-3xl mx-auto px-6">
           <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
-            Hajj 2027
+            Hajj Packages
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Hajj Packages</h1>
-          <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            Your Journey to the Holy Land
+          </h1>
+          <p className="text-stone-200 text-lg max-w-xl mx-auto leading-relaxed">
             Exclusive, hassle-free Hajj services helping pilgrims in their
             journey to spiritual healing and fulfilling religious obligations.
           </p>
           <p className="text-stone-400 text-sm mt-3">
             Hajj Enrollment # 3127 · RG Tours & Travels (Pvt) Ltd
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 bg-red-500/20 border border-red-400/30 text-red-300 text-sm px-4 py-2 rounded-full">
-            🔴 Limited Seats — Book Now
+        </div>
+      </section>
+
+      {/* ── HAJJ 2027 COMING SOON ── */}
+      <section
+        className="py-20 text-white relative overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(135deg, #1a1400 0%, #2d2200 50%, #1a1400 100%)",
+        }}
+      >
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/10 blur-3xl rounded-full" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-400/5 blur-2xl rounded-full" />
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            Upcoming Season
+          </div>
+
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+            Hajj 2027
+          </h2>
+
+          <p className="text-amber-400 text-xl font-semibold mb-3">
+            Coming Soon
+          </p>
+
+          <p className="text-stone-300 text-base max-w-xl mx-auto leading-relaxed mb-10">
+            We are preparing our exclusive Hajj 2027 packages. Register your
+            interest now and be the first to know when bookings open.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {[
+              "🕋 Maktab A & B",
+              "🏨 Premium Hotels",
+              "📋 Full Visa Assistance",
+              "🎓 Scholar Guide",
+              "🍽️ Full Board Meals",
+            ].map((f) => (
+              <span
+                key={f}
+                className="bg-white/5 border border-white/10 text-stone-300 text-sm px-4 py-2 rounded-full"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://wa.me/923218485159"
+              target="_blank"
+              rel="noreferrer"
+              className="bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+            >
+              Register Interest via WhatsApp
+            </a>
+            <Link
+              to="/contact"
+              className="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+            >
+              Contact Us
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* ── HAJJ 2026 PAST SEASON BANNER ── */}
+      <div className="bg-stone-200 border-y border-stone-300 py-3 px-6 text-center">
+        <p className="text-stone-600 text-sm font-semibold">
+          📁 Hajj 2026 — Past Season &nbsp;·&nbsp; These packages are for
+          reference only. Bookings for this season are closed.
+        </p>
+      </div>
 
       {/* ── PACKAGES LIST ── */}
       <section className="py-20 bg-stone-50">
         <div className="max-w-5xl mx-auto px-6">
           <Reveal className="mb-14">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
-              Choose Your Package
-            </p>
+            <div className="flex items-center gap-3 mb-2">
+              <p className="text-stone-400 text-sm font-semibold uppercase tracking-widest">
+                Hajj 2026 Packages
+              </p>
+              <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2.5 py-0.5 rounded-full">
+                Past Season
+              </span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Explore Hajj 2027 Packages
+              2026 Package Archive
             </h2>
             <p className="text-stone-500 mt-2 text-sm">
               All prices exclude air ticket and Qurbani · Click a package to
@@ -170,15 +256,15 @@ export default function HajjPackages() {
               <Reveal key={pkg.id} delay={i * 100}>
                 <Link
                   to={`/hajj/${pkg.id}`}
-                  className="group flex flex-col md:flex-row bg-white rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="group flex flex-col md:flex-row bg-white rounded-2xl border border-stone-200 hover:border-stone-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
-                  {/* Image */}
                   <div className="md:w-72 h-52 md:h-auto flex-shrink-0 overflow-hidden relative">
                     <img
                       src={pkg.image}
                       alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale-[30%]"
                     />
+                    <div className="absolute inset-0 bg-stone-900/10" />
                     <div className="absolute top-3 left-3 flex flex-col gap-2">
                       <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2.5 py-1 rounded-lg">
                         Maktab {pkg.maktab}
@@ -189,38 +275,41 @@ export default function HajjPackages() {
                     </div>
                     {pkg.badge && (
                       <div className="absolute top-3 right-3">
-                        <span className="bg-amber-500 text-[#162718] text-xs font-bold px-2.5 py-1 rounded-lg">
+                        <span className="bg-stone-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">
                           {pkg.badge}
                         </span>
                       </div>
                     )}
+                    <div className="absolute bottom-3 right-3">
+                      <span className="bg-stone-800/80 text-stone-300 text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
+                        2026
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Details */}
                   <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
                     <div>
                       <div className="flex items-start justify-between gap-4 mb-3">
                         <div>
-                          <h3 className="text-xl font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                          <h3 className="text-xl font-bold text-stone-900 group-hover:text-stone-600 transition-colors">
                             Maktab {pkg.maktab} — {pkg.tier} Package
                           </h3>
                           <p className="text-stone-400 text-sm mt-0.5">
                             {pkg.hotel}
                           </p>
                         </div>
-                        <span className="text-xs bg-[#162718] text-amber-400 font-bold px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0">
+                        <span className="text-xs bg-stone-100 text-stone-500 font-bold px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0">
                           {pkg.duration}
                         </span>
                       </div>
 
-                      {/* Highlights */}
                       <div className="grid grid-cols-2 gap-2 mb-6">
                         {pkg.highlights.map((h) => (
                           <div
                             key={h}
-                            className="flex items-center gap-2 text-sm text-stone-600"
+                            className="flex items-center gap-2 text-sm text-stone-500"
                           >
-                            <span className="w-4 h-4 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-xs flex-shrink-0">
+                            <span className="w-4 h-4 bg-stone-100 rounded-full flex items-center justify-center text-stone-400 text-xs flex-shrink-0">
                               ✓
                             </span>
                             {h}
@@ -229,7 +318,6 @@ export default function HajjPackages() {
                       </div>
                     </div>
 
-                    {/* Price + CTA */}
                     <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pt-5 border-t border-stone-100">
                       <div className="flex gap-6">
                         {[
@@ -241,15 +329,15 @@ export default function HajjPackages() {
                             <p className="text-xs text-stone-400 mb-0.5">
                               {room}
                             </p>
-                            <p className="text-sm font-bold text-stone-900">
+                            <p className="text-sm font-bold text-stone-600">
                               PKR {pkr}
                             </p>
                             <p className="text-xs text-stone-400">USD {usd}</p>
                           </div>
                         ))}
                       </div>
-                      <div className="flex items-center gap-2 text-sm font-bold text-[#162718] group-hover:text-amber-600 transition-colors whitespace-nowrap">
-                        View Full Details
+                      <div className="flex items-center gap-2 text-sm font-bold text-stone-500 group-hover:text-stone-700 transition-colors whitespace-nowrap">
+                        View Details
                         <span className="group-hover:translate-x-1 transition-transform">
                           →
                         </span>
@@ -267,10 +355,11 @@ export default function HajjPackages() {
       <section className="py-14 bg-amber-500 text-center">
         <Reveal>
           <h2 className="text-2xl md:text-3xl font-bold text-[#162718] mb-3">
-            Not sure which package to choose?
+            Interested in Hajj 2027?
           </h2>
           <p className="text-[#162718]/70 mb-7">
-            Talk to our team and we'll guide you to the right package.
+            Register your interest early and we'll reach out as soon as packages
+            are available.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

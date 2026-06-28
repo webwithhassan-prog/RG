@@ -248,7 +248,6 @@ export default function Home() {
   return (
     <main className="overflow-x-hidden">
       {/* ── HERO ── */}
-      {/* ── HERO ── */}
       <section
         className="relative min-h-[92vh] flex items-center justify-center text-white overflow-hidden"
         style={{

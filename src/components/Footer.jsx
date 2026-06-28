@@ -61,7 +61,7 @@ const Footer = () => {
                 <li>rg-travels@hotmail.com</li>
                 <li>+92-321 8485159</li>
                 <li className="leading-relaxed">
-                  12-E 2nd Basement, Nabi Centre
+                  12-E 2nd Basement, Nabi Center
                   <br />
                   Chowk Rang Mahal, Lahore
                 </li>
