@@ -54,8 +54,11 @@ function NotFound() {
           >
             Umrah Packages
           </Link>
-          <Link to="/hajj" className="hover:text-amber-400 transition-colors">
-            Hajj 2026
+          <Link
+            to="/hajj/packages"
+            className="hover:text-amber-400 transition-colors"
+          >
+            Hajj 2027
           </Link>
           <Link to="/about" className="hover:text-amber-400 transition-colors">
             About Us
