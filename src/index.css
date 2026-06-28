@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger-btn {
+    display: flex !important;
+  }
+}
+@media (min-width: 769px) {
+  .hamburger-btn {
+    display: none !important;
+  }
+}

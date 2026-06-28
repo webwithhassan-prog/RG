@@ -1,0 +1,41 @@
+import { Routes, Route, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import HajjPackages from "./pages/HajjPackages";
+import Contact from "./pages/Contact";
+import Footer from "./components/Footer";
+import { useEffect } from "react";
+import HajjPackageDetail from "./pages/HajjPackageDetails";
+import HajjFAQ from "./pages/HajjFaq";
+import AboutUs from "./pages/AboutUs";
+import Testimonials from "./pages/Testimonials";
+import HajjFacilities from "./pages/HajjFacilities";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+export default function App() {
+  return (
+    <>
+      <ScrollToTop />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/hajj/packages" element={<HajjPackages />} />
+        <Route path="/hajj/faq" element={<HajjFAQ />} />
+        <Route path="/hajj/facilities" element={<HajjFacilities />} />
+        <Route path="/hajj/:id" element={<HajjPackageDetail />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/book" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <Footer />
+    </>
+  );
+}
