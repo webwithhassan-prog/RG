@@ -133,7 +133,7 @@ export default function HajjPackages() {
         </div>
         <div className="relative max-w-3xl mx-auto px-6">
           <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
-            Hajj 2026
+            Hajj 2027
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Hajj Packages</h1>
           <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
