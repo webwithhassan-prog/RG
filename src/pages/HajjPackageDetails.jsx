@@ -264,7 +264,7 @@ export default function HajjPackageDetail() {
 
         <div className="absolute bottom-6 left-6">
           <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-1">
-            Hajj 2026 · {pkg.duration}
+            Hajj 2027 · {pkg.duration}
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-white">
             Maktab {pkg.maktab} — {pkg.tier} Package

@@ -157,7 +157,7 @@ export default function HajjPackages() {
               Choose Your Package
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Explore Hajj 2026 Packages
+              Explore Hajj 2027 Packages
             </h2>
             <p className="text-stone-500 mt-2 text-sm">
               All prices exclude air ticket and Qurbani · Click a package to
