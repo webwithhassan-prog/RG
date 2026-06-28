@@ -1,10 +1,10 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import HajjPackages from "./pages/HajjPackages";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
-import { useEffect } from "react";
 import HajjPackageDetail from "./pages/HajjPackageDetails";
 import HajjFAQ from "./pages/HajjFaq";
 import AboutUs from "./pages/AboutUs";
