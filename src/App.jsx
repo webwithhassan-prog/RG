@@ -10,6 +10,7 @@ import HajjFAQ from "./pages/HajjFaq";
 import AboutUs from "./pages/AboutUs";
 import Testimonials from "./pages/Testimonials";
 import HajjFacilities from "./pages/HajjFacilities";
+import NotFound from "./pages/NotFound";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/book" element={<Contact />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
