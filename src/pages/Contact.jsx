@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import API from "../api/axios";
 
 // ── Scroll-reveal ───────────────────────────────────────────────────
 function useReveal() {
@@ -70,10 +71,24 @@ export default function Contact() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: connect to backend
-    setSubmitted(true);
+    setError("");
+    setLoading(true);
+    try {
+      await API.post("/contact", form);
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "Something went wrong. Please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -243,12 +258,17 @@ export default function Contact() {
                       className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all resize-none"
                     />
                   </div>
-
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-xl">
+                      {error}
+                    </div>
+                  )}
                   <button
                     type="submit"
-                    className="w-full bg-[#162718] hover:bg-[#1e3a20] text-white font-bold py-4 rounded-xl transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+                    disabled={loading}
+                    className="w-full bg-[#162718] hover:bg-[#1e3a20] disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
                   >
-                    Send Enquiry
+                    {loading ? "Sending..." : "Send Enquiry"}
                   </button>
 
                   <p className="text-xs text-stone-400 text-center">

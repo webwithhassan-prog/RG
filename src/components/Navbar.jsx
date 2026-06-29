@@ -22,11 +22,6 @@ const umrahPackages = [
     to: "/umrah/packages",
   },
   { label: "Umrah FAQ", sub: "Common questions answered", to: "/umrah/faq" },
-  {
-    label: "Umrah Facilities",
-    sub: "Hotels, transport & more",
-    to: "/umrah/facilities",
-  },
 ];
 
 function ChevronIcon({ open }) {
