@@ -91,7 +91,7 @@ export default function HajjPackages() {
       className={`group flex flex-col md:flex-row bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
         isPast
           ? "border-stone-200 hover:border-stone-400 hover:shadow-xl"
-          : "border-stone-200 hover:border-amber-400 hover:shadow-xl"
+          : "border-stone-200 hover:border-[#D4A017] hover:shadow-xl"
       }`}
     >
       <div className="md:w-72 h-52 md:h-auto flex-shrink-0 overflow-hidden relative">
@@ -103,7 +103,7 @@ export default function HajjPackages() {
           }`}
         />
         <div className="absolute top-3 left-3 flex flex-col gap-2">
-          <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2.5 py-1 rounded-lg">
+          <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2.5 py-1 rounded-lg">
             Maktab {pkg.maktab}
           </span>
           <span
@@ -121,8 +121,8 @@ export default function HajjPackages() {
             <span
               className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
                 isPast
-                  ? "bg-stone-500 text-white"
-                  : "bg-amber-500 text-[#162718]"
+                  ? "bg-[#FDFAF5]0 text-white"
+                  : "bg-[#D4A017] text-[#1a6b3c]"
               }`}
             >
               {pkg.badge}
@@ -146,7 +146,7 @@ export default function HajjPackages() {
                 className={`text-xl font-bold transition-colors ${
                   isPast
                     ? "text-stone-900 group-hover:text-stone-600"
-                    : "text-stone-900 group-hover:text-amber-600"
+                    : "text-stone-900 group-hover:text-[#c49010]"
                 }`}
               >
                 Maktab {pkg.maktab} — {pkg.tier} Package
@@ -157,7 +157,7 @@ export default function HajjPackages() {
               className={`text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0 ${
                 isPast
                   ? "bg-stone-100 text-stone-500"
-                  : "bg-[#162718] text-amber-400"
+                  : "bg-[#1a6b3c] text-[#D4A017]"
               }`}
             >
               {pkg.duration}
@@ -176,7 +176,7 @@ export default function HajjPackages() {
                   className={`w-4 h-4 rounded-full flex items-center justify-center text-xs flex-shrink-0 ${
                     isPast
                       ? "bg-stone-100 text-stone-400"
-                      : "bg-amber-100 text-amber-600"
+                      : "bg-[#faefc0] text-[#c49010]"
                   }`}
                 >
                   ✓
@@ -209,7 +209,7 @@ export default function HajjPackages() {
             className={`flex items-center gap-2 text-sm font-bold transition-colors whitespace-nowrap ${
               isPast
                 ? "text-stone-500 group-hover:text-stone-700"
-                : "text-[#162718] group-hover:text-amber-600"
+                : "text-[#1a6b3c] group-hover:text-[#c49010]"
             }`}
           >
             View Details
@@ -236,11 +236,11 @@ export default function HajjPackages() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/65 to-black/80" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-amber-400/5 blur-2xl" />
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Hajj Packages
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -258,16 +258,16 @@ export default function HajjPackages() {
 
       {loading ? (
         <div className="flex items-center justify-center py-32">
-          <div className="w-10 h-10 border-4 border-amber-400 border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-4 border-[#D4A017] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : (
         <>
           {/* ── CURRENT SEASON (2027+) ── */}
           {currentPackages.length > 0 ? (
-            <section className="py-20 bg-stone-50">
+            <section className="py-20 bg-[#FDFAF5]">
               <div className="max-w-5xl mx-auto px-6">
                 <Reveal className="mb-14">
-                  <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+                  <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
                     Available Now
                   </p>
                   <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -284,7 +284,7 @@ export default function HajjPackages() {
                   <div className="mb-12">
                     <h3 className="text-2xl font-bold text-stone-800 mb-6 flex items-center gap-3">
                       Maktab A
-                      <span className="text-sm font-normal text-amber-600">
+                      <span className="text-sm font-normal text-[#c49010]">
                         — Preferred
                       </span>
                     </h3>
@@ -335,18 +335,18 @@ export default function HajjPackages() {
               }}
             >
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/10 blur-3xl rounded-full" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-400/5 blur-2xl rounded-full" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#D4A017]/10 blur-3xl rounded-full" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#e8b820]/5 blur-2xl rounded-full" />
               </div>
               <div className="relative max-w-4xl mx-auto px-6 text-center">
-                <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <div className="inline-flex items-center gap-2 bg-[#D4A017]/20 border border-[#D4A017]/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+                  <span className="w-2 h-2 rounded-full bg-[#e8b820] animate-pulse" />
                   UPCOMING
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
                   Hajj {nextYear}
                 </h2>
-                <p className="text-amber-400 text-xl font-semibold mb-3">
+                <p className="text-[#D4A017] text-xl font-semibold mb-3">
                   Coming Soon
                 </p>
                 <p className="text-stone-300 text-base max-w-xl mx-auto leading-relaxed mb-10">
@@ -383,7 +383,7 @@ export default function HajjPackages() {
                   </a>
                   <Link
                     to="/contact"
-                    className="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                    className="bg-[#D4A017]/20 hover:bg-[#D4A017]/30 border border-[#D4A017]/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
                   >
                     Contact Us
                   </Link>
@@ -401,7 +401,7 @@ export default function HajjPackages() {
                   closed.
                 </p>
               </div>
-              <section className="py-20 bg-stone-50">
+              <section className="py-20 bg-[#FDFAF5]">
                 <div className="max-w-5xl mx-auto px-6">
                   <Reveal className="mb-14">
                     <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -458,19 +458,19 @@ export default function HajjPackages() {
       )}
 
       {/* ── CTA ── */}
-      <section className="py-14 bg-amber-500 text-center">
+      <section className="py-14 bg-[#D4A017] text-center">
         <Reveal>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#162718] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
             Interested in Hajj?
           </h2>
-          <p className="text-[#162718]/70 mb-7">
+          <p className="text-[#1a6b3c]/70 mb-7">
             Register your interest early and we'll reach out as soon as packages
             are available.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-[#162718] hover:bg-[#1e3a20] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               Contact Us
             </Link>

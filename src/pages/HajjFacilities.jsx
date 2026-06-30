@@ -172,15 +172,15 @@ export default function HajjFacilities() {
         className="relative py-24 text-white text-center"
         style={{
           background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
         }}
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-amber-400/5 blur-2xl" />
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Hajj 2026
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -194,7 +194,7 @@ export default function HajjFacilities() {
       </section>
 
       {/* ── HIGHLIGHTS STRIP ── */}
-      <section className="bg-[#162718] py-10">
+      <section className="bg-[#1a6b3c] py-10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {highlights.map((h, i) => (
@@ -211,10 +211,10 @@ export default function HajjFacilities() {
       </section>
 
       {/* ── FACILITY EXPLORER ── */}
-      <section className="py-20 bg-stone-50">
+      <section className="py-20 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               What We Provide
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -235,8 +235,8 @@ export default function HajjFacilities() {
                     onClick={() => setActive(f.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-200 ${
                       active === f.id
-                        ? "bg-[#162718] text-white shadow-md"
-                        : "bg-white border border-stone-200 text-stone-600 hover:border-amber-300 hover:bg-amber-50"
+                        ? "bg-[#1a6b3c] text-white shadow-md"
+                        : "bg-white border border-stone-200 text-stone-600 hover:border-amber-300 hover:bg-[#fdf8e7]"
                     }`}
                   >
                     <span className="text-xl flex-shrink-0">{f.icon}</span>
@@ -251,7 +251,7 @@ export default function HajjFacilities() {
                       </p>
                     </div>
                     {active === f.id && (
-                      <span className="ml-auto text-amber-400">→</span>
+                      <span className="ml-auto text-[#D4A017]">→</span>
                     )}
                   </button>
                 ))}
@@ -270,11 +270,11 @@ export default function HajjFacilities() {
                     className="rounded-2xl h-48 flex items-center justify-center mb-6 relative overflow-hidden"
                     style={{
                       background:
-                        "linear-gradient(135deg, #0f1f10 0%, #162718 60%, #1e3a20 100%)",
+                        "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 60%, #155c33 100%)",
                     }}
                   >
                     <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-amber-500/10 blur-2xl" />
+                      <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-[#D4A017]/10 blur-2xl" />
                     </div>
                     <div className="relative text-center">
                       <span className="text-5xl block mb-3">
@@ -300,7 +300,7 @@ export default function HajjFacilities() {
                           key={i}
                           className="flex items-start gap-3 text-sm text-stone-600"
                         >
-                          <span className="w-5 h-5 bg-[#162718] rounded-full flex items-center justify-center text-amber-400 text-xs flex-shrink-0 mt-0.5">
+                          <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0 mt-0.5">
                             ✓
                           </span>
                           {d}
@@ -319,7 +319,7 @@ export default function HajjFacilities() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               At a Glance
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -334,10 +334,10 @@ export default function HajjFacilities() {
                     setActive(f.id);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className="group w-full bg-stone-50 rounded-2xl border border-stone-100 p-6 text-left hover:border-amber-300 hover:shadow-sm transition-all"
+                  className="group w-full bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 text-left hover:border-amber-300 hover:shadow-sm transition-all"
                 >
                   <span className="text-3xl block mb-3">{f.icon}</span>
-                  <h3 className="font-bold text-stone-900 text-sm mb-1 group-hover:text-amber-600 transition-colors">
+                  <h3 className="font-bold text-stone-900 text-sm mb-1 group-hover:text-[#c49010] transition-colors">
                     {f.title}
                   </h3>
                   <p className="text-stone-400 text-xs leading-relaxed">
@@ -354,12 +354,12 @@ export default function HajjFacilities() {
       <section
         className="py-20 text-white"
         style={{
-          background: "linear-gradient(135deg, #162718 0%, #1e3a20 100%)",
+          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
         }}
       >
         <div className="max-w-4xl mx-auto px-6">
           <Reveal className="text-center mb-12">
-            <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               Package Comparison
             </p>
             <h2 className="text-3xl font-bold text-white">
@@ -374,7 +374,7 @@ export default function HajjFacilities() {
               {
                 label: "Maktab A",
                 badge: "Premium",
-                color: "border-amber-400",
+                color: "border-[#D4A017]",
                 hotel: "Biot Altamyoz Hotel Azizia",
                 tier: "Silver (13–14 days) & Comfort (10–11 days)",
                 features: [
@@ -402,11 +402,11 @@ export default function HajjFacilities() {
                 <div className={`border-2 ${m.color} rounded-2xl p-7`}>
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">{m.label}</h3>
-                    <span className="bg-amber-500 text-[#162718] text-xs font-bold px-2.5 py-1 rounded-full">
+                    <span className="bg-[#D4A017] text-[#1a6b3c] text-xs font-bold px-2.5 py-1 rounded-full">
                       {m.badge}
                     </span>
                   </div>
-                  <p className="text-amber-400 text-sm font-semibold mb-1">
+                  <p className="text-[#D4A017] text-sm font-semibold mb-1">
                     {m.hotel}
                   </p>
                   <p className="text-stone-400 text-xs mb-5">{m.tier}</p>
@@ -416,7 +416,7 @@ export default function HajjFacilities() {
                         key={feat}
                         className="flex items-center gap-2 text-sm text-stone-300"
                       >
-                        <span className="text-amber-400 flex-shrink-0">✓</span>
+                        <span className="text-[#D4A017] flex-shrink-0">✓</span>
                         {feat}
                       </li>
                     ))}
@@ -428,7 +428,7 @@ export default function HajjFacilities() {
           <Reveal delay={200} className="mt-8 text-center">
             <Link
               to="/hajj/packages"
-              className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               View All Packages →
             </Link>
@@ -437,25 +437,25 @@ export default function HajjFacilities() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-14 bg-amber-500 text-center">
+      <section className="py-14 bg-[#D4A017] text-center">
         <Reveal>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#162718] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
             Ready to Book Your Hajj Package?
           </h2>
-          <p className="text-[#162718]/70 mb-7">
+          <p className="text-[#1a6b3c]/70 mb-7">
             All facilities are included — just bring your faith and we'll handle
             the rest.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/hajj/packages"
-              className="bg-[#162718] hover:bg-[#1e3a20] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               View Packages
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-[#162718]/30 hover:border-[#162718] text-[#162718] font-semibold px-8 py-4 rounded-xl transition-all"
+              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
             >
               Contact Us
             </Link>

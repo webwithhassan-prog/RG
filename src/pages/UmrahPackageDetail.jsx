@@ -81,7 +81,7 @@ export default function UmrahPackageDetail() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-amber-400 border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-4 border-[#D4A017] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -92,7 +92,7 @@ export default function UmrahPackageDetail() {
         <p className="text-stone-500">Package not found.</p>
         <Link
           to="/umrah/packages"
-          className="text-[#162718] font-semibold hover:text-amber-600"
+          className="text-[#1a6b3c] font-semibold hover:text-[#c49010]"
         >
           ← Back to Packages
         </Link>
@@ -120,17 +120,17 @@ export default function UmrahPackageDetail() {
 
         <div className="absolute top-6 right-6 flex gap-2">
           {pkg.badge && (
-            <span className="bg-amber-500 text-[#162718] text-xs font-bold px-3 py-1.5 rounded-lg">
+            <span className="bg-[#D4A017] text-[#1a6b3c] text-xs font-bold px-3 py-1.5 rounded-lg">
               {pkg.badge}
             </span>
           )}
-          <span className="bg-[#162718] text-amber-400 text-xs font-bold px-3 py-1.5 rounded-lg">
+          <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-3 py-1.5 rounded-lg">
             {pkg.duration}
           </span>
         </div>
 
         <div className="absolute bottom-6 left-6">
-          <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-1">
+          <p className="text-[#D4A017] text-xs font-semibold uppercase tracking-widest mb-1">
             Umrah Package
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-white">
@@ -154,7 +154,7 @@ export default function UmrahPackageDetail() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="bg-stone-50 rounded-xl border border-stone-200 p-4 text-center"
+                    className="bg-[#FDFAF5] rounded-xl border border-stone-200 p-4 text-center"
                   >
                     <p className="text-xs text-stone-400 mb-1">{item.label}</p>
                     <p className="text-sm font-bold text-stone-800">
@@ -177,7 +177,7 @@ export default function UmrahPackageDetail() {
                       key={h}
                       className="flex items-center gap-3 text-sm text-stone-600"
                     >
-                      <span className="w-5 h-5 bg-[#162718] rounded-full flex items-center justify-center text-amber-400 text-xs flex-shrink-0">
+                      <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0">
                         ✓
                       </span>
                       {h}
@@ -199,7 +199,7 @@ export default function UmrahPackageDetail() {
                       key={i}
                       className="flex items-start gap-3 text-sm text-stone-600"
                     >
-                      <span className="w-5 h-5 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-xs flex-shrink-0 mt-0.5">
+                      <span className="w-5 h-5 bg-[#faefc0] rounded-full flex items-center justify-center text-[#c49010] text-xs flex-shrink-0 mt-0.5">
                         •
                       </span>
                       {r}
@@ -211,7 +211,7 @@ export default function UmrahPackageDetail() {
 
             {/* Notes */}
             <Reveal delay={150}>
-              <div className="bg-amber-50 rounded-2xl border border-amber-200 p-7">
+              <div className="bg-[#fdf8e7] rounded-2xl border border-amber-200 p-7">
                 <h2 className="font-bold text-stone-900 text-xl mb-5">
                   Important Notes
                 </h2>
@@ -221,7 +221,7 @@ export default function UmrahPackageDetail() {
                       key={i}
                       className="flex items-start gap-3 text-sm text-stone-600"
                     >
-                      <span className="text-amber-500 font-bold flex-shrink-0">
+                      <span className="text-[#D4A017] font-bold flex-shrink-0">
                         !
                       </span>
                       {n}
@@ -236,7 +236,7 @@ export default function UmrahPackageDetail() {
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
               {/* Pricing */}
-              <div className="bg-white rounded-2xl border-2 border-[#162718] shadow-lg p-6">
+              <div className="bg-white rounded-2xl border-2 border-[#1a6b3c] shadow-lg p-6">
                 <p className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">
                   Package Pricing
                 </p>
@@ -265,11 +265,12 @@ export default function UmrahPackageDetail() {
                 </p>
                 <Link
                   to="/contact"
-                  className="mt-5 block w-full bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
+                  className="mt-5 block w-full bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
                 >
                   Book This Package
                 </Link>
                 <a
+                
                   href="https://wa.me/923218485159"
                   target="_blank"
                   rel="noreferrer"
@@ -280,8 +281,8 @@ export default function UmrahPackageDetail() {
               </div>
 
               {/* Contact */}
-              <div className="bg-[#162718] rounded-2xl p-5 text-white">
-                <p className="text-xs font-bold text-amber-400 uppercase tracking-widest mb-3">
+              <div className="bg-[#1a6b3c] rounded-2xl p-5 text-white">
+                <p className="text-xs font-bold text-[#D4A017] uppercase tracking-widest mb-3">
                   Direct Contact
                 </p>
                 {[
@@ -293,7 +294,7 @@ export default function UmrahPackageDetail() {
                     <p className="text-stone-400 text-xs">{c.name}</p>
                     <a
                       href={`tel:${c.phone}`}
-                      className="text-amber-400 font-bold text-sm hover:text-amber-300 transition-colors"
+                      className="text-[#D4A017] font-bold text-sm hover:text-amber-300 transition-colors"
                     >
                       {c.phone}
                     </a>
@@ -307,7 +308,7 @@ export default function UmrahPackageDetail() {
 
       {/* ── OTHER PACKAGES ── */}
       {allPackages.filter((p) => p.slug !== slug).length > 0 && (
-        <section className="py-14 bg-stone-50 border-t border-stone-200">
+        <section className="py-14 bg-[#FDFAF5] border-t border-stone-200">
           <div className="max-w-5xl mx-auto px-6">
             <Reveal className="mb-8">
               <h2 className="text-2xl font-bold text-stone-900">
@@ -322,7 +323,7 @@ export default function UmrahPackageDetail() {
                   <Reveal key={p._id} delay={i * 80}>
                     <Link
                       to={`/umrah/${p.slug}`}
-                      className="group bg-white rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-md transition-all overflow-hidden"
+                      className="group bg-white rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-md transition-all overflow-hidden"
                     >
                       <img
                         src={p.image}
@@ -331,16 +332,16 @@ export default function UmrahPackageDetail() {
                       />
                       <div className="p-4">
                         <div className="flex gap-2 mb-2">
-                          <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2 py-0.5 rounded">
+                          <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                             {p.duration}
                           </span>
                           {p.badge && (
-                            <span className="bg-amber-50 text-amber-700 text-xs font-bold px-2 py-0.5 rounded">
+                            <span className="bg-[#fdf8e7] text-amber-700 text-xs font-bold px-2 py-0.5 rounded">
                               {p.badge}
                             </span>
                           )}
                         </div>
-                        <p className="text-sm font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                        <p className="text-sm font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
                           {p.name}
                         </p>
                         <p className="text-xs text-stone-400 mt-0.5">

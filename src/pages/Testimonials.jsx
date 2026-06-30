@@ -149,7 +149,7 @@ function FeaturedSlider() {
               <div className="bg-white rounded-2xl p-10 border border-stone-100 shadow-sm text-center max-w-2xl mx-auto">
                 <div className="flex justify-center gap-1 mb-6">
                   {[...Array(t.rating)].map((_, i) => (
-                    <span key={i} className="text-amber-400 text-xl">
+                    <span key={i} className="text-[#D4A017] text-xl">
                       ★
                     </span>
                   ))}
@@ -158,7 +158,7 @@ function FeaturedSlider() {
                   "{t.text}"
                 </p>
                 <div className="flex items-center justify-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#162718] flex items-center justify-center text-amber-400 font-bold">
+                  <div className="w-10 h-10 rounded-full bg-[#1a6b3c] flex items-center justify-center text-[#D4A017] font-bold">
                     {t.name.charAt(0)}
                   </div>
                   <div className="text-left">
@@ -177,7 +177,7 @@ function FeaturedSlider() {
       <div className="flex items-center justify-center gap-6 mt-8">
         <button
           onClick={prev}
-          className="w-10 h-10 rounded-full border border-stone-200 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all"
+          className="w-10 h-10 rounded-full border border-stone-200 hover:border-[#D4A017] hover:bg-[#fdf8e7] flex items-center justify-center transition-all"
         >
           ←
         </button>
@@ -186,13 +186,13 @@ function FeaturedSlider() {
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? "w-6 h-2.5 bg-amber-500" : "w-2.5 h-2.5 bg-stone-200 hover:bg-stone-300"}`}
+              className={`rounded-full transition-all duration-300 ${i === current ? "w-6 h-2.5 bg-[#D4A017]" : "w-2.5 h-2.5 bg-stone-200 hover:bg-stone-300"}`}
             />
           ))}
         </div>
         <button
           onClick={next}
-          className="w-10 h-10 rounded-full border border-stone-200 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all"
+          className="w-10 h-10 rounded-full border border-stone-200 hover:border-[#D4A017] hover:bg-[#fdf8e7] flex items-center justify-center transition-all"
         >
           →
         </button>
@@ -209,7 +209,7 @@ function TestimonialCard({ t, delay }) {
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#162718] flex items-center justify-center text-amber-400 font-bold flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#1a6b3c] flex items-center justify-center text-[#D4A017] font-bold flex-shrink-0">
               {t.name.charAt(0)}
             </div>
             <div>
@@ -218,7 +218,7 @@ function TestimonialCard({ t, delay }) {
             </div>
           </div>
           <span
-            className={`text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0 ${t.type === "Hajj" ? "bg-[#162718]/10 text-[#162718]" : "bg-amber-100 text-amber-700"}`}
+            className={`text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0 ${t.type === "Hajj" ? "bg-[#1a6b3c]/10 text-[#1a6b3c]" : "bg-[#faefc0] text-amber-700"}`}
           >
             {t.type} {t.year}
           </span>
@@ -227,7 +227,7 @@ function TestimonialCard({ t, delay }) {
         {/* Stars */}
         <div className="flex gap-0.5 mb-3">
           {[...Array(t.rating)].map((_, i) => (
-            <span key={i} className="text-amber-400 text-sm">
+            <span key={i} className="text-[#D4A017] text-sm">
               ★
             </span>
           ))}
@@ -258,15 +258,15 @@ export default function Testimonials() {
         className="relative py-24 text-white text-center"
         style={{
           background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
         }}
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-amber-400/5 blur-2xl" />
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Real Stories
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -280,11 +280,11 @@ export default function Testimonials() {
       </section>
 
       {/* ── STATS ── */}
-      <section className="bg-[#162718] py-12">
+      <section className="bg-[#1a6b3c] py-12">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <div key={s.label}>
-              <p className="text-3xl font-bold text-amber-400">{s.value}</p>
+              <p className="text-3xl font-bold text-[#D4A017]">{s.value}</p>
               <p className="text-stone-400 text-sm mt-1">{s.label}</p>
             </div>
           ))}
@@ -292,10 +292,10 @@ export default function Testimonials() {
       </section>
 
       {/* ── FEATURED SLIDER ── */}
-      <section className="py-20 bg-stone-50">
+      <section className="py-20 bg-[#FDFAF5]">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal className="text-center mb-12">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               Featured Reviews
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -311,7 +311,7 @@ export default function Testimonials() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-1">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-1">
                 All Reviews
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-stone-900">
@@ -324,7 +324,7 @@ export default function Testimonials() {
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${filter === f ? "bg-[#162718] text-amber-400 shadow-sm" : "text-stone-500 hover:text-stone-800"}`}
+                  className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${filter === f ? "bg-[#1a6b3c] text-[#D4A017] shadow-sm" : "text-stone-500 hover:text-stone-800"}`}
                 >
                   {f}
                 </button>
@@ -344,11 +344,11 @@ export default function Testimonials() {
       <section
         className="py-20 text-white text-center"
         style={{
-          background: "linear-gradient(135deg, #162718 0%, #1e3a20 100%)",
+          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
         }}
       >
         <Reveal className="max-w-2xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Share Your Experience
           </p>
           <h2 className="text-3xl font-bold mb-4">Traveled with RG Travels?</h2>
@@ -358,7 +358,7 @@ export default function Testimonials() {
           </p>
           <Link
             to="/contact"
-            className="inline-block bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+            className="inline-block bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
           >
             Share Your Story
           </Link>
@@ -366,24 +366,24 @@ export default function Testimonials() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-14 bg-amber-500 text-center">
+      <section className="py-14 bg-[#D4A017] text-center">
         <Reveal>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#162718] mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
             Ready to Create Your Own Story?
           </h2>
-          <p className="text-[#162718]/70 mb-7">
+          <p className="text-[#1a6b3c]/70 mb-7">
             Join thousands of pilgrims who trusted us with their sacred journey.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/hajj/packages"
-              className="bg-[#162718] hover:bg-[#1e3a20] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               View Hajj Packages
             </Link>
             <Link
               to="/umrah/packages"
-              className="border-2 border-[#162718]/30 hover:border-[#162718] text-[#162718] font-semibold px-8 py-4 rounded-xl transition-all"
+              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
             >
               View Umrah Packages
             </Link>

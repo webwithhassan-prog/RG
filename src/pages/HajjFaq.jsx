@@ -171,17 +171,17 @@ function FAQItem({ faq, index }) {
   return (
     <Reveal delay={index * 40}>
       <div
-        className={`border rounded-xl overflow-hidden transition-all duration-200 ${open ? "border-amber-400 shadow-sm" : "border-stone-200 hover:border-stone-300"}`}
+        className={`border rounded-xl overflow-hidden transition-all duration-200 ${open ? "border-[#D4A017] shadow-sm" : "border-stone-200 hover:border-stone-300"}`}
       >
         <button
           onClick={() => setOpen(!open)}
-          className="w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-stone-50 transition-colors"
+          className="w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-[#FDFAF5] transition-colors"
         >
           <span className="font-semibold text-stone-800 text-sm pr-6 leading-relaxed">
             {faq.q}
           </span>
           <span
-            className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold transition-all duration-200 ${open ? "bg-amber-500 text-[#162718] rotate-45" : "bg-stone-100 text-stone-500"}`}
+            className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold transition-all duration-200 ${open ? "bg-[#D4A017] text-[#1a6b3c] rotate-45" : "bg-stone-100 text-stone-500"}`}
           >
             +
           </span>
@@ -220,15 +220,15 @@ export default function HajjFAQ() {
         className="relative py-24 text-white text-center"
         style={{
           background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
         }}
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-amber-400/5 blur-2xl" />
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Help Center
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Hajj FAQ</h1>
@@ -244,7 +244,7 @@ export default function HajjFAQ() {
               placeholder="Search your question..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/10 border border-white/20 text-white placeholder-stone-400 rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:border-amber-400 focus:bg-white/15 transition-all"
+              className="w-full bg-white/10 border border-white/20 text-white placeholder-stone-400 rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:border-[#D4A017] focus:bg-white/15 transition-all"
             />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 text-sm">
               🔍
@@ -263,7 +263,7 @@ export default function HajjFAQ() {
                 onClick={() => setActiveCategory(cat)}
                 className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   activeCategory === cat
-                    ? "bg-[#162718] text-amber-400"
+                    ? "bg-[#1a6b3c] text-[#D4A017]"
                     : "bg-stone-100 text-stone-500 hover:bg-stone-200"
                 }`}
               >
@@ -275,7 +275,7 @@ export default function HajjFAQ() {
       </section>
 
       {/* ── FAQ LIST ── */}
-      <section className="py-20 bg-stone-50">
+      <section className="py-20 bg-[#FDFAF5]">
         <div className="max-w-4xl mx-auto px-6">
           {filtered.length === 0 ? (
             <div className="text-center py-20">
@@ -288,7 +288,7 @@ export default function HajjFAQ() {
                   setSearch("");
                   setActiveCategory("All");
                 }}
-                className="mt-5 text-sm font-semibold text-[#162718] hover:text-amber-600 transition-colors"
+                className="mt-5 text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors"
               >
                 Clear filters →
               </button>
@@ -364,11 +364,11 @@ export default function HajjFAQ() {
       <section
         className="py-20 text-white text-center"
         style={{
-          background: "linear-gradient(135deg, #162718 0%, #1e3a20 100%)",
+          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
         }}
       >
         <Reveal className="max-w-2xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Still need help?
           </p>
           <h2 className="text-3xl font-bold mb-4">Can't Find Your Answer?</h2>
@@ -379,7 +379,7 @@ export default function HajjFAQ() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               Contact Us
             </Link>
@@ -396,7 +396,7 @@ export default function HajjFAQ() {
       </section>
 
       {/* ── QUICK LINKS ── */}
-      <section className="py-12 bg-stone-50 border-t border-stone-200">
+      <section className="py-12 bg-[#FDFAF5] border-t border-stone-200">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <Reveal>
             <p className="text-stone-400 text-sm mb-5">
@@ -411,7 +411,7 @@ export default function HajjFAQ() {
                 <Link
                   key={to}
                   to={to}
-                  className="border border-stone-200 hover:border-amber-400 hover:bg-amber-50 text-stone-600 hover:text-amber-700 text-sm font-medium px-5 py-2.5 rounded-xl transition-all"
+                  className="border border-stone-200 hover:border-[#D4A017] hover:bg-[#fdf8e7] text-stone-600 hover:text-amber-700 text-sm font-medium px-5 py-2.5 rounded-xl transition-all"
                 >
                   {label}
                 </Link>

@@ -104,11 +104,11 @@ export default function Contact() {
         }}
       >
         {/* Decorative Orbs */}
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
         <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl" />
 
         <div className="relative max-w-3xl mx-auto px-6 z-10">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-4">
             We're Here to Help
           </p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
@@ -126,7 +126,7 @@ export default function Contact() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-stone-50 to-transparent" />
       </section>
       {/* ── MAIN CONTENT ── */}
-      <section className="py-20 bg-stone-50">
+      <section className="py-20 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
           {/* ── FORM ── */}
           <Reveal>
@@ -160,7 +160,7 @@ export default function Contact() {
                         message: "",
                       });
                     }}
-                    className="text-sm font-semibold text-[#162718] hover:text-amber-600 transition-colors"
+                    className="text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors"
                   >
                     Send another message →
                   </button>
@@ -179,7 +179,7 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         placeholder="Your full name"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all"
+                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-[#D4A017] focus:ring-2 focus:ring-amber-100 transition-all"
                       />
                     </div>
                     <div>
@@ -193,7 +193,7 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         placeholder="03XX-XXXXXXX"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all"
+                        className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-[#D4A017] focus:ring-2 focus:ring-amber-100 transition-all"
                       />
                     </div>
                   </div>
@@ -208,7 +208,7 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="your@email.com"
-                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all"
+                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-[#D4A017] focus:ring-2 focus:ring-amber-100 transition-all"
                     />
                   </div>
 
@@ -221,7 +221,7 @@ export default function Contact() {
                       value={form.interest}
                       onChange={handleChange}
                       required
-                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all bg-white"
+                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:border-[#D4A017] focus:ring-2 focus:ring-amber-100 transition-all bg-white"
                     >
                       <option value="">Select a package</option>
                       <option value="hajj-a-silver">
@@ -255,7 +255,7 @@ export default function Contact() {
                       onChange={handleChange}
                       rows={4}
                       placeholder="Any questions or special requirements..."
-                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 transition-all resize-none"
+                      className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-[#D4A017] focus:ring-2 focus:ring-amber-100 transition-all resize-none"
                     />
                   </div>
                   {error && (
@@ -266,7 +266,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#162718] hover:bg-[#1e3a20] disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+                    className="w-full bg-[#1a6b3c] hover:bg-[#155c33] disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
                   >
                     {loading ? "Sending..." : "Send Enquiry"}
                   </button>
@@ -297,13 +297,13 @@ export default function Contact() {
                         <p className="font-semibold text-stone-800 text-sm">
                           {c.name}
                         </p>
-                        <p className="text-xs text-amber-600 font-medium">
+                        <p className="text-xs text-[#c49010] font-medium">
                           {c.role}
                         </p>
                       </div>
                       <a
                         href={`tel:${c.phone}`}
-                        className="flex items-center gap-2 bg-[#162718] hover:bg-amber-500 text-white hover:text-[#162718] text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200"
+                        className="flex items-center gap-2 bg-[#1a6b3c] hover:bg-[#D4A017] text-white hover:text-[#1a6b3c] text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-200"
                       >
                         📞 {c.phone}
                       </a>
@@ -357,7 +357,7 @@ export default function Contact() {
 
             {/* Office Hours */}
             <Reveal delay={400}>
-              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+              <div className="bg-[#fdf8e7] border border-amber-200 rounded-2xl p-6">
                 <h3 className="font-bold text-stone-900 mb-3">Office Hours</h3>
                 <div className="space-y-2 text-sm">
                   {[
@@ -389,7 +389,7 @@ export default function Contact() {
             href="https://maps.google.com/?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore"
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-block text-sm font-semibold text-[#162718] hover:text-amber-600 transition-colors underline underline-offset-2"
+            className="mt-3 inline-block text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors underline underline-offset-2"
           >
             Open in Google Maps →
           </a>
@@ -397,7 +397,7 @@ export default function Contact() {
       </section>
 
       {/* ── QUICK LINKS ── */}
-      <section className="py-14 bg-[#162718] text-white">
+      <section className="py-14 bg-[#1a6b3c] text-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <Reveal>
             <p className="text-stone-400 text-sm mb-5">
@@ -413,7 +413,7 @@ export default function Contact() {
                 <Link
                   key={to}
                   to={to}
-                  className="border border-white/20 hover:border-amber-400 hover:bg-amber-400/10 text-stone-300 hover:text-amber-400 text-sm font-medium px-5 py-2.5 rounded-xl transition-all duration-200"
+                  className="border border-white/20 hover:border-[#D4A017] hover:bg-[#e8b820]/10 text-stone-300 hover:text-[#D4A017] text-sm font-medium px-5 py-2.5 rounded-xl transition-all duration-200"
                 >
                   {label}
                 </Link>

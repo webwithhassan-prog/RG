@@ -122,21 +122,21 @@ export default function AboutUs() {
         className="relative py-28 text-white text-center"
         style={{
           background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
         }}
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-amber-400/5 blur-2xl" />
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
         </div>
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Our Story
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Serving Pilgrims with
             <br />
-            <span className="text-amber-400">Heart & Dedication</span>
+            <span className="text-[#D4A017]">Heart & Dedication</span>
           </h1>
           <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
             For over 20 years, RG Tours & Travels has been guiding Muslims from
@@ -147,7 +147,7 @@ export default function AboutUs() {
       </section>
 
       {/* ── STATS ── */}
-      <section ref={statsRef} className="bg-[#162718] py-14">
+      <section ref={statsRef} className="bg-[#1a6b3c] py-14">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <div
@@ -158,7 +158,7 @@ export default function AboutUs() {
                 transition: `opacity 0.6s ease ${i * 120}ms, transform 0.6s ease ${i * 120}ms`,
               }}
             >
-              <p className="text-3xl md:text-4xl font-bold text-amber-400">
+              <p className="text-3xl md:text-4xl font-bold text-[#D4A017]">
                 {s.value}
               </p>
               <p className="text-stone-400 text-sm mt-1">{s.label}</p>
@@ -168,10 +168,10 @@ export default function AboutUs() {
       </section>
 
       {/* ── WHO WE ARE ── */}
-      <section className="py-24 bg-stone-50">
+      <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
           <Reveal>
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               Who We Are
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-5 leading-snug">
@@ -248,9 +248,9 @@ export default function AboutUs() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <div className="flex items-center justify-center bg-[#162718] text-white p-10 text-center md:text-left">
+          <div className="flex items-center justify-center bg-[#1a6b3c] text-white p-10 text-center md:text-left">
             <div>
-              <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
                 Visit Our Office
               </p>
               <h3 className="text-2xl font-bold mb-4">
@@ -264,7 +264,7 @@ export default function AboutUs() {
                 href="https://maps.google.com/?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold px-6 py-3 rounded-xl transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-6 py-3 rounded-xl transition-all hover:scale-105"
               >
                 Open in Google Maps →
               </a>
@@ -276,7 +276,7 @@ export default function AboutUs() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               What Drives Us
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -286,7 +286,7 @@ export default function AboutUs() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 80}>
-                <div className="bg-stone-50 rounded-2xl border border-stone-100 p-7 hover:border-amber-300 hover:shadow-sm transition-all">
+                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-7 hover:border-amber-300 hover:shadow-sm transition-all">
                   <span className="text-3xl block mb-4">{v.icon}</span>
                   <h3 className="font-bold text-stone-900 text-lg mb-2">
                     {v.title}
@@ -305,13 +305,13 @@ export default function AboutUs() {
       <section
         className="py-24 text-white relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #162718 0%, #1e3a20 100%)",
+          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
         }}
       >
-        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-amber-400/5 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#e8b820]/5 blur-3xl pointer-events-none" />
         <div className="relative max-w-4xl mx-auto px-6">
           <Reveal className="text-center mb-14">
-            <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               Our Journey
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
@@ -331,7 +331,7 @@ export default function AboutUs() {
                     <div
                       className={`md:w-[45%] pl-10 md:pl-0 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}
                     >
-                      <span className="text-amber-400 font-bold text-lg">
+                      <span className="text-[#D4A017] font-bold text-lg">
                         {m.year}
                       </span>
                       <p className="text-stone-300 text-sm mt-1 leading-relaxed">
@@ -339,7 +339,7 @@ export default function AboutUs() {
                       </p>
                     </div>
                     {/* Dot */}
-                    <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber-400 border-2 border-[#162718] mt-1.5" />
+                    <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#e8b820] border-2 border-[#1a6b3c] mt-1.5" />
                     <div className="md:w-[45%]" />
                   </div>
                 </Reveal>
@@ -350,10 +350,10 @@ export default function AboutUs() {
       </section>
 
       {/* ── TEAM ── */}
-      <section className="py-24 bg-stone-50">
+      <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               The People Behind RG Travels
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -365,13 +365,13 @@ export default function AboutUs() {
               <Reveal key={member.name} delay={i * 100}>
                 <div className="bg-white rounded-2xl border border-stone-200 p-7 hover:border-amber-300 hover:shadow-md transition-all">
                   {/* Avatar placeholder */}
-                  <div className="w-16 h-16 rounded-full bg-[#162718] flex items-center justify-center text-amber-400 text-2xl font-bold mb-5">
+                  <div className="w-16 h-16 rounded-full bg-[#1a6b3c] flex items-center justify-center text-[#D4A017] text-2xl font-bold mb-5">
                     {member.name.charAt(0)}
                   </div>
                   <h3 className="font-bold text-stone-900 text-lg">
                     {member.name}
                   </h3>
-                  <p className="text-amber-600 text-xs font-semibold uppercase tracking-wide mt-0.5 mb-4">
+                  <p className="text-[#c49010] text-xs font-semibold uppercase tracking-wide mt-0.5 mb-4">
                     {member.role}
                   </p>
                   <p className="text-stone-500 text-sm leading-relaxed mb-5">
@@ -379,7 +379,7 @@ export default function AboutUs() {
                   </p>
                   <a
                     href={`tel:${member.phone}`}
-                    className="flex items-center gap-2 text-sm font-semibold text-[#162718] hover:text-amber-600 transition-colors"
+                    className="flex items-center gap-2 text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors"
                   >
                     📞 {member.phone}
                   </a>
@@ -394,7 +394,7 @@ export default function AboutUs() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
-            <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
               Why RG Travels
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -429,8 +429,8 @@ export default function AboutUs() {
               },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 70}>
-                <div className="bg-stone-50 rounded-2xl border border-stone-100 p-6 hover:border-amber-300 transition-all">
-                  <div className="w-8 h-0.5 bg-amber-400 mb-4" />
+                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 hover:border-amber-300 transition-all">
+                  <div className="w-8 h-0.5 bg-[#e8b820] mb-4" />
                   <h3 className="font-bold text-stone-900 mb-2">
                     {item.title}
                   </h3>
@@ -445,25 +445,25 @@ export default function AboutUs() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-20 bg-amber-500 text-center">
+      <section className="py-20 bg-[#D4A017] text-center">
         <Reveal className="max-w-2xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#162718] mb-4">
+          <h2 className="text-3xl font-bold text-[#1a6b3c] mb-4">
             Ready to Begin Your Sacred Journey?
           </h2>
-          <p className="text-[#162718]/70 mb-8">
+          <p className="text-[#1a6b3c]/70 mb-8">
             Join thousands of pilgrims who have trusted RG Tours & Travels with
             their Hajj and Umrah.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/hajj/packages"
-              className="bg-[#162718] hover:bg-[#1e3a20] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               View Hajj Packages
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-[#162718]/30 hover:border-[#162718] text-[#162718] font-semibold px-8 py-4 rounded-xl transition-all"
+              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
             >
               Contact Us
             </Link>

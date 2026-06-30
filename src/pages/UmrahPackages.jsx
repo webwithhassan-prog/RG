@@ -103,7 +103,7 @@ export default function UmrahPackages() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/65 to-black/80" />
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Umrah Packages
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -121,15 +121,15 @@ export default function UmrahPackages() {
 
       {loading ? (
         <div className="flex items-center justify-center py-32">
-          <div className="w-10 h-10 border-4 border-amber-400 border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-4 border-[#D4A017] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : packages.length > 0 ? (
         <>
           {/* ── PACKAGES LIST ── */}
-          <section className="py-20 bg-stone-50">
+          <section className="py-20 bg-[#FDFAF5]">
             <div className="max-w-5xl mx-auto px-6">
               <Reveal className="mb-14">
-                <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+                <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
                   Available Now
                 </p>
                 <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
@@ -146,7 +146,7 @@ export default function UmrahPackages() {
                   <Reveal key={pkg._id} delay={i * 100}>
                     <Link
                       to={`/umrah/${pkg.slug}`}
-                      className="group bg-white rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
+                      className="group bg-white rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-xl transition-all duration-300 overflow-hidden"
                     >
                       <div className="h-48 overflow-hidden relative">
                         <img
@@ -156,7 +156,7 @@ export default function UmrahPackages() {
                         />
                         {pkg.badge && (
                           <div className="absolute top-3 right-3">
-                            <span className="bg-amber-500 text-[#162718] text-xs font-bold px-2.5 py-1 rounded-lg">
+                            <span className="bg-[#D4A017] text-[#1a6b3c] text-xs font-bold px-2.5 py-1 rounded-lg">
                               {pkg.badge}
                             </span>
                           </div>
@@ -164,10 +164,10 @@ export default function UmrahPackages() {
                       </div>
                       <div className="p-6">
                         <div className="flex items-start justify-between gap-2 mb-3">
-                          <h3 className="text-lg font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                          <h3 className="text-lg font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
                             {pkg.name}
                           </h3>
-                          <span className="text-xs bg-[#162718] text-amber-400 font-bold px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0">
+                          <span className="text-xs bg-[#1a6b3c] text-[#D4A017] font-bold px-2.5 py-1 rounded-full whitespace-nowrap flex-shrink-0">
                             {pkg.duration}
                           </span>
                         </div>
@@ -180,7 +180,7 @@ export default function UmrahPackages() {
                               key={h}
                               className="flex items-center gap-2 text-xs text-stone-500"
                             >
-                              <span className="w-3.5 h-3.5 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-[10px] flex-shrink-0">
+                              <span className="w-3.5 h-3.5 bg-[#faefc0] rounded-full flex items-center justify-center text-[#c49010] text-[10px] flex-shrink-0">
                                 ✓
                               </span>
                               {h}
@@ -200,7 +200,7 @@ export default function UmrahPackages() {
                                 USD {pkg.usd.triple}
                               </p>
                             </div>
-                            <span className="text-sm font-bold text-[#162718] group-hover:text-amber-600 transition-colors">
+                            <span className="text-sm font-bold text-[#1a6b3c] group-hover:text-[#c49010] transition-colors">
                               View Details →
                             </span>
                           </div>
@@ -224,17 +224,17 @@ export default function UmrahPackages() {
             }}
           >
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/10 blur-3xl rounded-full" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#D4A017]/10 blur-3xl rounded-full" />
             </div>
             <div className="relative max-w-4xl mx-auto px-6 text-center">
-              <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 bg-[#D4A017]/20 border border-[#D4A017]/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+                <span className="w-2 h-2 rounded-full bg-[#e8b820] animate-pulse" />
                 Coming Soon
               </div>
               <h2 className="text-4xl md:text-6xl font-bold mb-4">
                 Umrah Packages
               </h2>
-              <p className="text-amber-400 text-xl font-semibold mb-3">
+              <p className="text-[#D4A017] text-xl font-semibold mb-3">
                 Coming Soon
               </p>
               <p className="text-stone-300 text-base max-w-xl mx-auto leading-relaxed mb-10">
@@ -269,7 +269,7 @@ export default function UmrahPackages() {
                 </a>
                 <Link
                   to="/contact"
-                  className="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                  className="bg-[#D4A017]/20 hover:bg-[#D4A017]/30 border border-[#D4A017]/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
                 >
                   Contact Us
                 </Link>
@@ -278,10 +278,10 @@ export default function UmrahPackages() {
           </section>
 
           {/* ── WHAT TO EXPECT ── */}
-          <section className="py-24 bg-stone-50">
+          <section className="py-24 bg-[#FDFAF5]">
             <div className="max-w-5xl mx-auto px-6">
               <Reveal className="text-center mb-16">
-                <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-3">
+                <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
                   What's Included
                 </p>
                 <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-3">
@@ -324,7 +324,7 @@ export default function UmrahPackages() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/80" />
         <div className="relative max-w-xl mx-auto px-6">
           <Reveal>
-            <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
               Get in touch
             </p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -362,7 +362,7 @@ export default function UmrahPackages() {
           </p>
           <Link
             to="/hajj/packages"
-            className="inline-flex items-center gap-2 bg-[#162718] hover:bg-[#1e3a20] text-white font-bold px-8 py-3.5 rounded-xl transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-3.5 rounded-xl transition-all hover:scale-105"
           >
             View Hajj Packages →
           </Link>

@@ -13,3 +13,12 @@
     display: none !important;
   }
 }
+
+:root {
+  --green-dark: #1a6b3c;
+  --green-darker: #0f4d2a;
+  --green-light: #155c33;
+  --gold: #d4a017;
+  --gold-light: #e8b820;
+  --cream: #fdfaf5;
+}

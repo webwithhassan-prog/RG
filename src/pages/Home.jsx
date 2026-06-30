@@ -104,7 +104,7 @@ const testimonials = [
 
 function SectionLabel({ children }) {
   return (
-    <p className="text-amber-500 text-sm font-semibold uppercase tracking-widest mb-2">
+    <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
       {children}
     </p>
   );
@@ -139,10 +139,10 @@ function TestimonialSlider() {
         >
           {testimonials.map((t) => (
             <div key={t.name} className="w-full flex-shrink-0 px-2">
-              <div className="bg-stone-50 rounded-2xl p-10 border border-stone-100 text-center max-w-2xl mx-auto">
+              <div className="bg-[#FDFAF5] rounded-2xl p-10 border border-stone-100 text-center max-w-2xl mx-auto">
                 <div className="flex justify-center gap-0.5 mb-6">
                   {[...Array(5)].map((_, j) => (
-                    <span key={j} className="text-amber-400 text-lg">
+                    <span key={j} className="text-[#D4A017] text-lg">
                       ★
                     </span>
                   ))}
@@ -160,7 +160,7 @@ function TestimonialSlider() {
       <div className="flex items-center justify-center gap-6 mt-8">
         <button
           onClick={prev}
-          className="w-10 h-10 rounded-full border border-stone-200 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all"
+          className="w-10 h-10 rounded-full border border-stone-200 hover:border-[#D4A017] hover:bg-[#fdf8e7] flex items-center justify-center transition-all"
         >
           ←
         </button>
@@ -169,13 +169,13 @@ function TestimonialSlider() {
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? "w-6 h-2.5 bg-amber-500" : "w-2.5 h-2.5 bg-stone-200 hover:bg-stone-300"}`}
+              className={`rounded-full transition-all duration-300 ${i === current ? "w-6 h-2.5 bg-[#D4A017]" : "w-2.5 h-2.5 bg-stone-200 hover:bg-stone-300"}`}
             />
           ))}
         </div>
         <button
           onClick={next}
-          className="w-10 h-10 rounded-full border border-stone-200 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all"
+          className="w-10 h-10 rounded-full border border-stone-200 hover:border-[#D4A017] hover:bg-[#fdf8e7] flex items-center justify-center transition-all"
         >
           →
         </button>
@@ -259,32 +259,32 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-amber-500/20 blur-3xl" />
-          <div className="absolute bottom-0 -left-20 w-72 h-72 rounded-full bg-amber-400/10 blur-2xl" />
+          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-[#D4A017]/20 blur-3xl" />
+          <div className="absolute bottom-0 -left-20 w-72 h-72 rounded-full bg-[#e8b820]/10 blur-2xl" />
         </div>
         <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em] mb-6">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-[0.3em] mb-6">
             Trusted Hajj & Umrah Specialists
           </p>
           <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
             Your Sacred Journey,{" "}
-            <span className="text-amber-400">Our Commitment</span>
+            <span className="text-[#D4A017]">Our Commitment</span>
           </h1>
           <p className="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            <span className="text-amber-400 font-bold">RG Tours & Travels</span>{" "}
+            <span className="text-[#D4A017] font-bold">RG Tours & Travels</span>{" "}
             has guided thousands of pilgrims to Makkah and Madinah with care,
             expertise, and heartfelt devotion.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/hajj/packages"
-              className="bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               Explore Hajj Packages
             </Link>
             <Link
               to="/umrah/packages"
-              className="border border-white/40 hover:border-amber-400 hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all"
+              className="border border-white/40 hover:border-[#D4A017] hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all"
             >
               Umrah Packages
             </Link>
@@ -293,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* STATS */}
-      <section ref={statsRef} className="bg-[#162718] py-14">
+      <section ref={statsRef} className="bg-[#1a6b3c] py-14">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <div
@@ -304,7 +304,7 @@ export default function Home() {
                 transition: `opacity 0.6s ease ${i * 120}ms, transform 0.6s ease ${i * 120}ms`,
               }}
             >
-              <p className="text-3xl md:text-4xl font-bold text-amber-400">
+              <p className="text-3xl md:text-4xl font-bold text-[#D4A017]">
                 {s.value}
               </p>
               <p className="text-stone-400 text-sm mt-1">{s.label}</p>
@@ -314,7 +314,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-24 bg-stone-50">
+      <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
             <SectionLabel>What We Offer</SectionLabel>
@@ -331,7 +331,7 @@ export default function Home() {
                   className="group block bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:border-amber-300 hover:shadow-md transition-all duration-200"
                 >
                   <span className="text-3xl block mb-4">{s.icon}</span>
-                  <h3 className="font-bold text-stone-900 text-lg mb-1 group-hover:text-amber-600 transition-colors">
+                  <h3 className="font-bold text-stone-900 text-lg mb-1 group-hover:text-[#c49010] transition-colors">
                     {s.title}
                   </h3>
                   <p className="text-stone-500 text-sm leading-relaxed">
@@ -368,7 +368,7 @@ export default function Home() {
                 <div>
                   <h3 className="text-2xl font-bold text-stone-800 mb-6 flex items-center gap-3">
                     Maktab A{" "}
-                    <span className="text-sm font-normal text-amber-600">
+                    <span className="text-sm font-normal text-[#c49010]">
                       — Preferred
                     </span>
                   </h3>
@@ -377,9 +377,9 @@ export default function Home() {
                       <Reveal key={pkg._id} delay={i * 80}>
                         <Link
                           to={`/hajj/${pkg.slug}`}
-                          className="group rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-lg transition-all duration-200 overflow-hidden"
+                          className="group rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-200 overflow-hidden"
                         >
-                          <div className="h-1.5 bg-[#162718] group-hover:bg-amber-500 transition-colors duration-300" />
+                          <div className="h-1.5 bg-[#1a6b3c] group-hover:bg-[#D4A017] transition-colors duration-300" />
                           <img
                             src={pkg.image}
                             alt={pkg.hotel}
@@ -387,7 +387,7 @@ export default function Home() {
                           />
                           <div className="p-5">
                             <div className="flex gap-2 mb-2">
-                              <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                 Maktab {pkg.maktab}
                               </span>
                               <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
@@ -397,7 +397,7 @@ export default function Home() {
                             <p className="text-xs text-stone-400 mb-1">
                               {pkg.hotel}
                             </p>
-                            <p className="text-sm font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                            <p className="text-sm font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
                               PKR {pkg.pkr?.triple}{" "}
                               <span className="text-xs font-normal text-stone-400">
                                 (Triple)
@@ -421,9 +421,9 @@ export default function Home() {
                       <Reveal key={pkg._id} delay={i * 80}>
                         <Link
                           to={`/hajj/${pkg.slug}`}
-                          className="group rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-lg transition-all duration-200 overflow-hidden"
+                          className="group rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-200 overflow-hidden"
                         >
-                          <div className="h-1.5 bg-[#162718] group-hover:bg-amber-500 transition-colors duration-300" />
+                          <div className="h-1.5 bg-[#1a6b3c] group-hover:bg-[#D4A017] transition-colors duration-300" />
                           <img
                             src={pkg.image}
                             alt={pkg.hotel}
@@ -431,7 +431,7 @@ export default function Home() {
                           />
                           <div className="p-5">
                             <div className="flex gap-2 mb-2">
-                              <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                 Maktab {pkg.maktab}
                               </span>
                               <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
@@ -441,7 +441,7 @@ export default function Home() {
                             <p className="text-xs text-stone-400 mb-1">
                               {pkg.hotel}
                             </p>
-                            <p className="text-sm font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                            <p className="text-sm font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
                               PKR {pkg.pkr?.triple}{" "}
                               <span className="text-xs font-normal text-stone-400">
                                 (Triple)
@@ -465,9 +465,9 @@ export default function Home() {
                       <Reveal key={pkg._id} delay={i * 80}>
                         <Link
                           to={`/hajj/${pkg.slug}`}
-                          className="group rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-lg transition-all duration-200 overflow-hidden"
+                          className="group rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-200 overflow-hidden"
                         >
-                          <div className="h-1.5 bg-[#162718] group-hover:bg-amber-500 transition-colors duration-300" />
+                          <div className="h-1.5 bg-[#1a6b3c] group-hover:bg-[#D4A017] transition-colors duration-300" />
                           <img
                             src={pkg.image}
                             alt={pkg.hotel}
@@ -475,7 +475,7 @@ export default function Home() {
                           />
                           <div className="p-5">
                             <div className="flex gap-2 mb-2">
-                              <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                 Maktab {pkg.maktab}
                               </span>
                               <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
@@ -485,7 +485,7 @@ export default function Home() {
                             <p className="text-xs text-stone-400 mb-1">
                               {pkg.hotel}
                             </p>
-                            <p className="text-sm font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                            <p className="text-sm font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
                               PKR {pkg.pkr?.triple}{" "}
                               <span className="text-xs font-normal text-stone-400">
                                 (Triple)
@@ -509,18 +509,18 @@ export default function Home() {
               }}
             >
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/10 blur-3xl rounded-full" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-400/5 blur-2xl rounded-full" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#D4A017]/10 blur-3xl rounded-full" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#e8b820]/5 blur-2xl rounded-full" />
               </div>
               <div className="relative max-w-4xl mx-auto px-6 text-center">
-                <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />{" "}
+                <div className="inline-flex items-center gap-2 bg-[#D4A017]/20 border border-[#D4A017]/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+                  <span className="w-2 h-2 rounded-full bg-[#e8b820] animate-pulse" />{" "}
                   UPCOMING
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
                   Hajj {nextYear}
                 </h2>
-                <p className="text-amber-400 text-xl font-semibold mb-3">
+                <p className="text-[#D4A017] text-xl font-semibold mb-3">
                   Coming Soon
                 </p>
                 <p className="text-stone-300 text-base max-w-xl mx-auto leading-relaxed mb-10">
@@ -555,7 +555,7 @@ export default function Home() {
                   </a>
                   <Link
                     to="/contact"
-                    className="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                    className="bg-[#D4A017]/20 hover:bg-[#D4A017]/30 border border-[#D4A017]/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
                   >
                     Contact Us
                   </Link>
@@ -593,7 +593,7 @@ export default function Home() {
                             />
                             <div className="p-5">
                               <div className="flex gap-2 mb-2">
-                                <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2 py-0.5 rounded">
+                                <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                   Maktab {pkg.maktab}
                                 </span>
                                 <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
@@ -634,7 +634,7 @@ export default function Home() {
                             />
                             <div className="p-5">
                               <div className="flex gap-2 mb-2">
-                                <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2 py-0.5 rounded">
+                                <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                   Maktab {pkg.maktab}
                                 </span>
                                 <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
@@ -661,7 +661,7 @@ export default function Home() {
           <Reveal delay={300} className="mt-12">
             <Link
               to="/hajj/packages"
-              className="inline-flex items-center gap-2 bg-[#162718] hover:bg-[#1e3a20] text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 bg-[#1a6b3c] hover:bg-[#155c33] text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
             >
               View All Hajj Packages →
             </Link>
@@ -670,7 +670,7 @@ export default function Home() {
       </section>
 
       {/* UMRAH PACKAGES */}
-      <section className="py-24 bg-stone-50">
+      <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
             <SectionLabel>Umrah Packages</SectionLabel>
@@ -687,7 +687,7 @@ export default function Home() {
                 <Reveal key={pkg._id} delay={i * 100}>
                   <Link
                     to={`/umrah/${pkg.slug}`}
-                    className="group relative block bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-amber-400 hover:shadow-lg transition-all duration-200"
+                    className="group relative block bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-200"
                   >
                     <img
                       src={pkg.image}
@@ -695,12 +695,12 @@ export default function Home() {
                       className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {pkg.badge && (
-                      <span className="absolute top-3 right-3 bg-amber-500 text-[#162718] text-xs font-bold px-2.5 py-1 rounded-full">
+                      <span className="absolute top-3 right-3 bg-[#D4A017] text-[#1a6b3c] text-xs font-bold px-2.5 py-1 rounded-full">
                         {pkg.badge}
                       </span>
                     )}
                     <div className="p-6">
-                      <h3 className="font-bold text-stone-900 text-lg mb-2 group-hover:text-amber-600 transition-colors">
+                      <h3 className="font-bold text-stone-900 text-lg mb-2 group-hover:text-[#c49010] transition-colors">
                         {pkg.name}
                       </h3>
                       <p className="text-stone-400 text-xs mb-1">
@@ -712,7 +712,7 @@ export default function Home() {
                           (Triple)
                         </span>
                       </p>
-                      <p className="mt-4 text-sm font-semibold text-[#162718] group-hover:text-amber-600 transition-colors">
+                      <p className="mt-4 text-sm font-semibold text-[#1a6b3c] group-hover:text-[#c49010] transition-colors">
                         Learn More →
                       </p>
                     </div>
@@ -744,7 +744,7 @@ export default function Home() {
           <Reveal delay={300} className="mt-10 text-center">
             <Link
               to="/umrah/packages"
-              className="inline-flex items-center gap-2 border-2 border-[#162718] hover:bg-[#162718] hover:text-white text-[#162718] font-semibold px-7 py-3.5 rounded-xl transition-all"
+              className="inline-flex items-center gap-2 border-2 border-[#1a6b3c] hover:bg-[#1a6b3c] hover:text-white text-[#1a6b3c] font-semibold px-7 py-3.5 rounded-xl transition-all"
             >
               View All Umrah Packages →
             </Link>
@@ -756,10 +756,10 @@ export default function Home() {
       <section
         className="py-24 text-white relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #162718 0%, #1e3a20 100%)",
+          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
         }}
       >
-        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-amber-400/5 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#e8b820]/5 blur-3xl pointer-events-none" />
         <div className="relative max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-16">
             <SectionLabel>Why RG Travels</SectionLabel>
@@ -789,8 +789,8 @@ export default function Home() {
               },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
-                <div className="border border-white/10 rounded-2xl p-6 hover:border-amber-400/40 hover:bg-white/5 transition-all duration-200">
-                  <div className="w-8 h-0.5 bg-amber-400 mb-5" />
+                <div className="border border-white/10 rounded-2xl p-6 hover:border-[#D4A017]/40 hover:bg-white/5 transition-all duration-200">
+                  <div className="w-8 h-0.5 bg-[#e8b820] mb-5" />
                   <h3 className="font-bold text-white text-lg mb-2">
                     {item.title}
                   </h3>
@@ -816,24 +816,24 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-amber-500">
+      <section className="py-20 bg-[#D4A017]">
         <Reveal className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#162718] mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a6b3c] mb-4">
             Ready to Begin Your Sacred Journey?
           </h2>
-          <p className="text-[#162718]/70 mb-8 text-lg">
+          <p className="text-[#1a6b3c]/70 mb-8 text-lg">
             Speak to our team today and let us guide you every step of the way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-[#162718] hover:bg-[#1e3a20] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               Contact Us
             </Link>
             <Link
               to="/about"
-              className="border-2 border-[#162718]/30 hover:border-[#162718] text-[#162718] font-semibold px-8 py-4 rounded-xl transition-all"
+              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
             >
               Learn About Us
             </Link>

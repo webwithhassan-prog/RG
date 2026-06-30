@@ -84,7 +84,7 @@ export default function HajjPackageDetail() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-amber-400 border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-4 border-[#D4A017] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -95,7 +95,7 @@ export default function HajjPackageDetail() {
         <p className="text-stone-500">Package not found.</p>
         <Link
           to="/hajj/packages"
-          className="text-[#162718] font-semibold hover:text-amber-600"
+          className="text-[#1a6b3c] font-semibold hover:text-[#c49010]"
         >
           ← Back to Packages
         </Link>
@@ -160,7 +160,7 @@ export default function HajjPackageDetail() {
         </button>
 
         <div className="absolute top-6 right-6 flex gap-2">
-          <span className="bg-[#162718] text-amber-400 text-xs font-bold px-3 py-1.5 rounded-lg">
+          <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-3 py-1.5 rounded-lg">
             Maktab {pkg.maktab}
           </span>
           <span className="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg">
@@ -168,7 +168,7 @@ export default function HajjPackageDetail() {
           </span>
           {pkg.badge && (
             <span
-              className={`text-xs font-bold px-3 py-1.5 rounded-lg ${isPast ? "bg-stone-600 text-white" : "bg-amber-500 text-[#162718]"}`}
+              className={`text-xs font-bold px-3 py-1.5 rounded-lg ${isPast ? "bg-stone-600 text-white" : "bg-[#D4A017] text-[#1a6b3c]"}`}
             >
               {pkg.badge}
             </span>
@@ -177,7 +177,7 @@ export default function HajjPackageDetail() {
 
         <div className="absolute bottom-6 left-6">
           <p
-            className={`text-xs font-semibold uppercase tracking-widest mb-1 ${isPast ? "text-stone-300" : "text-amber-400"}`}
+            className={`text-xs font-semibold uppercase tracking-widest mb-1 ${isPast ? "text-stone-300" : "text-[#D4A017]"}`}
           >
             Hajj {pkg.year} · {pkg.duration}
           </p>
@@ -225,7 +225,7 @@ export default function HajjPackageDetail() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="bg-stone-50 rounded-xl border border-stone-200 p-4 text-center"
+                    className="bg-[#FDFAF5] rounded-xl border border-stone-200 p-4 text-center"
                   >
                     <p className="text-xs text-stone-400 mb-1">{item.label}</p>
                     <p className="text-sm font-bold text-stone-800">
@@ -248,7 +248,7 @@ export default function HajjPackageDetail() {
                       key={h}
                       className="flex items-center gap-3 text-sm text-stone-600"
                     >
-                      <span className="w-5 h-5 bg-[#162718] rounded-full flex items-center justify-center text-amber-400 text-xs flex-shrink-0">
+                      <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0">
                         ✓
                       </span>
                       {h}
@@ -261,11 +261,11 @@ export default function HajjPackageDetail() {
             {/* Schedule */}
             <Reveal delay={100}>
               <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden">
-                <div className="bg-[#162718] px-6 py-4">
+                <div className="bg-[#1a6b3c] px-6 py-4">
                   <p className="text-white font-bold">
                     {pkg.duration} Schedule
                   </p>
-                  <p className="text-amber-400 text-xs mt-0.5">
+                  <p className="text-[#D4A017] text-xs mt-0.5">
                     Arrival: {pkg.arrival}
                   </p>
                 </div>
@@ -273,16 +273,16 @@ export default function HajjPackageDetail() {
                   {pkg.schedule.map((row, i) => (
                     <div
                       key={i}
-                      className={`flex items-start gap-4 px-6 py-4 ${i % 2 === 0 ? "bg-white" : "bg-stone-50"}`}
+                      className={`flex items-start gap-4 px-6 py-4 ${i % 2 === 0 ? "bg-white" : "bg-[#FDFAF5]"}`}
                     >
                       <div className="flex flex-col items-center mt-1">
-                        <div className="w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#e8b820] flex-shrink-0" />
                         {i < pkg.schedule.length - 1 && (
                           <div className="w-px h-8 bg-stone-200 mt-1" />
                         )}
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-amber-600 mb-0.5">
+                        <p className="text-xs font-bold text-[#c49010] mb-0.5">
                           {row.day}
                         </p>
                         <p className="text-sm font-semibold text-stone-800">
@@ -308,7 +308,7 @@ export default function HajjPackageDetail() {
                       key={i}
                       className="flex items-start gap-3 text-sm text-stone-600"
                     >
-                      <span className="w-5 h-5 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-xs flex-shrink-0 mt-0.5">
+                      <span className="w-5 h-5 bg-[#faefc0] rounded-full flex items-center justify-center text-[#c49010] text-xs flex-shrink-0 mt-0.5">
                         •
                       </span>
                       {r}
@@ -320,7 +320,7 @@ export default function HajjPackageDetail() {
 
             {/* Notes */}
             <Reveal delay={200}>
-              <div className="bg-amber-50 rounded-2xl border border-amber-200 p-7">
+              <div className="bg-[#fdf8e7] rounded-2xl border border-amber-200 p-7">
                 <h2 className="font-bold text-stone-900 text-xl mb-5">
                   Important Notes
                 </h2>
@@ -330,7 +330,7 @@ export default function HajjPackageDetail() {
                       key={i}
                       className="flex items-start gap-3 text-sm text-stone-600"
                     >
-                      <span className="text-amber-500 font-bold flex-shrink-0">
+                      <span className="text-[#D4A017] font-bold flex-shrink-0">
                         !
                       </span>
                       {n}
@@ -346,7 +346,7 @@ export default function HajjPackageDetail() {
             <div className="sticky top-24 space-y-4">
               {/* Pricing */}
               <div
-                className={`bg-white rounded-2xl shadow-lg p-6 ${isPast ? "border-2 border-stone-300" : "border-2 border-[#162718]"}`}
+                className={`bg-white rounded-2xl shadow-lg p-6 ${isPast ? "border-2 border-stone-300" : "border-2 border-[#1a6b3c]"}`}
               >
                 <div className="flex items-center justify-between mb-4">
                   <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">
@@ -402,7 +402,7 @@ export default function HajjPackageDetail() {
                   <>
                     <Link
                       to="/contact"
-                      className="mt-5 block w-full bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
+                      className="mt-5 block w-full bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
                     >
                       Book This Package
                     </Link>
@@ -419,8 +419,8 @@ export default function HajjPackageDetail() {
               </div>
 
               {/* Contact */}
-              <div className="bg-[#162718] rounded-2xl p-5 text-white">
-                <p className="text-xs font-bold text-amber-400 uppercase tracking-widest mb-3">
+              <div className="bg-[#1a6b3c] rounded-2xl p-5 text-white">
+                <p className="text-xs font-bold text-[#D4A017] uppercase tracking-widest mb-3">
                   Direct Contact
                 </p>
                 {[
@@ -432,7 +432,7 @@ export default function HajjPackageDetail() {
                     <p className="text-stone-400 text-xs">{c.name}</p>
                     <a
                       href={`tel:${c.phone}`}
-                      className="text-amber-400 font-bold text-sm hover:text-amber-300 transition-colors"
+                      className="text-[#D4A017] font-bold text-sm hover:text-amber-300 transition-colors"
                     >
                       {c.phone}
                     </a>
@@ -446,7 +446,7 @@ export default function HajjPackageDetail() {
 
       {/* ── OTHER PACKAGES ── */}
       {(currentPackages.length > 0 || pastPackages.length > 0) && (
-        <section className="py-14 bg-stone-50 border-t border-stone-200">
+        <section className="py-14 bg-[#FDFAF5] border-t border-stone-200">
           <div className="max-w-5xl mx-auto px-6">
             {/* Current Season Packages */}
             {currentPackages.length > 0 && (
@@ -466,7 +466,7 @@ export default function HajjPackageDetail() {
                   <Reveal key={p._id} delay={i * 80}>
                     <Link
                       to={`/hajj/${p.slug}`}
-                      className="group bg-white rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-md transition-all overflow-hidden"
+                      className="group bg-white rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-md transition-all overflow-hidden"
                     >
                       <img
                         src={p.image}
@@ -475,14 +475,14 @@ export default function HajjPackageDetail() {
                       />
                       <div className="p-4">
                         <div className="flex gap-2 mb-2">
-                          <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2 py-0.5 rounded">
+                          <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                             Maktab {p.maktab}
                           </span>
                           <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
                             {p.tier}
                           </span>
                         </div>
-                        <p className="text-sm font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
+                        <p className="text-sm font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
                           Maktab {p.maktab} — {p.tier}
                         </p>
                         <p className="text-xs text-stone-400 mt-0.5">

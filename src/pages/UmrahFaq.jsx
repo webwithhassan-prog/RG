@@ -144,13 +144,13 @@ function FAQItem({ q, a }) {
     <div className="border border-stone-200 rounded-2xl overflow-hidden transition-all duration-200 hover:border-amber-300">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-stone-50 transition-colors"
+        className="w-full flex items-start justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-[#FDFAF5] transition-colors"
       >
         <span className="font-semibold text-stone-800 text-sm leading-relaxed">
           {q}
         </span>
         <span
-          className={`text-amber-500 text-lg flex-shrink-0 mt-0.5 transition-transform duration-300 ${open ? "rotate-45" : ""}`}
+          className={`text-[#D4A017] text-lg flex-shrink-0 mt-0.5 transition-transform duration-300 ${open ? "rotate-45" : ""}`}
         >
           +
         </span>
@@ -190,12 +190,12 @@ export default function UmrahFAQ() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/65 to-black/80" />
 
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-amber-400/5 blur-2xl" />
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
         </div>
 
         <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
             Umrah FAQ
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
@@ -219,7 +219,7 @@ export default function UmrahFAQ() {
               onClick={() => setActiveCategory(null)}
               className={`flex-shrink-0 text-xs font-bold px-4 py-2 rounded-full transition-all ${
                 activeCategory === null
-                  ? "bg-[#162718] text-amber-400"
+                  ? "bg-[#1a6b3c] text-[#D4A017]"
                   : "bg-stone-100 text-stone-500 hover:bg-stone-200"
               }`}
             >
@@ -235,7 +235,7 @@ export default function UmrahFAQ() {
                 }
                 className={`flex-shrink-0 flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full transition-all ${
                   activeCategory === c.category
-                    ? "bg-[#162718] text-amber-400"
+                    ? "bg-[#1a6b3c] text-[#D4A017]"
                     : "bg-stone-100 text-stone-500 hover:bg-stone-200"
                 }`}
               >
@@ -248,7 +248,7 @@ export default function UmrahFAQ() {
       </div>
 
       {/* ── FAQ CONTENT ── */}
-      <section className="py-20 bg-stone-50">
+      <section className="py-20 bg-[#FDFAF5]">
         <div className="max-w-4xl mx-auto px-6">
           <div className="space-y-14">
             {filtered.map((cat, i) => (
@@ -285,15 +285,15 @@ export default function UmrahFAQ() {
         className="py-20 text-white text-center relative overflow-hidden"
         style={{
           background:
-            "linear-gradient(135deg, #0f1f10 0%, #162718 50%, #1e3a20 100%)",
+            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
         }}
       >
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-48 bg-amber-500/8 blur-3xl rounded-full" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-48 bg-[#D4A017]/8 blur-3xl rounded-full" />
         </div>
         <div className="relative max-w-xl mx-auto px-6">
           <Reveal>
-            <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
               Still have questions?
             </p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -339,7 +339,7 @@ export default function UmrahFAQ() {
           </p>
           <Link
             to="/umrah/packages"
-            className="inline-flex items-center gap-2 bg-[#162718] hover:bg-[#1e3a20] text-white font-bold px-8 py-3.5 rounded-xl transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-3.5 rounded-xl transition-all hover:scale-105"
           >
             View Umrah Packages →
           </Link>

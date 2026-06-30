@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function NotFound() {
   return (
-    <div className="min-h-screen bg-[#162718] text-white flex items-center justify-center overflow-hidden relative">
+    <div className="min-h-screen bg-[#1a6b3c] text-white flex items-center justify-center overflow-hidden relative">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-40"
@@ -18,7 +18,7 @@ function NotFound() {
         {/* Kaaba Icon */}
         <div className="text-8xl mb-6 opacity-80">🕋</div>
 
-        <h1 className="text-[180px] md:text-[220px] font-bold leading-none text-amber-400 tracking-tighter -mt-6">
+        <h1 className="text-[180px] md:text-[220px] font-bold leading-none text-[#D4A017] tracking-tighter -mt-6">
           404
         </h1>
 
@@ -34,14 +34,14 @@ function NotFound() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             to="/"
-            className="bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold px-10 py-4 rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 inline-flex items-center gap-2 text-lg"
+            className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-10 py-4 rounded-2xl transition-all duration-200 hover:scale-105 active:scale-95 inline-flex items-center gap-2 text-lg"
           >
             ← Return Home
           </Link>
 
           <Link
             to="/hajj/packages"
-            className="border border-white/30 hover:border-amber-400 hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-200"
+            className="border border-white/30 hover:border-[#D4A017] hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-200"
           >
             Explore Hajj Packages
           </Link>
@@ -50,22 +50,22 @@ function NotFound() {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <Link
             to="/umrah/packages"
-            className="hover:text-amber-400 transition-colors"
+            className="hover:text-[#D4A017] transition-colors"
           >
             Umrah Packages
           </Link>
           <Link
             to="/hajj/packages"
-            className="hover:text-amber-400 transition-colors"
+            className="hover:text-[#D4A017] transition-colors"
           >
             Hajj 2027
           </Link>
-          <Link to="/about" className="hover:text-amber-400 transition-colors">
+          <Link to="/about" className="hover:text-[#D4A017] transition-colors">
             About Us
           </Link>
           <Link
             to="/contact"
-            className="hover:text-amber-400 transition-colors"
+            className="hover:text-[#D4A017] transition-colors"
           >
             Contact Us
           </Link>
