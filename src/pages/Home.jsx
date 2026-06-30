@@ -143,7 +143,9 @@ function TestimonialSlider() {
               <div className="bg-stone-50 rounded-2xl p-10 border border-stone-100 text-center max-w-2xl mx-auto">
                 <div className="flex justify-center gap-0.5 mb-6">
                   {[...Array(5)].map((_, j) => (
-                    <span key={j} className="text-amber-400 text-lg">★</span>
+                    <span key={j} className="text-amber-400 text-lg">
+                      ★
+                    </span>
                   ))}
                 </div>
                 <p className="text-stone-700 text-lg leading-relaxed mb-8">
@@ -160,7 +162,9 @@ function TestimonialSlider() {
         <button
           onClick={prev}
           className="w-10 h-10 rounded-full border border-stone-200 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all"
-        >←</button>
+        >
+          ←
+        </button>
         <div className="flex gap-2">
           {testimonials.map((_, i) => (
             <button
@@ -173,7 +177,9 @@ function TestimonialSlider() {
         <button
           onClick={next}
           className="w-10 h-10 rounded-full border border-stone-200 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all"
-        >→</button>
+        >
+          →
+        </button>
       </div>
     </div>
   );
@@ -254,9 +260,10 @@ export default function Home() {
             className="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
             style={{ animation: "fadeDown 0.8s ease 0.3s both" }}
           >
-            RG Tours & Travels has guided thousands of pilgrims to Makkah and
-            Madinah with care, expertise, and heartfelt devotion. Let us take
-            care of every detail so your heart stays focused on worship.
+            <span className="text-amber-400 font-bold">RG Tours & Travels</span>{" "}
+            has guided thousands of pilgrims to Makkah and Madinah with care,
+            expertise, and heartfelt devotion. Let us take care of every detail
+            so your heart stays focused on worship.
           </p>
           <div
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -281,7 +288,9 @@ export default function Home() {
           style={{ animation: "bounce 2s infinite" }}
         >
           <div className="w-px h-10 bg-white/50" />
-          <span className="text-xs text-white/70 tracking-widest uppercase">Scroll</span>
+          <span className="text-xs text-white/70 tracking-widest uppercase">
+            Scroll
+          </span>
         </div>
         <style>{`
           @keyframes fadeDown {
@@ -307,7 +316,9 @@ export default function Home() {
                 transition: `opacity 0.6s ease ${i * 120}ms, transform 0.6s ease ${i * 120}ms`,
               }}
             >
-              <p className="text-3xl md:text-4xl font-bold text-amber-400">{s.value}</p>
+              <p className="text-3xl md:text-4xl font-bold text-amber-400">
+                {s.value}
+              </p>
               <p className="text-stone-400 text-sm mt-1">{s.label}</p>
             </div>
           ))}
@@ -320,7 +331,8 @@ export default function Home() {
           <Reveal className="text-center mb-14">
             <SectionLabel>What We Offer</SectionLabel>
             <SectionHeading>
-              Everything You Need for a<br />Blessed Journey
+              Everything You Need for a<br />
+              Blessed Journey
             </SectionHeading>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
@@ -334,7 +346,9 @@ export default function Home() {
                   <h3 className="font-bold text-stone-900 text-lg mb-1 group-hover:text-amber-600 transition-colors">
                     {s.title}
                   </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">{s.desc}</p>
+                  <p className="text-stone-500 text-sm leading-relaxed">
+                    {s.desc}
+                  </p>
                 </Link>
               </Reveal>
             ))}
@@ -347,10 +361,14 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
             <SectionLabel>
-              {activeHajj.length > 0 ? `Hajj ${activeHajj[0].year}` : "Hajj Packages"}
+              {activeHajj.length > 0
+                ? `Hajj ${activeHajj[0].year}`
+                : "Hajj Packages"}
             </SectionLabel>
             <SectionHeading>
-              Perform Hajj with<br />Peace & Devotion
+              Perform Hajj with
+              <br />
+              Peace & Devotion
             </SectionHeading>
             <p className="text-stone-500 mt-4 max-w-xl leading-relaxed">
               From the plains of Arafat to the calm of Mina, our team walks with
@@ -384,7 +402,9 @@ export default function Home() {
                       <p className="text-xs text-stone-400 mb-1">{pkg.hotel}</p>
                       <p className="text-sm font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
                         PKR {pkg.pkr.triple}
-                        <span className="text-xs font-normal text-stone-400 ml-1">(Triple)</span>
+                        <span className="text-xs font-normal text-stone-400 ml-1">
+                          (Triple)
+                        </span>
                       </p>
                     </div>
                   </Link>
@@ -432,7 +452,8 @@ export default function Home() {
                 Hajj {currentYear + 1} Packages Coming Soon
               </p>
               <p className="text-stone-400 text-sm mb-6">
-                Register your interest and we'll notify you when packages are available.
+                Register your interest and we'll notify you when packages are
+                available.
               </p>
               <a
                 href="https://wa.me/923218485159"
@@ -490,10 +511,14 @@ export default function Home() {
                       <h3 className="font-bold text-stone-900 text-lg mb-2 group-hover:text-amber-600 transition-colors">
                         {pkg.name}
                       </h3>
-                      <p className="text-stone-400 text-xs mb-1">{pkg.makkahHotel}</p>
+                      <p className="text-stone-400 text-xs mb-1">
+                        {pkg.makkahHotel}
+                      </p>
                       <p className="text-sm font-bold text-stone-900 mt-2">
                         PKR {pkg.pkr.triple}
-                        <span className="text-xs font-normal text-stone-400 ml-1">(Triple)</span>
+                        <span className="text-xs font-normal text-stone-400 ml-1">
+                          (Triple)
+                        </span>
                       </p>
                       <p className="mt-4 text-sm font-semibold text-[#162718] group-hover:text-amber-600 transition-colors">
                         Learn More →
@@ -511,7 +536,8 @@ export default function Home() {
                 Umrah Packages Coming Soon
               </p>
               <p className="text-stone-400 text-sm mb-6">
-                We are preparing exclusive Umrah packages. Register your interest today.
+                We are preparing exclusive Umrah packages. Register your
+                interest today.
               </p>
               <a
                 href="https://wa.me/923218485159?text=Assalam%20o%20Alaikum%2C%20I%20am%20interested%20in%20Umrah%20packages."
@@ -538,28 +564,48 @@ export default function Home() {
       {/* ── WHY CHOOSE US ── */}
       <section
         className="py-24 text-white relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #162718 0%, #1e3a20 100%)" }}
+        style={{
+          background: "linear-gradient(135deg, #162718 0%, #1e3a20 100%)",
+        }}
       >
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-amber-400/5 blur-3xl pointer-events-none" />
         <div className="relative max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-16">
             <SectionLabel>Why RG Travels</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-snug">
-              A Pledge to Serve with<br />Devotion & Dedication
+              A Pledge to Serve with
+              <br />
+              Devotion & Dedication
             </h2>
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Licensed Operator", desc: "Fully accredited by the Ministry of Religious Affairs." },
-              { title: "Expert Guides", desc: "Experienced scholars and guides throughout your journey." },
-              { title: "Premium Stays", desc: "Carefully selected hotels near the Haram in both cities." },
-              { title: "Complete Care", desc: "From visa to return flight — we handle everything." },
+              {
+                title: "Licensed Operator",
+                desc: "Fully accredited by the Ministry of Religious Affairs.",
+              },
+              {
+                title: "Expert Guides",
+                desc: "Experienced scholars and guides throughout your journey.",
+              },
+              {
+                title: "Premium Stays",
+                desc: "Carefully selected hotels near the Haram in both cities.",
+              },
+              {
+                title: "Complete Care",
+                desc: "From visa to return flight — we handle everything.",
+              },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
                 <div className="border border-white/10 rounded-2xl p-6 hover:border-amber-400/40 hover:bg-white/5 transition-all duration-200">
                   <div className="w-8 h-0.5 bg-amber-400 mb-5" />
-                  <h3 className="font-bold text-white text-lg mb-2">{item.title}</h3>
-                  <p className="text-stone-400 text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className="font-bold text-white text-lg mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-stone-400 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -611,7 +657,11 @@ export default function Home() {
         rel="noreferrer"
         className="fixed bottom-6 left-6 z-50 flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-4 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
       >
-        <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-5 h-5 flex-shrink-0"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.571a.75.75 0 00.921.921l5.726-1.471A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.5-5.2-1.373l-.374-.217-3.876.995.995-3.876-.217-.374A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
         </svg>
