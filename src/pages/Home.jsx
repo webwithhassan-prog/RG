@@ -815,30 +815,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-[#D4A017]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+      {/* CTA - Force Gold Background */}
+      <section className="py-20 bg-[#D4A017] !bg-[#D4A017]">
+        <Reveal className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a6b3c] mb-4">
             Ready to Begin Your Sacred Journey?
           </h2>
-          <p className="text-[#1a6b3c]/70 mb-8 text-lg">
+          <p className="text-[#1a6b3c]/80 mb-8 text-lg leading-relaxed">
             Speak to our team today and let us guide you every step of the way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all active:scale-95"
             >
               Contact Us
             </Link>
             <Link
               to="/about"
-              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
+              className="border-2 border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all active:scale-95"
             >
               Learn About Us
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Floating WhatsApp - Clean */}
