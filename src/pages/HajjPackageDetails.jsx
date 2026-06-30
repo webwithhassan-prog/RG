@@ -59,6 +59,7 @@ export default function HajjPackageDetail() {
   const [pkg, setPkg] = useState(null);
   const [allPackages, setAllPackages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const currentYear = new Date().getFullYear();
 
@@ -106,6 +107,14 @@ export default function HajjPackageDetail() {
 
   return (
     <main className="overflow-x-hidden">
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        .animate-fadeIn { animation: fadeIn 0.15s ease forwards; }
+      `}</style>
+
       {/* ── PAST SEASON NOTICE ── */}
       {isPast && (
         <div className="bg-stone-200 border-b border-stone-300 py-2.5 px-6 text-center">
@@ -117,13 +126,21 @@ export default function HajjPackageDetail() {
       )}
 
       {/* ── HERO IMAGE ── */}
-      <div className="relative h-72 md:h-96 overflow-hidden">
+      <div className="relative h-72 md:h-[28rem] overflow-hidden bg-stone-900">
         <img
           src={pkg.image}
           alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
-          className={`w-full h-full object-cover ${isPast ? "grayscale-[20%]" : ""}`}
+          onClick={() => setLightboxOpen(true)}
+          className={`w-full h-full object-contain cursor-zoom-in ${isPast ? "grayscale-[20%]" : ""}`}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
+
+        <button
+          onClick={() => setLightboxOpen(true)}
+          className="absolute bottom-6 right-6 flex items-center gap-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all border border-white/20"
+        >
+          ⤢ View Full Image
+        </button>
 
         <button
           onClick={() => navigate(-1)}
@@ -160,6 +177,28 @@ export default function HajjPackageDetail() {
           <p className="text-stone-300 text-sm mt-1">{pkg.hotel}</p>
         </div>
       </div>
+
+      {/* ── LIGHTBOX ── */}
+      {lightboxOpen && (
+        <div
+          onClick={() => setLightboxOpen(false)}
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out animate-fadeIn"
+        >
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-5 right-5 text-white/80 hover:text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <img
+            src={pkg.image}
+            alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-full object-contain rounded-lg cursor-default"
+          />
+        </div>
+      )}
 
       {/* ── MAIN CONTENT ── */}
       <div className="max-w-5xl mx-auto px-6 py-14">
