@@ -103,7 +103,17 @@ export default function HajjPackageDetail() {
     );
   }
 
-  const isPast = pkg.year < currentYear;
+  // Updated logic: Treat 2026 as past (as per your requirement)
+  const isPast = pkg.year <= currentYear;
+
+  // Separate other packages into Current and Past
+  const currentPackages = allPackages
+    .filter((p) => p.slug !== id && p.year > currentYear)
+    .sort((a, b) => b.year - a.year);
+
+  const pastPackages = allPackages
+    .filter((p) => p.slug !== id && p.year <= currentYear)
+    .sort((a, b) => b.year - a.year);
 
   return (
     <main className="overflow-x-hidden">
@@ -435,19 +445,24 @@ export default function HajjPackageDetail() {
       </div>
 
       {/* ── OTHER PACKAGES ── */}
-      {allPackages.filter((p) => p.slug !== id).length > 0 && (
+      {(currentPackages.length > 0 || pastPackages.length > 0) && (
         <section className="py-14 bg-stone-50 border-t border-stone-200">
           <div className="max-w-5xl mx-auto px-6">
-            <Reveal className="mb-8">
-              <h2 className="text-2xl font-bold text-stone-900">
-                Other Packages
-              </h2>
-            </Reveal>
-            <div className="grid sm:grid-cols-3 gap-4">
-              {allPackages
-                .filter((p) => p.slug !== id)
-                .slice(0, 3)
-                .map((p, i) => (
+            {/* Current Season Packages */}
+            {currentPackages.length > 0 && (
+              <Reveal className="mb-8">
+                <h2 className="text-2xl font-bold text-stone-900 mb-2">
+                  Current Season Packages
+                </h2>
+                <p className="text-stone-500 text-sm mb-6">
+                  Hajj {currentYear + 1} and upcoming seasons
+                </p>
+              </Reveal>
+            )}
+
+            {currentPackages.length > 0 && (
+              <div className="grid sm:grid-cols-3 gap-4 mb-16">
+                {currentPackages.slice(0, 3).map((p, i) => (
                   <Reveal key={p._id} delay={i * 80}>
                     <Link
                       to={`/hajj/${p.slug}`}
@@ -477,7 +492,58 @@ export default function HajjPackageDetail() {
                     </Link>
                   </Reveal>
                 ))}
-            </div>
+              </div>
+            )}
+
+            {/* Past Season Packages */}
+            {pastPackages.length > 0 && (
+              <>
+                <Reveal className="mb-8">
+                  <h2 className="text-2xl font-bold text-stone-900 mb-2">
+                    Past Season Packages
+                  </h2>
+                  <p className="text-stone-500 text-sm mb-6">
+                    For reference only • Bookings closed
+                  </p>
+                </Reveal>
+
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {pastPackages.slice(0, 6).map((p, i) => (
+                    <Reveal key={p._id} delay={i * 60}>
+                      <Link
+                        to={`/hajj/${p.slug}`}
+                        className="group bg-white rounded-2xl border border-stone-200 hover:border-stone-300 hover:shadow-md transition-all overflow-hidden opacity-95"
+                      >
+                        <img
+                          src={p.image}
+                          alt=""
+                          className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500 grayscale-[15%]"
+                        />
+                        <div className="p-4">
+                          <div className="flex gap-2 mb-2">
+                            <span className="bg-stone-700 text-amber-300 text-xs font-bold px-2 py-0.5 rounded">
+                              Maktab {p.maktab}
+                            </span>
+                            <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
+                              {p.tier}
+                            </span>
+                            <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
+                              {p.year}
+                            </span>
+                          </div>
+                          <p className="text-sm font-bold text-stone-900 group-hover:text-stone-700 transition-colors">
+                            Maktab {p.maktab} — {p.tier}
+                          </p>
+                          <p className="text-xs text-stone-400 mt-0.5">
+                            PKR {p.pkr.triple} (Triple)
+                          </p>
+                        </div>
+                      </Link>
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </section>
       )}

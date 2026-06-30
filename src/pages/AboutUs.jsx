@@ -236,7 +236,42 @@ export default function AboutUs() {
           </Reveal>
         </div>
       </section>
-
+      {/* ── MAP ── */}
+      <section className="bg-stone-200">
+        <div className="grid md:grid-cols-2">
+          <div className="h-72 md:h-96">
+            <iframe
+              title="RG Tours & Travels Office Location"
+              src="https://www.google.com/maps?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="flex items-center justify-center bg-[#162718] text-white p-10 text-center md:text-left">
+            <div>
+              <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest mb-3">
+                Visit Our Office
+              </p>
+              <h3 className="text-2xl font-bold mb-4">
+                12-E 2nd Basement, Nabi Center
+              </h3>
+              <p className="text-stone-300 text-sm leading-relaxed mb-6">
+                Chowk Rang Mahal, Shah Alam Market, Lahore — open Monday to
+                Saturday, 9:00 AM to 7:00 PM.
+              </p>
+              <a
+                href="https://maps.google.com/?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#162718] font-bold px-6 py-3 rounded-xl transition-all hover:scale-105"
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* ── OUR VALUES ── */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">

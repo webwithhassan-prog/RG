@@ -42,6 +42,7 @@ export default function HajjPackages() {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const currentYear = new Date().getFullYear();
+  const nextYear = currentYear + 1; // 2027
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -57,8 +58,169 @@ export default function HajjPackages() {
     fetchPackages();
   }, []);
 
-  const activePackages = packages.filter((p) => p.year >= currentYear);
-  const pastPackages = packages.filter((p) => p.year < currentYear);
+  // Current = Hajj 2027 and above
+  const currentPackages = packages
+    .filter((p) => p.year > currentYear)
+    .sort((a, b) => b.year - a.year);
+
+  const pastPackages = packages
+    .filter((p) => p.year <= currentYear)
+    .sort((a, b) => b.year - a.year);
+
+  // Group by Maktab (A first, then B, then others)
+  const groupByMaktab = (pkgs) => {
+    const maktabA = pkgs.filter(
+      (p) => String(p.maktab).toLowerCase() === "a" || p.maktab === 1,
+    );
+    const maktabB = pkgs.filter(
+      (p) => String(p.maktab).toLowerCase() === "b" || p.maktab === 2,
+    );
+    const others = pkgs.filter(
+      (p) => !maktabA.includes(p) && !maktabB.includes(p),
+    );
+    return { maktabA, maktabB, others };
+  };
+
+  const currentGroups = groupByMaktab(currentPackages);
+  const pastGroups = groupByMaktab(pastPackages);
+
+  const renderPackageCard = (pkg, isPast = false) => (
+    <Link
+      key={pkg._id}
+      to={`/hajj/${pkg.slug}`}
+      className={`group flex flex-col md:flex-row bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
+        isPast
+          ? "border-stone-200 hover:border-stone-400 hover:shadow-xl"
+          : "border-stone-200 hover:border-amber-400 hover:shadow-xl"
+      }`}
+    >
+      <div className="md:w-72 h-52 md:h-auto flex-shrink-0 overflow-hidden relative">
+        <img
+          src={pkg.image}
+          alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
+          className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${
+            isPast ? "grayscale-[30%]" : ""
+          }`}
+        />
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2.5 py-1 rounded-lg">
+            Maktab {pkg.maktab}
+          </span>
+          <span
+            className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
+              isPast
+                ? "bg-white/90 text-stone-700"
+                : "bg-white/90 text-stone-700"
+            }`}
+          >
+            {pkg.tier}
+          </span>
+        </div>
+        {pkg.badge && (
+          <div className="absolute top-3 right-3">
+            <span
+              className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
+                isPast
+                  ? "bg-stone-500 text-white"
+                  : "bg-amber-500 text-[#162718]"
+              }`}
+            >
+              {pkg.badge}
+            </span>
+          </div>
+        )}
+        {isPast && (
+          <div className="absolute bottom-3 right-3">
+            <span className="bg-stone-800/80 text-stone-300 text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
+              {pkg.year}
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
+        <div>
+          <div className="flex items-start justify-between gap-4 mb-3">
+            <div>
+              <h3
+                className={`text-xl font-bold transition-colors ${
+                  isPast
+                    ? "text-stone-900 group-hover:text-stone-600"
+                    : "text-stone-900 group-hover:text-amber-600"
+                }`}
+              >
+                Maktab {pkg.maktab} — {pkg.tier} Package
+              </h3>
+              <p className="text-stone-400 text-sm mt-0.5">{pkg.hotel}</p>
+            </div>
+            <span
+              className={`text-xs font-bold px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0 ${
+                isPast
+                  ? "bg-stone-100 text-stone-500"
+                  : "bg-[#162718] text-amber-400"
+              }`}
+            >
+              {pkg.duration}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 mb-6">
+            {pkg.highlights?.map((h, i) => (
+              <div
+                key={i}
+                className={`flex items-center gap-2 text-sm ${
+                  isPast ? "text-stone-500" : "text-stone-600"
+                }`}
+              >
+                <span
+                  className={`w-4 h-4 rounded-full flex items-center justify-center text-xs flex-shrink-0 ${
+                    isPast
+                      ? "bg-stone-100 text-stone-400"
+                      : "bg-amber-100 text-amber-600"
+                  }`}
+                >
+                  ✓
+                </span>
+                {h}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pt-5 border-t border-stone-100">
+          <div className="flex gap-6">
+            {[
+              ["Double", pkg.pkr?.double, pkg.usd?.double],
+              ["Triple", pkg.pkr?.triple, pkg.usd?.triple],
+              ["Quad", pkg.pkr?.quad, pkg.usd?.quad],
+            ].map(([room, pkr, usd]) => (
+              <div key={room}>
+                <p className="text-xs text-stone-400 mb-0.5">{room}</p>
+                <p
+                  className={`text-sm font-bold ${isPast ? "text-stone-600" : "text-stone-900"}`}
+                >
+                  PKR {pkr}
+                </p>
+                <p className="text-xs text-stone-400">USD {usd}</p>
+              </div>
+            ))}
+          </div>
+          <div
+            className={`flex items-center gap-2 text-sm font-bold transition-colors whitespace-nowrap ${
+              isPast
+                ? "text-stone-500 group-hover:text-stone-700"
+                : "text-[#162718] group-hover:text-amber-600"
+            }`}
+          >
+            View Details
+            <span className="group-hover:translate-x-1 transition-transform">
+              →
+            </span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
 
   return (
     <main className="overflow-x-hidden">
@@ -100,8 +262,8 @@ export default function HajjPackages() {
         </div>
       ) : (
         <>
-          {/* ── ACTIVE PACKAGES or COMING SOON ── */}
-          {activePackages.length > 0 ? (
+          {/* ── CURRENT SEASON (2027+) ── */}
+          {currentPackages.length > 0 ? (
             <section className="py-20 bg-stone-50">
               <div className="max-w-5xl mx-auto px-6">
                 <Reveal className="mb-14">
@@ -109,107 +271,62 @@ export default function HajjPackages() {
                     Available Now
                   </p>
                   <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-                    Hajj {activePackages[0]?.year} Packages
+                    Hajj {nextYear} Packages
                   </h2>
                   <p className="text-stone-500 mt-2 text-sm">
-                    All prices exclude air ticket and Qurbani · Click a package
-                    to view full details
+                    All prices exclude air ticket and Qurbani · Click to view
+                    details
                   </p>
                 </Reveal>
-                <div className="space-y-6">
-                  {activePackages.map((pkg, i) => (
-                    <Reveal key={pkg._id} delay={i * 100}>
-                      <Link
-                        to={`/hajj/${pkg.slug}`}
-                        className="group flex flex-col md:flex-row bg-white rounded-2xl border border-stone-200 hover:border-amber-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
-                      >
-                        <div className="md:w-72 h-52 md:h-auto flex-shrink-0 overflow-hidden relative">
-                          <img
-                            src={pkg.image}
-                            alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute top-3 left-3 flex flex-col gap-2">
-                            <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2.5 py-1 rounded-lg">
-                              Maktab {pkg.maktab}
-                            </span>
-                            <span className="bg-white/90 text-stone-700 text-xs font-bold px-2.5 py-1 rounded-lg">
-                              {pkg.tier}
-                            </span>
-                          </div>
-                          {pkg.badge && (
-                            <div className="absolute top-3 right-3">
-                              <span className="bg-amber-500 text-[#162718] text-xs font-bold px-2.5 py-1 rounded-lg">
-                                {pkg.badge}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
-                          <div>
-                            <div className="flex items-start justify-between gap-4 mb-3">
-                              <div>
-                                <h3 className="text-xl font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
-                                  Maktab {pkg.maktab} — {pkg.tier} Package
-                                </h3>
-                                <p className="text-stone-400 text-sm mt-0.5">
-                                  {pkg.hotel}
-                                </p>
-                              </div>
-                              <span className="text-xs bg-[#162718] text-amber-400 font-bold px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0">
-                                {pkg.duration}
-                              </span>
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 mb-6">
-                              {pkg.highlights.map((h) => (
-                                <div
-                                  key={h}
-                                  className="flex items-center gap-2 text-sm text-stone-600"
-                                >
-                                  <span className="w-4 h-4 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-xs flex-shrink-0">
-                                    ✓
-                                  </span>
-                                  {h}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pt-5 border-t border-stone-100">
-                            <div className="flex gap-6">
-                              {[
-                                ["Double", pkg.pkr.double, pkg.usd.double],
-                                ["Triple", pkg.pkr.triple, pkg.usd.triple],
-                                ["Quad", pkg.pkr.quad, pkg.usd.quad],
-                              ].map(([room, pkr, usd]) => (
-                                <div key={room}>
-                                  <p className="text-xs text-stone-400 mb-0.5">
-                                    {room}
-                                  </p>
-                                  <p className="text-sm font-bold text-stone-900">
-                                    PKR {pkr}
-                                  </p>
-                                  <p className="text-xs text-stone-400">
-                                    USD {usd}
-                                  </p>
-                                </div>
-                              ))}
-                            </div>
-                            <div className="flex items-center gap-2 text-sm font-bold text-[#162718] group-hover:text-amber-600 transition-colors whitespace-nowrap">
-                              View Full Details
-                              <span className="group-hover:translate-x-1 transition-transform">
-                                →
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </Reveal>
-                  ))}
-                </div>
+
+                {/* Maktab A */}
+                {currentGroups.maktabA.length > 0 && (
+                  <div className="mb-12">
+                    <h3 className="text-2xl font-bold text-stone-800 mb-6 flex items-center gap-3">
+                      Maktab A
+                      <span className="text-sm font-normal text-amber-600">
+                        — Preferred
+                      </span>
+                    </h3>
+                    <div className="space-y-6">
+                      {currentGroups.maktabA.map((pkg) =>
+                        renderPackageCard(pkg),
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Maktab B */}
+                {currentGroups.maktabB.length > 0 && (
+                  <div className="mb-12">
+                    <h3 className="text-2xl font-bold text-stone-800 mb-6">
+                      Maktab B
+                    </h3>
+                    <div className="space-y-6">
+                      {currentGroups.maktabB.map((pkg) =>
+                        renderPackageCard(pkg),
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Others */}
+                {currentGroups.others.length > 0 && (
+                  <div>
+                    <h3 className="text-2xl font-bold text-stone-800 mb-6">
+                      Other Maktabs
+                    </h3>
+                    <div className="space-y-6">
+                      {currentGroups.others.map((pkg) =>
+                        renderPackageCard(pkg),
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
           ) : (
-            // ── COMING SOON ──
+            /* ── COMING SOON FOR HAJJ 2027 ── */
             <section
               className="py-20 text-white relative overflow-hidden"
               style={{
@@ -224,18 +341,20 @@ export default function HajjPackages() {
               <div className="relative max-w-4xl mx-auto px-6 text-center">
                 <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
                   <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  Upcoming Season
+                  UPCOMING
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-                  Hajj {currentYear + 1}
+                  Hajj {nextYear}
                 </h2>
                 <p className="text-amber-400 text-xl font-semibold mb-3">
                   Coming Soon
                 </p>
                 <p className="text-stone-300 text-base max-w-xl mx-auto leading-relaxed mb-10">
-                  We are preparing our exclusive Hajj packages. Register your
-                  interest now and be the first to know when bookings open.
+                  We are preparing our exclusive Hajj {nextYear} packages.
+                  Register your interest now and be the first to know when
+                  bookings open.
                 </p>
+
                 <div className="flex flex-wrap justify-center gap-3 mb-10">
                   {[
                     "🕋 Maktab A & B",
@@ -252,6 +371,7 @@ export default function HajjPackages() {
                     </span>
                   ))}
                 </div>
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="https://wa.me/923218485159"
@@ -272,7 +392,7 @@ export default function HajjPackages() {
             </section>
           )}
 
-          {/* ── PAST PACKAGES ── */}
+          {/* ── PAST SEASON PACKAGES ── */}
           {pastPackages.length > 0 && (
             <>
               <div className="bg-stone-200 border-y border-stone-300 py-3 px-6 text-center">
@@ -284,114 +404,52 @@ export default function HajjPackages() {
               <section className="py-20 bg-stone-50">
                 <div className="max-w-5xl mx-auto px-6">
                   <Reveal className="mb-14">
-                    <div className="flex items-center gap-3 mb-2">
-                      <p className="text-stone-400 text-sm font-semibold uppercase tracking-widest">
-                        Past Packages
-                      </p>
-                      <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2.5 py-0.5 rounded-full">
-                        Archive
-                      </span>
-                    </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
                       Previous Seasons
                     </h2>
                   </Reveal>
-                  <div className="space-y-6">
-                    {pastPackages.map((pkg, i) => (
-                      <Reveal key={pkg._id} delay={i * 100}>
-                        <Link
-                          to={`/hajj/${pkg.slug}`}
-                          className="group flex flex-col md:flex-row bg-white rounded-2xl border border-stone-200 hover:border-stone-400 hover:shadow-xl transition-all duration-300 overflow-hidden"
-                        >
-                          <div className="md:w-72 h-52 md:h-auto flex-shrink-0 overflow-hidden relative">
-                            <img
-                              src={pkg.image}
-                              alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 grayscale-[30%]"
-                            />
-                            <div className="absolute inset-0 bg-stone-900/10" />
-                            <div className="absolute top-3 left-3 flex flex-col gap-2">
-                              <span className="bg-[#162718] text-amber-400 text-xs font-bold px-2.5 py-1 rounded-lg">
-                                Maktab {pkg.maktab}
-                              </span>
-                              <span className="bg-white/90 text-stone-700 text-xs font-bold px-2.5 py-1 rounded-lg">
-                                {pkg.tier}
-                              </span>
-                            </div>
-                            {pkg.badge && (
-                              <div className="absolute top-3 right-3">
-                                <span className="bg-stone-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">
-                                  {pkg.badge}
-                                </span>
-                              </div>
-                            )}
-                            <div className="absolute bottom-3 right-3">
-                              <span className="bg-stone-800/80 text-stone-300 text-xs font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
-                                {pkg.year}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
-                            <div>
-                              <div className="flex items-start justify-between gap-4 mb-3">
-                                <div>
-                                  <h3 className="text-xl font-bold text-stone-900 group-hover:text-stone-600 transition-colors">
-                                    Maktab {pkg.maktab} — {pkg.tier} Package
-                                  </h3>
-                                  <p className="text-stone-400 text-sm mt-0.5">
-                                    {pkg.hotel}
-                                  </p>
-                                </div>
-                                <span className="text-xs bg-stone-100 text-stone-500 font-bold px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0">
-                                  {pkg.duration}
-                                </span>
-                              </div>
-                              <div className="grid grid-cols-2 gap-2 mb-6">
-                                {pkg.highlights.map((h) => (
-                                  <div
-                                    key={h}
-                                    className="flex items-center gap-2 text-sm text-stone-500"
-                                  >
-                                    <span className="w-4 h-4 bg-stone-100 rounded-full flex items-center justify-center text-stone-400 text-xs flex-shrink-0">
-                                      ✓
-                                    </span>
-                                    {h}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pt-5 border-t border-stone-100">
-                              <div className="flex gap-6">
-                                {[
-                                  ["Double", pkg.pkr.double, pkg.usd.double],
-                                  ["Triple", pkg.pkr.triple, pkg.usd.triple],
-                                  ["Quad", pkg.pkr.quad, pkg.usd.quad],
-                                ].map(([room, pkr, usd]) => (
-                                  <div key={room}>
-                                    <p className="text-xs text-stone-400 mb-0.5">
-                                      {room}
-                                    </p>
-                                    <p className="text-sm font-bold text-stone-600">
-                                      PKR {pkr}
-                                    </p>
-                                    <p className="text-xs text-stone-400">
-                                      USD {usd}
-                                    </p>
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="flex items-center gap-2 text-sm font-bold text-stone-500 group-hover:text-stone-700 transition-colors whitespace-nowrap">
-                                View Details
-                                <span className="group-hover:translate-x-1 transition-transform">
-                                  →
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      </Reveal>
-                    ))}
-                  </div>
+
+                  {/* Past - Maktab A */}
+                  {pastGroups.maktabA.length > 0 && (
+                    <div className="mb-12">
+                      <h3 className="text-2xl font-bold text-stone-800 mb-6">
+                        Maktab A
+                      </h3>
+                      <div className="space-y-6">
+                        {pastGroups.maktabA.map((pkg) =>
+                          renderPackageCard(pkg, true),
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Past - Maktab B */}
+                  {pastGroups.maktabB.length > 0 && (
+                    <div className="mb-12">
+                      <h3 className="text-2xl font-bold text-stone-800 mb-6">
+                        Maktab B
+                      </h3>
+                      <div className="space-y-6">
+                        {pastGroups.maktabB.map((pkg) =>
+                          renderPackageCard(pkg, true),
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Past - Others */}
+                  {pastGroups.others.length > 0 && (
+                    <div>
+                      <h3 className="text-2xl font-bold text-stone-800 mb-6">
+                        Other Maktabs
+                      </h3>
+                      <div className="space-y-6">
+                        {pastGroups.others.map((pkg) =>
+                          renderPackageCard(pkg, true),
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </section>
             </>
