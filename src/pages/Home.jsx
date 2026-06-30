@@ -293,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* STATS */}
-      <section ref={statsRef} className="bg-emerald-800 py-14">
+      <section ref={statsRef} className="bg-[#1a6b3c] py-14">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <div
@@ -379,7 +379,7 @@ export default function Home() {
                           to={`/hajj/${pkg.slug}`}
                           className="group rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-200 overflow-hidden"
                         >
-                          <div className="h-1.5 bg-emerald-800 group-hover:bg-[#D4A017] transition-colors duration-300" />
+                          <div className="h-1.5 bg-[#1a6b3c] group-hover:bg-[#D4A017] transition-colors duration-300" />
                           <img
                             src={pkg.image}
                             alt={pkg.hotel}
@@ -387,7 +387,7 @@ export default function Home() {
                           />
                           <div className="p-5">
                             <div className="flex gap-2 mb-2">
-                              <span className="bg-emerald-800 text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                 Maktab {pkg.maktab}
                               </span>
                               <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
@@ -423,7 +423,7 @@ export default function Home() {
                           to={`/hajj/${pkg.slug}`}
                           className="group rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-200 overflow-hidden"
                         >
-                          <div className="h-1.5 bg-emerald-800 group-hover:bg-[#D4A017] transition-colors duration-300" />
+                          <div className="h-1.5 bg-[#1a6b3c] group-hover:bg-[#D4A017] transition-colors duration-300" />
                           <img
                             src={pkg.image}
                             alt={pkg.hotel}
@@ -431,7 +431,7 @@ export default function Home() {
                           />
                           <div className="p-5">
                             <div className="flex gap-2 mb-2">
-                              <span className="bg-emerald-800 text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                 Maktab {pkg.maktab}
                               </span>
                               <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
@@ -467,7 +467,7 @@ export default function Home() {
                           to={`/hajj/${pkg.slug}`}
                           className="group rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-200 overflow-hidden"
                         >
-                          <div className="h-1.5 bg-emerald-800 group-hover:bg-[#D4A017] transition-colors duration-300" />
+                          <div className="h-1.5 bg-[#1a6b3c] group-hover:bg-[#D4A017] transition-colors duration-300" />
                           <img
                             src={pkg.image}
                             alt={pkg.hotel}
@@ -475,7 +475,7 @@ export default function Home() {
                           />
                           <div className="p-5">
                             <div className="flex gap-2 mb-2">
-                              <span className="bg-emerald-800 text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                 Maktab {pkg.maktab}
                               </span>
                               <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
@@ -593,7 +593,7 @@ export default function Home() {
                             />
                             <div className="p-5">
                               <div className="flex gap-2 mb-2">
-                                <span className="bg-emerald-800 text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
+                                <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                   Maktab {pkg.maktab}
                                 </span>
                                 <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
@@ -634,7 +634,7 @@ export default function Home() {
                             />
                             <div className="p-5">
                               <div className="flex gap-2 mb-2">
-                                <span className="bg-emerald-800 text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
+                                <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                                   Maktab {pkg.maktab}
                                 </span>
                                 <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
@@ -661,7 +661,7 @@ export default function Home() {
           <Reveal delay={300} className="mt-12">
             <Link
               to="/hajj/packages"
-              className="inline-flex items-center gap-2 bg-emerald-800 hover:bg-[#155c33] text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 bg-[#1a6b3c] hover:bg-[#155c33] text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
             >
               View All Hajj Packages →
             </Link>
@@ -744,7 +744,7 @@ export default function Home() {
           <Reveal delay={300} className="mt-10 text-center">
             <Link
               to="/umrah/packages"
-              className="inline-flex items-center gap-2 border-2 border-[#1a6b3c] hover:bg-emerald-800 hover:text-white text-[#1a6b3c] font-semibold px-7 py-3.5 rounded-xl transition-all"
+              className="inline-flex items-center gap-2 border-2 border-[#1a6b3c] hover:bg-[#1a6b3c] hover:text-white text-[#1a6b3c] font-semibold px-7 py-3.5 rounded-xl transition-all"
             >
               View All Umrah Packages →
             </Link>
@@ -817,7 +817,7 @@ export default function Home() {
 
       {/* CTA */}
       <section className="py-20 bg-[#D4A017]">
-        <Reveal className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1a6b3c] mb-4">
             Ready to Begin Your Sacred Journey?
           </h2>
@@ -827,7 +827,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-emerald-800 hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
             >
               Contact Us
             </Link>
@@ -838,7 +838,7 @@ export default function Home() {
               Learn About Us
             </Link>
           </div>
-        </Reveal>
+        </div>
       </section>
 
       {/* Floating WhatsApp - Clean */}
