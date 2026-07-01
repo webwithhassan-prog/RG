@@ -114,7 +114,7 @@ export default function UmrahPackages() {
             complete care from departure to return.
           </p>
           <p className="text-stone-400 text-sm mt-3">
-            Hajj Enrollment # 3127 · RG Tours & Travels (Pvt) Ltd
+            Hajj Enrollment # 3127 · RG Tour & Travels (Pvt) Ltd
           </p>
         </div>
       </section>

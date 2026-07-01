@@ -54,7 +54,7 @@ const faqs = [
   {
     category: "General",
     q: "What is Hajj Enrollment and why does RG Travels have #3127?",
-    a: "The Government of Pakistan assigns an official Hajj Enrollment Number to licensed Hajj operators. RG Tours & Travels holds Enrollment #3127, confirming we are a fully licensed and government-approved Hajj operator.",
+    a: "The Government of Pakistan assigns an official Hajj Enrollment Number to licensed Hajj operators. RG Tour & Travels holds Enrollment #3127, confirming we are a fully licensed and government-approved Hajj operator.",
   },
   {
     category: "General",

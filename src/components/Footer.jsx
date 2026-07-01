@@ -11,7 +11,7 @@ const Footer = () => {
                 to="/"
                 className="text-2xl font-bold text-white tracking-wider"
               >
-                RG <span className="text-[#c49010]">Tours & Travels</span>
+                RG <span className="text-[#c49010]">Tour & Travels</span>
               </Link>
               <p className="mt-4 text-sm leading-relaxed">
                 Guiding pilgrims with care and devotion since 2004.

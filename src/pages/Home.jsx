@@ -271,7 +271,7 @@ export default function Home() {
             <span className="text-[#D4A017]">Our Commitment</span>
           </h1>
           <p className="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            <span className="text-[#D4A017] font-bold">RG Tours & Travels</span>{" "}
+            <span className="text-[#D4A017] font-bold">RG Tour & Travels</span>{" "}
             has guided thousands of pilgrims to Makkah and Madinah with care,
             expertise, and heartfelt devotion.
           </p>

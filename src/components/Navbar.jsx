@@ -99,8 +99,8 @@ export default function Navbar() {
       `}</style>
 
       <header ref={navRef} className="sticky top-0 z-50">
-        <nav className="bg-[#0a0e0d] border-b border-emerald-900/30 px-4 md:px-8">
-          <div className="max-w-6xl mx-auto flex items-center justify-between h-16">
+        <nav className="bg-[#0a0e0d] border-b border-emerald-900/30 px-4 py-2 md:px-8">
+          <div className="max-w-6xl mx-auto flex items-center justify-between h-18">
             {/* Logo */}
             <Link
               to="/"
@@ -109,7 +109,7 @@ export default function Navbar() {
               <img
                 src={logo}
                 alt="company logo"
-                className="h-10 w-auto rounded-full"
+                className="h-16  w-auto rounded-full"
               />
             </Link>
 

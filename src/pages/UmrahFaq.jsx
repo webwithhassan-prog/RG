@@ -84,7 +84,7 @@ const faqCategories = [
     faqs: [
       {
         q: "Do I need a visa to perform Umrah?",
-        a: "Yes, Pakistani pilgrims require an Umrah visa issued by the Saudi Arabian embassy or through an authorised travel agent. The visa is specific to Umrah and does not allow general tourism in Saudi Arabia. RG Tours & Travels handles the entire visa process on your behalf.",
+        a: "Yes, Pakistani pilgrims require an Umrah visa issued by the Saudi Arabian embassy or through an authorised travel agent. The visa is specific to Umrah and does not allow general Tourism in Saudi Arabia. RG Tour & Travels handles the entire visa process on your behalf.",
       },
       {
         q: "What documents are required for an Umrah visa?",

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import API from "../api/axios";
 
 function useReveal() {
   const ref = useRef(null);
@@ -37,14 +38,15 @@ function Reveal({ children, delay = 0, className = "" }) {
   );
 }
 
-const stats = [
+// ── All static data ─────────────────────────────────────────────────
+const staticStats = [
   { value: "20+", label: "Years of Service" },
   { value: "50,000+", label: "Pilgrims Served" },
   { value: "#3127", label: "Hajj Enrollment" },
   { value: "24/7", label: "On-Ground Support" },
 ];
 
-const values = [
+const staticValues = [
   {
     icon: "🤝",
     title: "Trust & Integrity",
@@ -67,29 +69,8 @@ const values = [
   },
 ];
 
-const team = [
-  {
-    name: "Imran Sabir Butt",
-    role: "Chief Executive",
-    phone: "0321-8485159",
-    desc: "Leading RG Tours & Travels with vision and dedication for over two decades, personally overseeing every Hajj and Umrah operation.",
-  },
-  {
-    name: "Irfan Sabir Butt",
-    role: "Director",
-    phone: "0321-8495158",
-    desc: "Responsible for operations and client relations, ensuring every pilgrim receives the highest level of care and attention.",
-  },
-  {
-    name: "Muhammad Hassaan",
-    role: "Director",
-    phone: "0336-1601234",
-    desc: "Overseeing logistics and coordination, making sure every journey runs smoothly from departure to return.",
-  },
-];
-
-const milestones = [
-  { year: "2004", event: "RG Tours & Travels founded in Lahore" },
+const staticMilestones = [
+  { year: "2005", event: "RG Tour & Travels founded in Lahore" },
   { year: "2008", event: "Received official Hajj Enrollment #3127" },
   { year: "2012", event: "Served over 5,000 pilgrims milestone" },
   { year: "2016", event: "Expanded Umrah packages year-round" },
@@ -97,10 +78,40 @@ const milestones = [
   { year: "2026", event: "Continuing to serve with the same devotion" },
 ];
 
+const staticTeam = [
+  {
+    name: "Imran Sabir Butt",
+    role: "Chief Executive",
+    phone: "0321-8485159",
+    bio: "Leading RG Tour & Travels with vision and dedication for over two decades, personally overseeing every Hajj and Umrah operation.",
+  },
+  {
+    name: "Irfan Sabir Butt",
+    role: "Director",
+    phone: "0321-8495158",
+    bio: "Responsible for operations and client relations, ensuring every pilgrim receives the highest level of care and attention.",
+  },
+  {
+    name: "Muhammad Hassaan",
+    role: "Director",
+    phone: "0336-1601234",
+    bio: "Overseeing logistics and coordination, making sure every journey runs smoothly from departure to return.",
+  },
+];
+
 export default function AboutUs() {
-  // Animated stats counter
+  const [data, setData] = useState(null);
+
   const [counted, setCounted] = useState(false);
   const statsRef = useRef(null);
+
+  // Silently fetch — page shows static content instantly
+  useEffect(() => {
+    API.get("/about")
+      .then((res) => setData(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => {
@@ -115,9 +126,17 @@ export default function AboutUs() {
     return () => obs.disconnect();
   }, []);
 
+  // Only these 4 things come from backend, rest is static
+  const team = data?.team?.length ? data.team : staticTeam;
+  const address =
+    data?.address || "12-E 2nd Basement, Nabi Center, Chowk Rang Mahal, Lahore";
+  const phone = data?.phone || "+92 321-8485159";
+  const email = data?.email || "rg-travels@hotmail.com";
+  const enrollment = data?.enrollmentNumber || "3127";
+
   return (
     <main className="overflow-x-hidden">
-      {/* ── HERO ── */}
+      {/* ── HERO — 100% static ── */}
       <section
         className="relative py-28 text-white text-center"
         style={{
@@ -139,17 +158,17 @@ export default function AboutUs() {
             <span className="text-[#D4A017]">Heart & Dedication</span>
           </h1>
           <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
-            For over 20 years, RG Tours & Travels has been guiding Muslims from
+            For over 20 years, RG Tour & Travels has been guiding Muslims from
             Pakistan on their most sacred journeys — with care, expertise, and
             unwavering devotion.
           </p>
         </div>
       </section>
 
-      {/* ── STATS ── */}
+      {/* ── STATS — 100% static ── */}
       <section ref={statsRef} className="bg-[#1a6b3c] py-14">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map((s, i) => (
+          {staticStats.map((s, i) => (
             <div
               key={s.label}
               style={{
@@ -167,7 +186,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── WHO WE ARE ── */}
+      {/* ── WHO WE ARE — accreditations from backend ── */}
       <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
           <Reveal>
@@ -178,16 +197,17 @@ export default function AboutUs() {
               Pakistan's Trusted Hajj & Umrah Specialists
             </h2>
             <p className="text-stone-500 leading-relaxed mb-4">
-              RG Tours & Travels (Pvt) Ltd is a government-licensed Hajj and
+              RG Tour & Travels (Pvt) Ltd is a government-licensed Hajj and
               Umrah operator based in Lahore, Pakistan. Founded over two decades
               ago, we have had the honour of serving tens of thousands of
               pilgrims on their journey to the holy cities of Makkah and
               Madinah.
             </p>
             <p className="text-stone-500 leading-relaxed mb-4">
-              Holding official Hajj Enrollment #3127, we operate under the full
-              authorization of the Ministry of Religious Affairs of Pakistan and
-              comply with all Saudi and Pakistani government regulations.
+              Holding official Hajj Enrollment #{enrollment}, we operate under
+              the full authorization of the Ministry of Religious Affairs of
+              Pakistan and comply with all Saudi and Pakistani government
+              regulations.
             </p>
             <p className="text-stone-500 leading-relaxed">
               Our mission is simple — to take care of every detail so your heart
@@ -195,13 +215,13 @@ export default function AboutUs() {
             </p>
           </Reveal>
 
-          {/* Accreditations */}
+          {/* Accreditations — contact info from backend */}
           <Reveal delay={150}>
             <div className="space-y-4">
               {[
                 {
                   label: "Hajj Enrollment",
-                  value: "#3127 — Ministry of Religious Affairs, Pakistan",
+                  value: `#${enrollment} — Ministry of Religious Affairs, Pakistan`,
                 },
                 {
                   label: "IATA Member",
@@ -211,13 +231,9 @@ export default function AboutUs() {
                   label: "NVOCC Licensed",
                   value: "National Haj Organizers of Pakistan",
                 },
-                {
-                  label: "Office",
-                  value:
-                    "12-E 2nd Basement, Nabi Center, Chowk Rang Mahal, Lahore",
-                },
-                { label: "Phone", value: "+92 321-8485159" },
-                { label: "Email", value: "rg-travels@hotmail.com" },
+                { label: "Office", value: address },
+                { label: "Phone", value: phone },
+                { label: "Email", value: email },
                 { label: "Website", value: "www.rgtravels.pk" },
               ].map((item) => (
                 <div
@@ -236,12 +252,13 @@ export default function AboutUs() {
           </Reveal>
         </div>
       </section>
+
       {/* ── MAP ── */}
       <section className="bg-stone-200">
         <div className="grid md:grid-cols-2">
           <div className="h-72 md:h-96">
             <iframe
-              title="RG Tours & Travels Office Location"
+              title="RG Tour & Travels Office Location"
               src="https://www.google.com/maps?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore&output=embed"
               className="w-full h-full border-0"
               loading="lazy"
@@ -272,7 +289,8 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-      {/* ── OUR VALUES ── */}
+
+      {/* ── OUR VALUES — static ── */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
@@ -284,9 +302,9 @@ export default function AboutUs() {
             </h2>
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v, i) => (
+            {staticValues.map((v, i) => (
               <Reveal key={v.title} delay={i * 80}>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-7 hover:border-amber-300 hover:shadow-sm transition-all">
+                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-7 hover:border-[#D4A017]/40 hover:shadow-sm transition-all">
                   <span className="text-3xl block mb-4">{v.icon}</span>
                   <h3 className="font-bold text-stone-900 text-lg mb-2">
                     {v.title}
@@ -301,14 +319,14 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── TIMELINE ── */}
+      {/* ── TIMELINE — static ── */}
       <section
         className="py-24 text-white relative overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
         }}
       >
-        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#e8b820]/5 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#D4A017]/5 blur-3xl pointer-events-none" />
         <div className="relative max-w-4xl mx-auto px-6">
           <Reveal className="text-center mb-14">
             <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
@@ -319,15 +337,13 @@ export default function AboutUs() {
             </h2>
           </Reveal>
           <div className="relative">
-            {/* vertical line */}
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
             <div className="space-y-10">
-              {milestones.map((m, i) => (
+              {staticMilestones.map((m, i) => (
                 <Reveal key={m.year} delay={i * 80}>
                   <div
                     className={`relative flex items-start gap-6 md:gap-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
                   >
-                    {/* Content */}
                     <div
                       className={`md:w-[45%] pl-10 md:pl-0 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}
                     >
@@ -338,8 +354,7 @@ export default function AboutUs() {
                         {m.event}
                       </p>
                     </div>
-                    {/* Dot */}
-                    <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#e8b820] border-2 border-[#1a6b3c] mt-1.5" />
+                    <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#D4A017] border-2 border-[#1a6b3c] mt-1.5" />
                     <div className="md:w-[45%]" />
                   </div>
                 </Reveal>
@@ -349,7 +364,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── TEAM ── */}
+      {/* ── TEAM — from backend ── */}
       <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
@@ -363,8 +378,7 @@ export default function AboutUs() {
           <div className="grid md:grid-cols-3 gap-6">
             {team.map((member, i) => (
               <Reveal key={member.name} delay={i * 100}>
-                <div className="bg-white rounded-2xl border border-stone-200 p-7 hover:border-amber-300 hover:shadow-md transition-all">
-                  {/* Avatar placeholder */}
+                <div className="bg-white rounded-2xl border border-stone-200 p-7 hover:border-[#D4A017]/40 hover:shadow-md transition-all">
                   <div className="w-16 h-16 rounded-full bg-[#1a6b3c] flex items-center justify-center text-[#D4A017] text-2xl font-bold mb-5">
                     {member.name.charAt(0)}
                   </div>
@@ -375,7 +389,7 @@ export default function AboutUs() {
                     {member.role}
                   </p>
                   <p className="text-stone-500 text-sm leading-relaxed mb-5">
-                    {member.desc}
+                    {member.bio}
                   </p>
                   <a
                     href={`tel:${member.phone}`}
@@ -390,7 +404,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── WHY CHOOSE US ── */}
+      {/* ── WHY CHOOSE US — static ── */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
@@ -405,7 +419,7 @@ export default function AboutUs() {
             {[
               {
                 title: "Government Licensed",
-                desc: "Fully accredited with Hajj Enrollment #3127 by the Ministry of Religious Affairs.",
+                desc: `Fully accredited with Hajj Enrollment #${enrollment} by the Ministry of Religious Affairs.`,
               },
               {
                 title: "20+ Years Experience",
@@ -421,7 +435,7 @@ export default function AboutUs() {
               },
               {
                 title: "End-to-End Service",
-                desc: "Visa, flights, hotels, transport, meals — we handle everything so you don't have to.",
+                desc: "Visa, hotels, transport, meals — we handle everything so you don't have to.",
               },
               {
                 title: "24/7 Support",
@@ -429,8 +443,8 @@ export default function AboutUs() {
               },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 70}>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 hover:border-amber-300 transition-all">
-                  <div className="w-8 h-0.5 bg-[#e8b820] mb-4" />
+                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 hover:border-[#D4A017]/40 transition-all">
+                  <div className="w-8 h-0.5 bg-[#D4A017] mb-4" />
                   <h3 className="font-bold text-stone-900 mb-2">
                     {item.title}
                   </h3>
@@ -444,14 +458,14 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* ── CTA — static ── */}
       <section className="py-20 bg-[#D4A017] text-center">
         <Reveal className="max-w-2xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-[#1a6b3c] mb-4">
             Ready to Begin Your Sacred Journey?
           </h2>
           <p className="text-[#1a6b3c]/70 mb-8">
-            Join thousands of pilgrims who have trusted RG Tours & Travels with
+            Join thousands of pilgrims who have trusted RG Tour & Travels with
             their Hajj and Umrah.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

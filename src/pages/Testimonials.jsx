@@ -273,7 +273,7 @@ export default function Testimonials() {
             What Our Pilgrims Say
           </h1>
           <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
-            Thousands of pilgrims have trusted RG Tours & Travels with their
+            Thousands of pilgrims have trusted RG Tour & Travels with their
             most sacred journey. Here are their stories.
           </p>
         </div>
