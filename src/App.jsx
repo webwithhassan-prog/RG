@@ -16,6 +16,8 @@ import UmrahFAQ from "./pages/UmrahFaq";
 import UmrahPackageDetail from "./pages/UmrahPackageDetail";
 import RegistrationPopup from "./pages/RegistrationPopup";
 import HajjRegistrationForm from "./pages/HajjRegistrationForm";
+import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -170,6 +172,8 @@ export default function App() {
         <Route path="/hajj/facilities" element={<HajjFacilities />} />
         <Route path="/hajj/:id" element={<HajjPackageDetail />} />
         <Route path="/umrah/packages" element={<UmrahPackages />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/umrah/:slug" element={<UmrahPackageDetail />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/testimonials" element={<Testimonials />} />
