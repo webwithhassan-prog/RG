@@ -121,15 +121,12 @@ function SectionHeading({ children }) {
 function TestimonialSlider() {
   const [current, setCurrent] = useState(0);
   const total = testimonials.length;
-
   useEffect(() => {
     const timer = setInterval(() => setCurrent((p) => (p + 1) % total), 4000);
     return () => clearInterval(timer);
   }, [total]);
-
   const prev = () => setCurrent((p) => (p - 1 + total) % total);
   const next = () => setCurrent((p) => (p + 1) % total);
-
   return (
     <div>
       <div className="overflow-hidden rounded-2xl">
@@ -188,6 +185,7 @@ export default function Home() {
   const [counted, setCounted] = useState(false);
   const [hajjPackages, setHajjPackages] = useState([]);
   const [umrahPackages, setUmrahPackages] = useState([]);
+  const [latestBlogs, setLatestBlogs] = useState([]);
   const statsRef = useRef(null);
   const currentYear = new Date().getFullYear();
   const nextYear = currentYear + 1;
@@ -195,12 +193,14 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [hajjRes, umrahRes] = await Promise.all([
+        const [hajjRes, umrahRes, blogRes] = await Promise.all([
           API.get("/hajj-packages?isActive=true"),
           API.get("/umrah-packages?isActive=true"),
+          API.get("/blogs?limit=3"),
         ]);
         setHajjPackages(hajjRes.data);
         setUmrahPackages(umrahRes.data);
+        setLatestBlogs(blogRes.data.blogs || []);
       } catch (error) {
         console.error(error);
       }
@@ -247,7 +247,7 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden">
-      {/* HERO */}
+      {/* ── HERO ── */}
       <section
         className="relative min-h-[92vh] flex items-center justify-center text-white overflow-hidden"
         style={{
@@ -271,7 +271,7 @@ export default function Home() {
             <span className="text-[#D4A017]">Our Commitment</span>
           </h1>
           <p className="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            <span className="text-[#D4A017] font-bold">RG Tour & Travels</span>{" "}
+            <span className="text-[#D4A017] font-bold">RG Tours & Travels</span>{" "}
             has guided thousands of pilgrims to Makkah and Madinah with care,
             expertise, and heartfelt devotion.
           </p>
@@ -292,7 +292,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS */}
+      {/* ── STATS ── */}
       <section ref={statsRef} className="bg-[#1a6b3c] py-14">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
@@ -313,7 +313,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SERVICES */}
+      {/* ── SERVICES ── */}
       <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
@@ -344,7 +344,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HAJJ PACKAGES */}
+      {/* ── HAJJ PACKAGES ── */}
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="mb-14">
@@ -410,7 +410,6 @@ export default function Home() {
                   </div>
                 </div>
               )}
-
               {currentGroups.maktabB.length > 0 && (
                 <div>
                   <h3 className="text-2xl font-bold text-stone-800 mb-6">
@@ -454,7 +453,6 @@ export default function Home() {
                   </div>
                 </div>
               )}
-
               {currentGroups.others.length > 0 && (
                 <div>
                   <h3 className="text-2xl font-bold text-stone-800 mb-6">
@@ -500,7 +498,6 @@ export default function Home() {
               )}
             </div>
           ) : (
-            /* Coming Soon for Hajj 2027 */
             <section
               className="py-20 text-white relative overflow-hidden"
               style={{
@@ -510,7 +507,6 @@ export default function Home() {
             >
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#D4A017]/10 blur-3xl rounded-full" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#e8b820]/5 blur-2xl rounded-full" />
               </div>
               <div className="relative max-w-4xl mx-auto px-6 text-center">
                 <div className="inline-flex items-center gap-2 bg-[#D4A017]/20 border border-[#D4A017]/40 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
@@ -564,7 +560,6 @@ export default function Home() {
             </section>
           )}
 
-          {/* PAST SEASON */}
           {pastHajj.length > 0 && (
             <div className="mt-20">
               <div className="bg-stone-100 border border-stone-200 rounded-xl px-5 py-3 mb-8 text-center">
@@ -613,7 +608,6 @@ export default function Home() {
                     </div>
                   </div>
                 )}
-
                 {pastGroups.maktabB.length > 0 && (
                   <div>
                     <h3 className="text-2xl font-bold text-stone-800 mb-6">
@@ -669,7 +663,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UMRAH PACKAGES */}
+      {/* ── UMRAH PACKAGES ── */}
       <section className="py-24 bg-[#FDFAF5]">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
@@ -680,7 +674,6 @@ export default function Home() {
               your heart stays focused on worship.
             </p>
           </Reveal>
-
           {umrahPackages.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-6">
               {umrahPackages.slice(0, 3).map((pkg, i) => (
@@ -740,7 +733,6 @@ export default function Home() {
               </a>
             </div>
           )}
-
           <Reveal delay={300} className="mt-10 text-center">
             <Link
               to="/umrah/packages"
@@ -752,7 +744,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
+      {/* ── WHY CHOOSE US ── */}
       <section
         className="py-24 text-white relative overflow-hidden"
         style={{
@@ -804,7 +796,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* ── TESTIMONIALS ── */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal className="text-center mb-14">
@@ -815,41 +807,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA - Force Gold Background */}
-      <section className="py-20 bg-[#D4A017] !bg-[#D4A017]">
-        <Reveal className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a6b3c] mb-4">
+      {/* ── BLOG PREVIEW ── */}
+      {latestBlogs.length > 0 && (
+        <section className="py-24 bg-[#FDFAF5]">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="flex items-end justify-between mb-14 flex-wrap gap-4">
+              <div>
+                <SectionLabel>Knowledge & Guidance</SectionLabel>
+                <SectionHeading>Latest from Our Blog</SectionHeading>
+              </div>
+              <Link
+                to="/blog"
+                className="text-sm font-semibold text-[#1a6b3c] hover:text-[#D4A017] transition-colors whitespace-nowrap"
+              >
+                View All Articles →
+              </Link>
+            </Reveal>
+            <div className="grid md:grid-cols-3 gap-6">
+              {latestBlogs.map((blog, i) => (
+                <Reveal key={blog._id} delay={i * 100}>
+                  <Link
+                    to={`/blog/${blog.slug}`}
+                    className="group bg-white rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  >
+                    <div className="h-44 overflow-hidden bg-stone-100">
+                      {blog.image ? (
+                        <img
+                          src={blog.image}
+                          alt={blog.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-[#1a6b3c]/5">
+                          <span className="text-4xl">📖</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-xs font-bold bg-[#1a6b3c]/10 text-[#1a6b3c] px-2.5 py-1 rounded-full">
+                          {blog.category}
+                        </span>
+                        <span className="text-xs text-stone-400">
+                          {new Date(blog.publishedAt).toLocaleDateString(
+                            "en-PK",
+                            { day: "numeric", month: "short", year: "numeric" },
+                          )}
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-stone-900 text-lg mb-2 leading-snug group-hover:text-[#1a6b3c] transition-colors line-clamp-2">
+                        {blog.title}
+                      </h3>
+                      <p className="text-stone-500 text-sm leading-relaxed line-clamp-2">
+                        {blog.excerpt}
+                      </p>
+                      <div className="mt-4 flex items-center gap-1 text-sm font-semibold text-[#1a6b3c] group-hover:text-[#D4A017] transition-colors">
+                        Read More{" "}
+                        <span className="group-hover:translate-x-1 transition-transform">
+                          →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── CTA ── */}
+      <section className="py-20 bg-[#1a6b3c] text-center">
+        <Reveal className="max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Begin Your Sacred Journey?
           </h2>
-          <p className="text-[#1a6b3c]/80 mb-8 text-lg leading-relaxed">
+          <p className="text-stone-300 mb-8 text-lg leading-relaxed">
             Speak to our team today and let us guide you every step of the way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
-              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all active:scale-95"
+              className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 active:scale-95"
             >
               Contact Us
             </Link>
             <Link
               to="/about"
-              className="border-2 border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all active:scale-95"
+              className="border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-all active:scale-95"
             >
               Learn About Us
             </Link>
           </div>
         </Reveal>
       </section>
-
-      {/* Floating WhatsApp - Clean */}
-      <a
-        href="https://wa.me/923218485159"
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-4 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-      >
-        WhatsApp
-      </a>
     </main>
   );
 }

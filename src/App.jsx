@@ -172,8 +172,8 @@ export default function App() {
         <Route path="/hajj/facilities" element={<HajjFacilities />} />
         <Route path="/hajj/:id" element={<HajjPackageDetail />} />
         <Route path="/umrah/packages" element={<UmrahPackages />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogDetail />} />
+        <Route path="/blogs" element={<Blog />} />
+        <Route path="/blogs/:slug" element={<BlogDetail />} />
         <Route path="/umrah/:slug" element={<UmrahPackageDetail />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/testimonials" element={<Testimonials />} />
