@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import API from "../api/axios";
+import SEO from "../components/SEO";
 
 function useReveal() {
   const ref = useRef(null);
@@ -116,8 +117,15 @@ export default function HajjPackageDetail() {
     .sort((a, b) => b.year - a.year);
 
   return (
-    <main className="overflow-x-hidden">
-      <style>{`
+    <>
+      <SEO
+        title={`${pkg.tier} Package — Maktab ${pkg.maktab}`}
+        description={`Hajj 2026 Maktab ${pkg.maktab} ${pkg.tier} package. ${pkg.hotel}. ${pkg.duration}. Book with RG Tours & Travels.`}
+        url={`/hajj/${id}`}
+        image={pkg.image}
+      />
+      <main className="overflow-x-hidden">
+        <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
           to   { opacity: 1; }
@@ -125,413 +133,368 @@ export default function HajjPackageDetail() {
         .animate-fadeIn { animation: fadeIn 0.15s ease forwards; }
       `}</style>
 
-      {/* ── PAST SEASON NOTICE ── */}
-      {isPast && (
-        <div className="bg-stone-200 border-b border-stone-300 py-2.5 px-6 text-center">
-          <p className="text-stone-600 text-sm font-semibold">
-            📁 Hajj {pkg.year} — Past Season · This package is for reference
-            only. Bookings for this season are closed.
-          </p>
-        </div>
-      )}
+        {/* ── PAST SEASON NOTICE ── */}
+        {isPast && (
+          <div className="bg-stone-200 border-b border-stone-300 py-2.5 px-6 text-center">
+            <p className="text-stone-600 text-sm font-semibold">
+              📁 Hajj {pkg.year} — Past Season · This package is for reference
+              only. Bookings for this season are closed.
+            </p>
+          </div>
+        )}
 
-      {/* ── HERO IMAGE ── */}
-      <div className="relative h-72 md:h-[28rem] overflow-hidden bg-stone-900">
-        <img
-          src={pkg.image}
-          alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
-          onClick={() => setLightboxOpen(true)}
-          className={`w-full h-full object-contain cursor-zoom-in ${isPast ? "grayscale-[20%]" : ""}`}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
-
-        <button
-          onClick={() => setLightboxOpen(true)}
-          className="absolute bottom-6 right-6 flex items-center gap-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all border border-white/20"
-        >
-          ⤢ View Full Image
-        </button>
-
-        <button
-          onClick={() => navigate(-1)}
-          className="absolute top-6 left-6 flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all border border-white/20"
-        >
-          ← Back
-        </button>
-
-        <div className="absolute top-6 right-6 flex gap-2">
-          <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-3 py-1.5 rounded-lg">
-            Maktab {pkg.maktab}
-          </span>
-          <span className="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg">
-            {pkg.tier}
-          </span>
-          {pkg.badge && (
-            <span
-              className={`text-xs font-bold px-3 py-1.5 rounded-lg ${isPast ? "bg-stone-600 text-white" : "bg-[#D4A017] text-[#1a6b3c]"}`}
-            >
-              {pkg.badge}
-            </span>
-          )}
-        </div>
-
-        <div className="absolute bottom-6 left-6">
-          <p
-            className={`text-xs font-semibold uppercase tracking-widest mb-1 ${isPast ? "text-stone-300" : "text-[#D4A017]"}`}
-          >
-            Hajj {pkg.year} · {pkg.duration}
-          </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Maktab {pkg.maktab} — {pkg.tier} Package
-          </h1>
-          <p className="text-stone-300 text-sm mt-1">{pkg.hotel}</p>
-        </div>
-      </div>
-
-      {/* ── LIGHTBOX ── */}
-      {lightboxOpen && (
-        <div
-          onClick={() => setLightboxOpen(false)}
-          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out animate-fadeIn"
-        >
-          <button
-            onClick={() => setLightboxOpen(false)}
-            className="absolute top-5 right-5 text-white/80 hover:text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-            aria-label="Close"
-          >
-            ×
-          </button>
+        {/* ── HERO IMAGE ── */}
+        <div className="relative h-72 md:h-[28rem] overflow-hidden bg-stone-900">
           <img
             src={pkg.image}
             alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
-            onClick={(e) => e.stopPropagation()}
-            className="max-w-full max-h-full object-contain rounded-lg cursor-default"
+            onClick={() => setLightboxOpen(true)}
+            className={`w-full h-full object-contain cursor-zoom-in ${isPast ? "grayscale-[20%]" : ""}`}
           />
-        </div>
-      )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
 
-      {/* ── MAIN CONTENT ── */}
-      <div className="max-w-5xl mx-auto px-6 py-14">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* ── LEFT ── */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Trip summary */}
-            <Reveal>
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  { label: "Duration", value: pkg.duration },
-                  { label: "Arrival", value: pkg.arrival },
-                  { label: "Departure", value: pkg.departure },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="bg-[#FDFAF5] rounded-xl border border-stone-200 p-4 text-center"
-                  >
-                    <p className="text-xs text-stone-400 mb-1">{item.label}</p>
-                    <p className="text-sm font-bold text-stone-800">
-                      {item.value}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
+          <button
+            onClick={() => setLightboxOpen(true)}
+            className="absolute bottom-6 right-6 flex items-center gap-1.5 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all border border-white/20"
+          >
+            ⤢ View Full Image
+          </button>
 
-            {/* Highlights */}
-            <Reveal delay={50}>
-              <div className="bg-white rounded-2xl border border-stone-200 p-7">
-                <h2 className="font-bold text-stone-900 text-xl mb-5">
-                  Package Highlights
-                </h2>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {pkg.highlights.map((h) => (
-                    <div
-                      key={h}
-                      className="flex items-center gap-3 text-sm text-stone-600"
-                    >
-                      <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0">
-                        ✓
-                      </span>
-                      {h}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
+          <button
+            onClick={() => navigate(-1)}
+            className="absolute top-6 left-6 flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-xl transition-all border border-white/20"
+          >
+            ← Back
+          </button>
 
-            {/* Schedule */}
-            <Reveal delay={100}>
-              <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden">
-                <div className="bg-[#1a6b3c] px-6 py-4">
-                  <p className="text-white font-bold">
-                    {pkg.duration} Schedule
-                  </p>
-                  <p className="text-[#D4A017] text-xs mt-0.5">
-                    Arrival: {pkg.arrival}
-                  </p>
-                </div>
-                <div className="divide-y divide-stone-100">
-                  {pkg.schedule.map((row, i) => (
-                    <div
-                      key={i}
-                      className={`flex items-start gap-4 px-6 py-4 ${i % 2 === 0 ? "bg-white" : "bg-[#FDFAF5]"}`}
-                    >
-                      <div className="flex flex-col items-center mt-1">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#e8b820] flex-shrink-0" />
-                        {i < pkg.schedule.length - 1 && (
-                          <div className="w-px h-8 bg-stone-200 mt-1" />
-                        )}
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-[#c49010] mb-0.5">
-                          {row.day}
-                        </p>
-                        <p className="text-sm font-semibold text-stone-800">
-                          {row.event}
-                        </p>
-                        <p className="text-xs text-stone-400">{row.location}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Requirements */}
-            <Reveal delay={150}>
-              <div className="bg-white rounded-2xl border border-stone-200 p-7">
-                <h2 className="font-bold text-stone-900 text-xl mb-5">
-                  Visa Requirements
-                </h2>
-                <ul className="space-y-3">
-                  {requirements.map((r, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 text-sm text-stone-600"
-                    >
-                      <span className="w-5 h-5 bg-[#faefc0] rounded-full flex items-center justify-center text-[#c49010] text-xs flex-shrink-0 mt-0.5">
-                        •
-                      </span>
-                      {r}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-
-            {/* Notes */}
-            <Reveal delay={200}>
-              <div className="bg-[#fdf8e7] rounded-2xl border border-amber-200 p-7">
-                <h2 className="font-bold text-stone-900 text-xl mb-5">
-                  Important Notes
-                </h2>
-                <ul className="space-y-3">
-                  {notes.map((n, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 text-sm text-stone-600"
-                    >
-                      <span className="text-[#D4A017] font-bold flex-shrink-0">
-                        !
-                      </span>
-                      {n}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
+          <div className="absolute top-6 right-6 flex gap-2">
+            <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-3 py-1.5 rounded-lg">
+              Maktab {pkg.maktab}
+            </span>
+            <span className="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg">
+              {pkg.tier}
+            </span>
+            {pkg.badge && (
+              <span
+                className={`text-xs font-bold px-3 py-1.5 rounded-lg ${isPast ? "bg-stone-600 text-white" : "bg-[#D4A017] text-[#1a6b3c]"}`}
+              >
+                {pkg.badge}
+              </span>
+            )}
           </div>
 
-          {/* ── RIGHT SIDEBAR ── */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-4">
-              {/* Pricing */}
-              <div
-                className={`bg-white rounded-2xl shadow-lg p-6 ${isPast ? "border-2 border-stone-300" : "border-2 border-[#1a6b3c]"}`}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">
-                    Package Pricing
-                  </p>
-                  {isPast && (
-                    <span className="bg-stone-100 text-stone-500 text-xs font-bold px-2.5 py-1 rounded-full">
-                      {pkg.year}
-                    </span>
-                  )}
-                </div>
-                <div className="space-y-4">
+          <div className="absolute bottom-6 left-6">
+            <p
+              className={`text-xs font-semibold uppercase tracking-widest mb-1 ${isPast ? "text-stone-300" : "text-[#D4A017]"}`}
+            >
+              Hajj {pkg.year} · {pkg.duration}
+            </p>
+            <h1 className="text-3xl md:text-4xl font-bold text-white">
+              Maktab {pkg.maktab} — {pkg.tier} Package
+            </h1>
+            <p className="text-stone-300 text-sm mt-1">{pkg.hotel}</p>
+          </div>
+        </div>
+
+        {/* ── LIGHTBOX ── */}
+        {lightboxOpen && (
+          <div
+            onClick={() => setLightboxOpen(false)}
+            className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out animate-fadeIn"
+          >
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="absolute top-5 right-5 text-white/80 hover:text-white text-3xl leading-none w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <img
+              src={pkg.image}
+              alt={`Maktab ${pkg.maktab} ${pkg.tier}`}
+              onClick={(e) => e.stopPropagation()}
+              className="max-w-full max-h-full object-contain rounded-lg cursor-default"
+            />
+          </div>
+        )}
+
+        {/* ── MAIN CONTENT ── */}
+        <div className="max-w-5xl mx-auto px-6 py-14">
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* ── LEFT ── */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Trip summary */}
+              <Reveal>
+                <div className="grid grid-cols-3 gap-4">
                   {[
-                    ["Double", pkg.pkr.double, pkg.usd.double],
-                    ["Triple", pkg.pkr.triple, pkg.usd.triple],
-                    ["Quad", pkg.pkr.quad, pkg.usd.quad],
-                  ].map(([room, pkr, usd]) => (
+                    { label: "Duration", value: pkg.duration },
+                    { label: "Arrival", value: pkg.arrival },
+                    { label: "Departure", value: pkg.departure },
+                  ].map((item) => (
                     <div
-                      key={room}
-                      className="flex justify-between items-center pb-3 border-b border-stone-100 last:border-0 last:pb-0"
+                      key={item.label}
+                      className="bg-[#FDFAF5] rounded-xl border border-stone-200 p-4 text-center"
                     >
-                      <span className="text-sm font-semibold text-stone-600">
-                        {room}
-                      </span>
-                      <div className="text-right">
-                        <p className="font-bold text-stone-900">PKR {pkr}</p>
-                        <p className="text-xs text-stone-400">USD {usd}</p>
-                      </div>
+                      <p className="text-xs text-stone-400 mb-1">
+                        {item.label}
+                      </p>
+                      <p className="text-sm font-bold text-stone-800">
+                        {item.value}
+                      </p>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-stone-400 mt-4">
-                  * Without air ticket & Qurbani
-                </p>
+              </Reveal>
 
-                {isPast ? (
-                  <>
-                    <div className="mt-5 bg-stone-100 border border-stone-200 rounded-xl px-4 py-3 text-center">
-                      <p className="text-stone-500 text-xs font-semibold">
-                        📁 Bookings for Hajj {pkg.year} are closed
-                      </p>
-                    </div>
-                    <a
-                      href="https://wa.me/923218485159"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-3 block w-full bg-green-500 hover:bg-green-400 text-white font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
-                    >
-                      Inquire for Next Season
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      to="/contact"
-                      className="mt-5 block w-full bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
-                    >
-                      Book This Package
-                    </Link>
-                    <a
-                      href="https://wa.me/923218485159"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-3 block w-full bg-green-500 hover:bg-green-400 text-white font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
-                    >
-                      WhatsApp Us
-                    </a>
-                  </>
-                )}
-              </div>
-
-              {/* Contact */}
-              <div className="bg-[#1a6b3c] rounded-2xl p-5 text-white">
-                <p className="text-xs font-bold text-[#D4A017] uppercase tracking-widest mb-3">
-                  Direct Contact
-                </p>
-                {[
-                  { name: "Imran Sabir Butt", phone: "0321-8485159" },
-                  { name: "Irfan Sabir Butt", phone: "0321-8495158" },
-                  { name: "Muhammad Hassaan", phone: "0336-1601234" },
-                ].map((c) => (
-                  <div key={c.name} className="mb-3 last:mb-0">
-                    <p className="text-stone-400 text-xs">{c.name}</p>
-                    <a
-                      href={`tel:${c.phone}`}
-                      className="text-[#D4A017] font-bold text-sm hover:text-amber-300 transition-colors"
-                    >
-                      {c.phone}
-                    </a>
+              {/* Highlights */}
+              <Reveal delay={50}>
+                <div className="bg-white rounded-2xl border border-stone-200 p-7">
+                  <h2 className="font-bold text-stone-900 text-xl mb-5">
+                    Package Highlights
+                  </h2>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {pkg.highlights.map((h) => (
+                      <div
+                        key={h}
+                        className="flex items-center gap-3 text-sm text-stone-600"
+                      >
+                        <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0">
+                          ✓
+                        </span>
+                        {h}
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+              </Reveal>
+
+              {/* Schedule */}
+              <Reveal delay={100}>
+                <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+                  <div className="bg-[#1a6b3c] px-6 py-4">
+                    <p className="text-white font-bold">
+                      {pkg.duration} Schedule
+                    </p>
+                    <p className="text-[#D4A017] text-xs mt-0.5">
+                      Arrival: {pkg.arrival}
+                    </p>
+                  </div>
+                  <div className="divide-y divide-stone-100">
+                    {pkg.schedule.map((row, i) => (
+                      <div
+                        key={i}
+                        className={`flex items-start gap-4 px-6 py-4 ${i % 2 === 0 ? "bg-white" : "bg-[#FDFAF5]"}`}
+                      >
+                        <div className="flex flex-col items-center mt-1">
+                          <div className="w-2.5 h-2.5 rounded-full bg-[#e8b820] flex-shrink-0" />
+                          {i < pkg.schedule.length - 1 && (
+                            <div className="w-px h-8 bg-stone-200 mt-1" />
+                          )}
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-[#c49010] mb-0.5">
+                            {row.day}
+                          </p>
+                          <p className="text-sm font-semibold text-stone-800">
+                            {row.event}
+                          </p>
+                          <p className="text-xs text-stone-400">
+                            {row.location}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Requirements */}
+              <Reveal delay={150}>
+                <div className="bg-white rounded-2xl border border-stone-200 p-7">
+                  <h2 className="font-bold text-stone-900 text-xl mb-5">
+                    Visa Requirements
+                  </h2>
+                  <ul className="space-y-3">
+                    {requirements.map((r, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-sm text-stone-600"
+                      >
+                        <span className="w-5 h-5 bg-[#faefc0] rounded-full flex items-center justify-center text-[#c49010] text-xs flex-shrink-0 mt-0.5">
+                          •
+                        </span>
+                        {r}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+
+              {/* Notes */}
+              <Reveal delay={200}>
+                <div className="bg-[#fdf8e7] rounded-2xl border border-amber-200 p-7">
+                  <h2 className="font-bold text-stone-900 text-xl mb-5">
+                    Important Notes
+                  </h2>
+                  <ul className="space-y-3">
+                    {notes.map((n, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-sm text-stone-600"
+                      >
+                        <span className="text-[#D4A017] font-bold flex-shrink-0">
+                          !
+                        </span>
+                        {n}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* ── RIGHT SIDEBAR ── */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-4">
+                {/* Pricing */}
+                <div
+                  className={`bg-white rounded-2xl shadow-lg p-6 ${isPast ? "border-2 border-stone-300" : "border-2 border-[#1a6b3c]"}`}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <p className="text-xs font-bold text-stone-400 uppercase tracking-widest">
+                      Package Pricing
+                    </p>
+                    {isPast && (
+                      <span className="bg-stone-100 text-stone-500 text-xs font-bold px-2.5 py-1 rounded-full">
+                        {pkg.year}
+                      </span>
+                    )}
+                  </div>
+                  <div className="space-y-4">
+                    {[
+                      ["Double", pkg.pkr.double, pkg.usd.double],
+                      ["Triple", pkg.pkr.triple, pkg.usd.triple],
+                      ["Quad", pkg.pkr.quad, pkg.usd.quad],
+                    ].map(([room, pkr, usd]) => (
+                      <div
+                        key={room}
+                        className="flex justify-between items-center pb-3 border-b border-stone-100 last:border-0 last:pb-0"
+                      >
+                        <span className="text-sm font-semibold text-stone-600">
+                          {room}
+                        </span>
+                        <div className="text-right">
+                          <p className="font-bold text-stone-900">PKR {pkr}</p>
+                          <p className="text-xs text-stone-400">USD {usd}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-stone-400 mt-4">
+                    * Without air ticket & Qurbani
+                  </p>
+
+                  {isPast ? (
+                    <>
+                      <div className="mt-5 bg-stone-100 border border-stone-200 rounded-xl px-4 py-3 text-center">
+                        <p className="text-stone-500 text-xs font-semibold">
+                          📁 Bookings for Hajj {pkg.year} are closed
+                        </p>
+                      </div>
+                      <a
+                        href="https://wa.me/923218485159"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-3 block w-full bg-green-500 hover:bg-green-400 text-white font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
+                      >
+                        Inquire for Next Season
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        to="/contact"
+                        className="mt-5 block w-full bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
+                      >
+                        Book This Package
+                      </Link>
+                      <a
+                        href="https://wa.me/923218485159"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-3 block w-full bg-green-500 hover:bg-green-400 text-white font-bold py-3.5 rounded-xl text-center transition-all hover:scale-[1.02]"
+                      >
+                        WhatsApp Us
+                      </a>
+                    </>
+                  )}
+                </div>
+
+                {/* Contact */}
+                <div className="bg-[#1a6b3c] rounded-2xl p-5 text-white">
+                  <p className="text-xs font-bold text-[#D4A017] uppercase tracking-widest mb-3">
+                    Direct Contact
+                  </p>
+                  {[
+                    { name: "Imran Sabir Butt", phone: "0321-8485159" },
+                    { name: "Irfan Sabir Butt", phone: "0321-8495158" },
+                    { name: "Muhammad Hassaan", phone: "0336-1601234" },
+                  ].map((c) => (
+                    <div key={c.name} className="mb-3 last:mb-0">
+                      <p className="text-stone-400 text-xs">{c.name}</p>
+                      <a
+                        href={`tel:${c.phone}`}
+                        className="text-[#D4A017] font-bold text-sm hover:text-amber-300 transition-colors"
+                      >
+                        {c.phone}
+                      </a>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* ── OTHER PACKAGES ── */}
-      {(currentPackages.length > 0 || pastPackages.length > 0) && (
-        <section className="py-14 bg-[#FDFAF5] border-t border-stone-200">
-          <div className="max-w-5xl mx-auto px-6">
-            {/* Current Season Packages */}
-            {currentPackages.length > 0 && (
-              <Reveal className="mb-8">
-                <h2 className="text-2xl font-bold text-stone-900 mb-2">
-                  Current Season Packages
-                </h2>
-                <p className="text-stone-500 text-sm mb-6">
-                  Hajj {currentYear + 1} and upcoming seasons
-                </p>
-              </Reveal>
-            )}
-
-            {currentPackages.length > 0 && (
-              <div className="grid sm:grid-cols-3 gap-4 mb-16">
-                {currentPackages.slice(0, 3).map((p, i) => (
-                  <Reveal key={p._id} delay={i * 80}>
-                    <Link
-                      to={`/hajj/${p.slug}`}
-                      className="group bg-white rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-md transition-all overflow-hidden"
-                    >
-                      <img
-                        src={p.image}
-                        alt=""
-                        className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="p-4">
-                        <div className="flex gap-2 mb-2">
-                          <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
-                            Maktab {p.maktab}
-                          </span>
-                          <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
-                            {p.tier}
-                          </span>
-                        </div>
-                        <p className="text-sm font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
-                          Maktab {p.maktab} — {p.tier}
-                        </p>
-                        <p className="text-xs text-stone-400 mt-0.5">
-                          PKR {p.pkr.triple} (Triple)
-                        </p>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-            )}
-
-            {/* Past Season Packages */}
-            {pastPackages.length > 0 && (
-              <>
+        {/* ── OTHER PACKAGES ── */}
+        {(currentPackages.length > 0 || pastPackages.length > 0) && (
+          <section className="py-14 bg-[#FDFAF5] border-t border-stone-200">
+            <div className="max-w-5xl mx-auto px-6">
+              {/* Current Season Packages */}
+              {currentPackages.length > 0 && (
                 <Reveal className="mb-8">
                   <h2 className="text-2xl font-bold text-stone-900 mb-2">
-                    Past Season Packages
+                    Current Season Packages
                   </h2>
                   <p className="text-stone-500 text-sm mb-6">
-                    For reference only • Bookings closed
+                    Hajj {currentYear + 1} and upcoming seasons
                   </p>
                 </Reveal>
+              )}
 
-                <div className="grid sm:grid-cols-3 gap-4">
-                  {pastPackages.slice(0, 6).map((p, i) => (
-                    <Reveal key={p._id} delay={i * 60}>
+              {currentPackages.length > 0 && (
+                <div className="grid sm:grid-cols-3 gap-4 mb-16">
+                  {currentPackages.slice(0, 3).map((p, i) => (
+                    <Reveal key={p._id} delay={i * 80}>
                       <Link
                         to={`/hajj/${p.slug}`}
-                        className="group bg-white rounded-2xl border border-stone-200 hover:border-stone-300 hover:shadow-md transition-all overflow-hidden opacity-95"
+                        className="group bg-white rounded-2xl border border-stone-200 hover:border-[#D4A017] hover:shadow-md transition-all overflow-hidden"
                       >
                         <img
                           src={p.image}
                           alt=""
-                          className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500 grayscale-[15%]"
+                          className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="p-4">
                           <div className="flex gap-2 mb-2">
-                            <span className="bg-stone-700 text-amber-300 text-xs font-bold px-2 py-0.5 rounded">
+                            <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                               Maktab {p.maktab}
                             </span>
                             <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
                               {p.tier}
                             </span>
-                            <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
-                              {p.year}
-                            </span>
                           </div>
-                          <p className="text-sm font-bold text-stone-900 group-hover:text-stone-700 transition-colors">
+                          <p className="text-sm font-bold text-stone-900 group-hover:text-[#c49010] transition-colors">
                             Maktab {p.maktab} — {p.tier}
                           </p>
                           <p className="text-xs text-stone-400 mt-0.5">
@@ -542,11 +505,61 @@ export default function HajjPackageDetail() {
                     </Reveal>
                   ))}
                 </div>
-              </>
-            )}
-          </div>
-        </section>
-      )}
-    </main>
+              )}
+
+              {/* Past Season Packages */}
+              {pastPackages.length > 0 && (
+                <>
+                  <Reveal className="mb-8">
+                    <h2 className="text-2xl font-bold text-stone-900 mb-2">
+                      Past Season Packages
+                    </h2>
+                    <p className="text-stone-500 text-sm mb-6">
+                      For reference only • Bookings closed
+                    </p>
+                  </Reveal>
+
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    {pastPackages.slice(0, 6).map((p, i) => (
+                      <Reveal key={p._id} delay={i * 60}>
+                        <Link
+                          to={`/hajj/${p.slug}`}
+                          className="group bg-white rounded-2xl border border-stone-200 hover:border-stone-300 hover:shadow-md transition-all overflow-hidden opacity-95"
+                        >
+                          <img
+                            src={p.image}
+                            alt=""
+                            className="w-full h-36 object-cover group-hover:scale-105 transition-transform duration-500 grayscale-[15%]"
+                          />
+                          <div className="p-4">
+                            <div className="flex gap-2 mb-2">
+                              <span className="bg-stone-700 text-amber-300 text-xs font-bold px-2 py-0.5 rounded">
+                                Maktab {p.maktab}
+                              </span>
+                              <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
+                                {p.tier}
+                              </span>
+                              <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">
+                                {p.year}
+                              </span>
+                            </div>
+                            <p className="text-sm font-bold text-stone-900 group-hover:text-stone-700 transition-colors">
+                              Maktab {p.maktab} — {p.tier}
+                            </p>
+                            <p className="text-xs text-stone-400 mt-0.5">
+                              PKR {p.pkr.triple} (Triple)
+                            </p>
+                          </div>
+                        </Link>
+                      </Reveal>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </section>
+        )}
+      </main>
+    </>
   );
 }

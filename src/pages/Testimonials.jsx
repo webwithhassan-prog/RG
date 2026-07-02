@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 function useReveal() {
   const ref = useRef(null);
@@ -252,144 +253,155 @@ export default function Testimonials() {
       : testimonials.filter((t) => t.type === filter);
 
   return (
-    <main className="overflow-x-hidden">
-      {/* ── HERO ── */}
-      <section
-        className="relative py-24 text-white text-center"
-        style={{
-          background:
-            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
-        }}
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-            Real Stories
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            What Our Pilgrims Say
-          </h1>
-          <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
-            Thousands of pilgrims have trusted RG Tour & Travels with their
-            most sacred journey. Here are their stories.
-          </p>
-        </div>
-      </section>
-
-      {/* ── STATS ── */}
-      <section className="bg-[#1a6b3c] py-12">
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map((s, i) => (
-            <div key={s.label}>
-              <p className="text-3xl font-bold text-[#D4A017]">{s.value}</p>
-              <p className="text-stone-400 text-sm mt-1">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── FEATURED SLIDER ── */}
-      <section className="py-20 bg-[#FDFAF5]">
-        <div className="max-w-4xl mx-auto px-6">
-          <Reveal className="text-center mb-12">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              Featured Reviews
+    <>
+      <SEO
+        title="Testimonials"
+        description="Read what 50,000+ pilgrims say about RG Tours & Travels. Real reviews from Hajj and Umrah travelers across Pakistan."
+        keywords="RG Travels reviews, Hajj testimonials, Umrah reviews Pakistan"
+        url="/testimonials"
+      />
+      <main className="overflow-x-hidden">
+        {/* ── HERO ── */}
+        <section
+          className="relative py-24 text-white text-center"
+          style={{
+            background:
+              "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+            <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
+          </div>
+          <div className="relative max-w-3xl mx-auto px-6">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+              Real Stories
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Pilgrim Experiences
-            </h2>
-          </Reveal>
-          <FeaturedSlider />
-        </div>
-      </section>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              What Our Pilgrims Say
+            </h1>
+            <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
+              Thousands of pilgrims have trusted RG Tour & Travels with their
+              most sacred journey. Here are their stories.
+            </p>
+          </div>
+        </section>
 
-      {/* ── ALL REVIEWS ── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-1">
-                All Reviews
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-stone-900">
-                More Pilgrim Stories
-              </h2>
-            </div>
-            {/* Filter */}
-            <div className="flex gap-2 bg-stone-100 rounded-xl p-1">
-              {["All", "Hajj", "Umrah"].map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${filter === f ? "bg-[#1a6b3c] text-[#D4A017] shadow-sm" : "text-stone-500 hover:text-stone-800"}`}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filtered.map((t, i) => (
-              <TestimonialCard key={t.name} t={t} delay={i * 60} />
+        {/* ── STATS ── */}
+        <section className="bg-[#1a6b3c] py-12">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {stats.map((s, i) => (
+              <div key={s.label}>
+                <p className="text-3xl font-bold text-[#D4A017]">{s.value}</p>
+                <p className="text-stone-400 text-sm mt-1">{s.label}</p>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── SHARE YOUR STORY ── */}
-      <section
-        className="py-20 text-white text-center"
-        style={{
-          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
-        }}
-      >
-        <Reveal className="max-w-2xl mx-auto px-6">
-          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-            Share Your Experience
-          </p>
-          <h2 className="text-3xl font-bold mb-4">Traveled with RG Travels?</h2>
-          <p className="text-stone-400 mb-8 leading-relaxed">
-            We'd love to hear about your journey. Your story inspires others to
-            take their first step toward the holy cities.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-          >
-            Share Your Story
-          </Link>
-        </Reveal>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="py-14 bg-[#D4A017] text-center">
-        <Reveal>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
-            Ready to Create Your Own Story?
-          </h2>
-          <p className="text-[#1a6b3c]/70 mb-7">
-            Join thousands of pilgrims who trusted us with their sacred journey.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/hajj/packages"
-              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-            >
-              View Hajj Packages
-            </Link>
-            <Link
-              to="/umrah/packages"
-              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
-            >
-              View Umrah Packages
-            </Link>
+        {/* ── FEATURED SLIDER ── */}
+        <section className="py-20 bg-[#FDFAF5]">
+          <div className="max-w-4xl mx-auto px-6">
+            <Reveal className="text-center mb-12">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                Featured Reviews
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Pilgrim Experiences
+              </h2>
+            </Reveal>
+            <FeaturedSlider />
           </div>
-        </Reveal>
-      </section>
-    </main>
+        </section>
+
+        {/* ── ALL REVIEWS ── */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-1">
+                  All Reviews
+                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-stone-900">
+                  More Pilgrim Stories
+                </h2>
+              </div>
+              {/* Filter */}
+              <div className="flex gap-2 bg-stone-100 rounded-xl p-1">
+                {["All", "Hajj", "Umrah"].map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${filter === f ? "bg-[#1a6b3c] text-[#D4A017] shadow-sm" : "text-stone-500 hover:text-stone-800"}`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+            </Reveal>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {filtered.map((t, i) => (
+                <TestimonialCard key={t.name} t={t} delay={i * 60} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── SHARE YOUR STORY ── */}
+        <section
+          className="py-20 text-white text-center"
+          style={{
+            background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
+          }}
+        >
+          <Reveal className="max-w-2xl mx-auto px-6">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+              Share Your Experience
+            </p>
+            <h2 className="text-3xl font-bold mb-4">
+              Traveled with RG Travels?
+            </h2>
+            <p className="text-stone-400 mb-8 leading-relaxed">
+              We'd love to hear about your journey. Your story inspires others
+              to take their first step toward the holy cities.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-block bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+            >
+              Share Your Story
+            </Link>
+          </Reveal>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="py-14 bg-[#D4A017] text-center">
+          <Reveal>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
+              Ready to Create Your Own Story?
+            </h2>
+            <p className="text-[#1a6b3c]/70 mb-7">
+              Join thousands of pilgrims who trusted us with their sacred
+              journey.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/hajj/packages"
+                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              >
+                View Hajj Packages
+              </Link>
+              <Link
+                to="/umrah/packages"
+                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
+              >
+                View Umrah Packages
+              </Link>
+            </div>
+          </Reveal>
+        </section>
+      </main>
+    </>
   );
 }

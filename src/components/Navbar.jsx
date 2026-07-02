@@ -156,7 +156,6 @@ export default function Navbar() {
               >
                 Home
               </Link>
-
               {/* Hajj dropdown */}
               <div className="relative">
                 <button
@@ -172,7 +171,6 @@ export default function Navbar() {
                 </button>
                 {openMenu === "hajj" && <DropdownMenu items={hajjLinks} />}
               </div>
-
               {/* Umrah dropdown */}
               <div className="relative">
                 <button
@@ -188,7 +186,6 @@ export default function Navbar() {
                 </button>
                 {openMenu === "umrah" && <DropdownMenu items={umrahLinks} />}
               </div>
-
               <Link
                 to="/testimonials"
                 className={`text-sm px-3.5 py-2 rounded-lg font-medium transition-colors ${
@@ -199,7 +196,6 @@ export default function Navbar() {
               >
                 Testimonials
               </Link>
-
               <Link
                 to="/about"
                 className={`text-sm px-3.5 py-2 rounded-lg font-medium transition-colors ${
@@ -209,6 +205,16 @@ export default function Navbar() {
                 }`}
               >
                 About Us
+              </Link>
+              <Link
+                to="/blog"
+                className={`text-sm px-3.5 py-2 rounded-lg font-medium transition-colors ${
+                  isActive("/blog") || location.pathname.startsWith("/blog")
+                    ? "text-[#1a6b3c] bg-[#1a6b3c]/8 font-semibold"
+                    : "text-stone-600 hover:text-[#1a6b3c] hover:bg-[#1a6b3c]/5"
+                }`}
+              >
+                Blog
               </Link>
             </div>
 
@@ -276,14 +282,12 @@ export default function Navbar() {
                 <p className="text-stone-400 text-xs">Hajj Enrollment #3127</p>
               </div>
             </div>
-
             <Link
               to="/"
               className="block text-stone-700 font-medium text-[15px] py-3 border-b border-stone-100"
             >
               Home
             </Link>
-
             {/* Hajj accordion */}
             <div className="border-b border-stone-100">
               <button
@@ -306,7 +310,6 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-
             {/* Umrah accordion */}
             <div className="border-b border-stone-100">
               <button
@@ -329,7 +332,6 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-
             <Link
               to="/testimonials"
               className="block text-stone-700 font-medium text-[15px] py-3 border-b border-stone-100"
@@ -342,7 +344,12 @@ export default function Navbar() {
             >
               About Us
             </Link>
-
+            <Link
+              to="/blog"
+              className="block text-stone-700 font-medium text-[15px] py-3 border-b border-stone-100"
+            >
+              Blog
+            </Link>
             <div className="mt-4 space-y-3">
               <a
                 href="https://wa.me/923218485159"

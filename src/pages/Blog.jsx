@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../api/axios";
+import SEO from "../components/SEO";
 
 function useReveal() {
   const ref = useRef(null);
@@ -155,180 +156,192 @@ export default function Blog() {
   const totalPages = Math.ceil(total / limit);
 
   return (
-    <main className="overflow-x-hidden">
-      {/* ── HERO ── */}
-      <section
-        className="relative py-24 text-white text-center"
-        style={{
-          background:
-            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
-        }}
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-            Knowledge & Guidance
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Blog & Guides</h1>
-          <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
-            Hajj tips, Umrah guides, travel advice and updates from the RG
-            Travels team.
-          </p>
-
-          {/* Search */}
-          <div className="mt-8 max-w-lg mx-auto relative">
-            <input
-              type="text"
-              placeholder="Search articles..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/10 border border-white/20 text-white placeholder-stone-400 rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:border-[#D4A017] transition-all"
-            />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400">
-              🔍
-            </span>
+    <>
+      <SEO
+        title="Blog & Guides"
+        description="Hajj tips, Umrah guides, travel advice and news from RG Tours & Travels. Everything pilgrims need to know before their sacred journey."
+        keywords="Hajj tips, Umrah guide, pilgrimage tips, Hajj preparation"
+        url="/blog"
+      />
+      <main className="overflow-x-hidden">
+        {/* ── HERO ── */}
+        <section
+          className="relative py-24 text-white text-center"
+          style={{
+            background:
+              "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+            <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
           </div>
-        </div>
-      </section>
+          <div className="relative max-w-3xl mx-auto px-6">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+              Knowledge & Guidance
+            </p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Blog & Guides
+            </h1>
+            <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
+              Hajj tips, Umrah guides, travel advice and updates from the RG
+              Travels team.
+            </p>
 
-      {/* ── CATEGORY FILTER ── */}
-      <section className="bg-white border-b border-stone-100 sticky top-16 z-40">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex gap-2 overflow-x-auto pb-1">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategory(cat)}
-                className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                  category === cat
-                    ? "bg-[#1a6b3c] text-white"
-                    : "bg-stone-100 text-stone-500 hover:bg-stone-200"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {/* Search */}
+            <div className="mt-8 max-w-lg mx-auto relative">
+              <input
+                type="text"
+                placeholder="Search articles..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full bg-white/10 border border-white/20 text-white placeholder-stone-400 rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:border-[#D4A017] transition-all"
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400">
+                🔍
+              </span>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── BLOG GRID ── */}
-      <section className="py-20 bg-[#FDFAF5]">
-        <div className="max-w-6xl mx-auto px-6">
-          {loading ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(6)].map((_, i) => (
-                <SkeletonCard key={i} />
+        {/* ── CATEGORY FILTER ── */}
+        <section className="bg-white border-b border-stone-100 sticky top-16 z-40">
+          <div className="max-w-6xl mx-auto px-6 py-4">
+            <div className="flex gap-2 overflow-x-auto pb-1">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                  className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                    category === cat
+                      ? "bg-[#1a6b3c] text-white"
+                      : "bg-stone-100 text-stone-500 hover:bg-stone-200"
+                  }`}
+                >
+                  {cat}
+                </button>
               ))}
             </div>
-          ) : filtered.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-5xl mb-4">📭</p>
-              <p className="text-stone-500 font-semibold text-lg mb-2">
-                No articles found
-              </p>
-              <p className="text-stone-400 text-sm mb-6">
-                Try a different category or search term
-              </p>
-              <button
-                onClick={() => {
-                  setSearch("");
-                  setCategory("All");
-                }}
-                className="text-sm font-semibold text-[#1a6b3c] hover:text-[#D4A017] transition-colors"
-              >
-                Clear filters →
-              </button>
-            </div>
-          ) : (
-            <>
-              <p className="text-stone-400 text-sm mb-8">
-                Showing{" "}
-                <span className="font-semibold text-stone-700">
-                  {filtered.length}
-                </span>{" "}
-                articles
-                {category !== "All" && (
-                  <span>
-                    {" "}
-                    in{" "}
-                    <span className="font-semibold text-stone-700">
-                      {category}
-                    </span>
-                  </span>
-                )}
-              </p>
+          </div>
+        </section>
+
+        {/* ── BLOG GRID ── */}
+        <section className="py-20 bg-[#FDFAF5]">
+          <div className="max-w-6xl mx-auto px-6">
+            {loading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filtered.map((blog, i) => (
-                  <BlogCard key={blog._id} blog={blog} delay={i * 60} />
+                {[...Array(6)].map((_, i) => (
+                  <SkeletonCard key={i} />
                 ))}
               </div>
-
-              {/* Pagination */}
-              {!search && totalPages > 1 && (
-                <div className="flex items-center justify-center gap-3 mt-14">
-                  <button
-                    onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    disabled={page === 1}
-                    className="px-4 py-2 rounded-lg border border-stone-200 text-stone-500 text-sm font-semibold hover:border-[#1a6b3c] hover:text-[#1a6b3c] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-                  >
-                    ← Prev
-                  </button>
-                  {[...Array(totalPages)].map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setPage(i + 1)}
-                      className={`w-9 h-9 rounded-lg text-sm font-bold transition-all ${
-                        page === i + 1
-                          ? "bg-[#1a6b3c] text-white"
-                          : "border border-stone-200 text-stone-500 hover:border-[#1a6b3c] hover:text-[#1a6b3c]"
-                      }`}
-                    >
-                      {i + 1}
-                    </button>
+            ) : filtered.length === 0 ? (
+              <div className="text-center py-20">
+                <p className="text-5xl mb-4">📭</p>
+                <p className="text-stone-500 font-semibold text-lg mb-2">
+                  No articles found
+                </p>
+                <p className="text-stone-400 text-sm mb-6">
+                  Try a different category or search term
+                </p>
+                <button
+                  onClick={() => {
+                    setSearch("");
+                    setCategory("All");
+                  }}
+                  className="text-sm font-semibold text-[#1a6b3c] hover:text-[#D4A017] transition-colors"
+                >
+                  Clear filters →
+                </button>
+              </div>
+            ) : (
+              <>
+                <p className="text-stone-400 text-sm mb-8">
+                  Showing{" "}
+                  <span className="font-semibold text-stone-700">
+                    {filtered.length}
+                  </span>{" "}
+                  articles
+                  {category !== "All" && (
+                    <span>
+                      {" "}
+                      in{" "}
+                      <span className="font-semibold text-stone-700">
+                        {category}
+                      </span>
+                    </span>
+                  )}
+                </p>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filtered.map((blog, i) => (
+                    <BlogCard key={blog._id} blog={blog} delay={i * 60} />
                   ))}
-                  <button
-                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                    disabled={page === totalPages}
-                    className="px-4 py-2 rounded-lg border border-stone-200 text-stone-500 text-sm font-semibold hover:border-[#1a6b3c] hover:text-[#1a6b3c] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-                  >
-                    Next →
-                  </button>
                 </div>
-              )}
-            </>
-          )}
-        </div>
-      </section>
 
-      {/* ── CTA ── */}
-      <section className="py-14 bg-[#1a6b3c] text-center">
-        <Reveal>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Ready to Begin Your Journey?
-          </h2>
-          <p className="text-stone-300 mb-7">
-            Explore our Hajj and Umrah packages today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/hajj/packages"
-              className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-            >
-              Hajj Packages
-            </Link>
-            <Link
-              to="/umrah/packages"
-              className="border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-all"
-            >
-              Umrah Packages
-            </Link>
+                {/* Pagination */}
+                {!search && totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-3 mt-14">
+                    <button
+                      onClick={() => setPage((p) => Math.max(1, p - 1))}
+                      disabled={page === 1}
+                      className="px-4 py-2 rounded-lg border border-stone-200 text-stone-500 text-sm font-semibold hover:border-[#1a6b3c] hover:text-[#1a6b3c] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                    >
+                      ← Prev
+                    </button>
+                    {[...Array(totalPages)].map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setPage(i + 1)}
+                        className={`w-9 h-9 rounded-lg text-sm font-bold transition-all ${
+                          page === i + 1
+                            ? "bg-[#1a6b3c] text-white"
+                            : "border border-stone-200 text-stone-500 hover:border-[#1a6b3c] hover:text-[#1a6b3c]"
+                        }`}
+                      >
+                        {i + 1}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() =>
+                        setPage((p) => Math.min(totalPages, p + 1))
+                      }
+                      disabled={page === totalPages}
+                      className="px-4 py-2 rounded-lg border border-stone-200 text-stone-500 text-sm font-semibold hover:border-[#1a6b3c] hover:text-[#1a6b3c] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                    >
+                      Next →
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
           </div>
-        </Reveal>
-      </section>
-    </main>
+        </section>
+
+        {/* ── CTA ── */}
+        <section className="py-14 bg-[#1a6b3c] text-center">
+          <Reveal>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Ready to Begin Your Journey?
+            </h2>
+            <p className="text-stone-300 mb-7">
+              Explore our Hajj and Umrah packages today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/hajj/packages"
+                className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              >
+                Hajj Packages
+              </Link>
+              <Link
+                to="/umrah/packages"
+                className="border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-all"
+              >
+                Umrah Packages
+              </Link>
+            </div>
+          </Reveal>
+        </section>
+      </main>
+    </>
   );
 }

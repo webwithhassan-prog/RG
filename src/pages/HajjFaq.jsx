@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 // ── Scroll-reveal ───────────────────────────────────────────────────
 function useReveal() {
@@ -214,212 +215,220 @@ export default function HajjFAQ() {
   });
 
   return (
-    <main className="overflow-x-hidden">
-      {/* ── HERO ── */}
-      <section
-        className="relative py-24 text-white text-center"
-        style={{
-          background:
-            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
-        }}
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-            Help Center
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Hajj FAQ</h1>
-          <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
-            Everything you need to know before embarking on your sacred journey
-            to Makkah.
-          </p>
-
-          {/* Search */}
-          <div className="mt-8 max-w-lg mx-auto relative">
-            <input
-              type="text"
-              placeholder="Search your question..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/10 border border-white/20 text-white placeholder-stone-400 rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:border-[#D4A017] focus:bg-white/15 transition-all"
-            />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 text-sm">
-              🔍
-            </span>
+    <>
+      <SEO
+        title="Hajj FAQ"
+        description="Answers to common Hajj questions — visa requirements, package differences, Maktab A vs B, what's included and more. RG Tours & Travels."
+        keywords="Hajj FAQ, Hajj questions, Maktab A Maktab B difference, Hajj visa Pakistan"
+        url="/hajj/faq"
+      />
+      <main className="overflow-x-hidden">
+        {/* ── HERO ── */}
+        <section
+          className="relative py-24 text-white text-center"
+          style={{
+            background:
+              "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+            <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
           </div>
-        </div>
-      </section>
-
-      {/* ── CATEGORY FILTER ── */}
-      <section className="bg-white border-b border-stone-100 sticky top-16 z-40">
-        <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
-                  activeCategory === cat
-                    ? "bg-[#1a6b3c] text-[#D4A017]"
-                    : "bg-stone-100 text-stone-500 hover:bg-stone-200"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ LIST ── */}
-      <section className="py-20 bg-[#FDFAF5]">
-        <div className="max-w-4xl mx-auto px-6">
-          {filtered.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-stone-400 text-lg mb-2">No results found</p>
-              <p className="text-stone-400 text-sm">
-                Try a different keyword or category
-              </p>
-              <button
-                onClick={() => {
-                  setSearch("");
-                  setActiveCategory("All");
-                }}
-                className="mt-5 text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors"
-              >
-                Clear filters →
-              </button>
-            </div>
-          ) : (
-            <>
-              {/* Result count */}
-              <p className="text-stone-400 text-sm mb-8">
-                Showing{" "}
-                <span className="font-semibold text-stone-700">
-                  {filtered.length}
-                </span>{" "}
-                {filtered.length === 1 ? "result" : "results"}
-                {activeCategory !== "All" && (
-                  <span>
-                    {" "}
-                    in{" "}
-                    <span className="font-semibold text-stone-700">
-                      {activeCategory}
-                    </span>
-                  </span>
-                )}
-                {search && (
-                  <span>
-                    {" "}
-                    for "
-                    <span className="font-semibold text-stone-700">
-                      {search}
-                    </span>
-                    "
-                  </span>
-                )}
-              </p>
-
-              {/* If All — group by category */}
-              {activeCategory === "All" && search === "" ? (
-                categories.slice(1).map((cat) => (
-                  <div key={cat} className="mb-12">
-                    <Reveal>
-                      <div className="flex items-center gap-3 mb-5">
-                        <h2 className="text-lg font-bold text-stone-900">
-                          {cat}
-                        </h2>
-                        <div className="flex-1 h-px bg-stone-200" />
-                        <span className="text-xs text-stone-400">
-                          {faqs.filter((f) => f.category === cat).length}{" "}
-                          questions
-                        </span>
-                      </div>
-                    </Reveal>
-                    <div className="space-y-3">
-                      {faqs
-                        .filter((f) => f.category === cat)
-                        .map((faq, i) => (
-                          <FAQItem key={faq.q} faq={faq} index={i} />
-                        ))}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="space-y-3">
-                  {filtered.map((faq, i) => (
-                    <FAQItem key={faq.q} faq={faq} index={i} />
-                  ))}
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </section>
-
-      {/* ── STILL HAVE QUESTIONS ── */}
-      <section
-        className="py-20 text-white text-center"
-        style={{
-          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
-        }}
-      >
-        <Reveal className="max-w-2xl mx-auto px-6">
-          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-            Still need help?
-          </p>
-          <h2 className="text-3xl font-bold mb-4">Can't Find Your Answer?</h2>
-          <p className="text-stone-400 mb-8 leading-relaxed">
-            Our team is happy to answer any question personally. Reach out and
-            we'll get back to you as soon as possible.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-            >
-              Contact Us
-            </Link>
-            <a
-              href="https://wa.me/923218485159"
-              target="_blank"
-              rel="noreferrer"
-              className="bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-            >
-              WhatsApp Us
-            </a>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* ── QUICK LINKS ── */}
-      <section className="py-12 bg-[#FDFAF5] border-t border-stone-200">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <Reveal>
-            <p className="text-stone-400 text-sm mb-5">
-              Explore our Hajj packages
+          <div className="relative max-w-3xl mx-auto px-6">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+              Help Center
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                ["Hajj Packages", "/hajj/packages"],
-                ["Hajj Facilities", "/hajj/facilities"],
-                ["Book Now", "/contact"],
-              ].map(([label, to]) => (
-                <Link
-                  key={to}
-                  to={to}
-                  className="border border-stone-200 hover:border-[#D4A017] hover:bg-[#fdf8e7] text-stone-600 hover:text-amber-700 text-sm font-medium px-5 py-2.5 rounded-xl transition-all"
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Hajj FAQ</h1>
+            <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
+              Everything you need to know before embarking on your sacred
+              journey to Makkah.
+            </p>
+
+            {/* Search */}
+            <div className="mt-8 max-w-lg mx-auto relative">
+              <input
+                type="text"
+                placeholder="Search your question..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full bg-white/10 border border-white/20 text-white placeholder-stone-400 rounded-xl px-5 py-3.5 text-sm focus:outline-none focus:border-[#D4A017] focus:bg-white/15 transition-all"
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 text-sm">
+                🔍
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CATEGORY FILTER ── */}
+        <section className="bg-white border-b border-stone-100 sticky top-16 z-40">
+          <div className="max-w-4xl mx-auto px-6 py-4">
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                    activeCategory === cat
+                      ? "bg-[#1a6b3c] text-[#D4A017]"
+                      : "bg-stone-100 text-stone-500 hover:bg-stone-200"
+                  }`}
                 >
-                  {label}
-                </Link>
+                  {cat}
+                </button>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── FAQ LIST ── */}
+        <section className="py-20 bg-[#FDFAF5]">
+          <div className="max-w-4xl mx-auto px-6">
+            {filtered.length === 0 ? (
+              <div className="text-center py-20">
+                <p className="text-stone-400 text-lg mb-2">No results found</p>
+                <p className="text-stone-400 text-sm">
+                  Try a different keyword or category
+                </p>
+                <button
+                  onClick={() => {
+                    setSearch("");
+                    setActiveCategory("All");
+                  }}
+                  className="mt-5 text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors"
+                >
+                  Clear filters →
+                </button>
+              </div>
+            ) : (
+              <>
+                {/* Result count */}
+                <p className="text-stone-400 text-sm mb-8">
+                  Showing{" "}
+                  <span className="font-semibold text-stone-700">
+                    {filtered.length}
+                  </span>{" "}
+                  {filtered.length === 1 ? "result" : "results"}
+                  {activeCategory !== "All" && (
+                    <span>
+                      {" "}
+                      in{" "}
+                      <span className="font-semibold text-stone-700">
+                        {activeCategory}
+                      </span>
+                    </span>
+                  )}
+                  {search && (
+                    <span>
+                      {" "}
+                      for "
+                      <span className="font-semibold text-stone-700">
+                        {search}
+                      </span>
+                      "
+                    </span>
+                  )}
+                </p>
+
+                {/* If All — group by category */}
+                {activeCategory === "All" && search === "" ? (
+                  categories.slice(1).map((cat) => (
+                    <div key={cat} className="mb-12">
+                      <Reveal>
+                        <div className="flex items-center gap-3 mb-5">
+                          <h2 className="text-lg font-bold text-stone-900">
+                            {cat}
+                          </h2>
+                          <div className="flex-1 h-px bg-stone-200" />
+                          <span className="text-xs text-stone-400">
+                            {faqs.filter((f) => f.category === cat).length}{" "}
+                            questions
+                          </span>
+                        </div>
+                      </Reveal>
+                      <div className="space-y-3">
+                        {faqs
+                          .filter((f) => f.category === cat)
+                          .map((faq, i) => (
+                            <FAQItem key={faq.q} faq={faq} index={i} />
+                          ))}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="space-y-3">
+                    {filtered.map((faq, i) => (
+                      <FAQItem key={faq.q} faq={faq} index={i} />
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </section>
+
+        {/* ── STILL HAVE QUESTIONS ── */}
+        <section
+          className="py-20 text-white text-center"
+          style={{
+            background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
+          }}
+        >
+          <Reveal className="max-w-2xl mx-auto px-6">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+              Still need help?
+            </p>
+            <h2 className="text-3xl font-bold mb-4">Can't Find Your Answer?</h2>
+            <p className="text-stone-400 mb-8 leading-relaxed">
+              Our team is happy to answer any question personally. Reach out and
+              we'll get back to you as soon as possible.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/contact"
+                className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              >
+                Contact Us
+              </Link>
+              <a
+                href="https://wa.me/923218485159"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              >
+                WhatsApp Us
+              </a>
+            </div>
           </Reveal>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        {/* ── QUICK LINKS ── */}
+        <section className="py-12 bg-[#FDFAF5] border-t border-stone-200">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <Reveal>
+              <p className="text-stone-400 text-sm mb-5">
+                Explore our Hajj packages
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {[
+                  ["Hajj Packages", "/hajj/packages"],
+                  ["Hajj Facilities", "/hajj/facilities"],
+                  ["Book Now", "/contact"],
+                ].map(([label, to]) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className="border border-stone-200 hover:border-[#D4A017] hover:bg-[#fdf8e7] text-stone-600 hover:text-amber-700 text-sm font-medium px-5 py-2.5 rounded-xl transition-all"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

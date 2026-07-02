@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../api/axios";
+import SEO from "../components/SEO";
 
 function useReveal() {
   const ref = useRef(null);
@@ -135,355 +136,363 @@ export default function AboutUs() {
   const enrollment = data?.enrollmentNumber || "3127";
 
   return (
-    <main className="overflow-x-hidden">
-      {/* ── HERO — 100% static ── */}
-      <section
-        className="relative py-28 text-white text-center"
-        style={{
-          background:
-            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
-        }}
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-            Our Story
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Serving Pilgrims with
-            <br />
-            <span className="text-[#D4A017]">Heart & Dedication</span>
-          </h1>
-          <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
-            For over 20 years, RG Tour & Travels has been guiding Muslims from
-            Pakistan on their most sacred journeys — with care, expertise, and
-            unwavering devotion.
-          </p>
-        </div>
-      </section>
-
-      {/* ── STATS — 100% static ── */}
-      <section ref={statsRef} className="bg-[#1a6b3c] py-14">
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {staticStats.map((s, i) => (
-            <div
-              key={s.label}
-              style={{
-                opacity: counted ? 1 : 0,
-                transform: counted ? "translateY(0)" : "translateY(20px)",
-                transition: `opacity 0.6s ease ${i * 120}ms, transform 0.6s ease ${i * 120}ms`,
-              }}
-            >
-              <p className="text-3xl md:text-4xl font-bold text-[#D4A017]">
-                {s.value}
-              </p>
-              <p className="text-stone-400 text-sm mt-1">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── WHO WE ARE — accreditations from backend ── */}
-      <section className="py-24 bg-[#FDFAF5]">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
-          <Reveal>
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              Who We Are
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-5 leading-snug">
-              Pakistan's Trusted Hajj & Umrah Specialists
-            </h2>
-            <p className="text-stone-500 leading-relaxed mb-4">
-              RG Tour & Travels (Pvt) Ltd is a government-licensed Hajj and
-              Umrah operator based in Lahore, Pakistan. Founded over two decades
-              ago, we have had the honour of serving tens of thousands of
-              pilgrims on their journey to the holy cities of Makkah and
-              Madinah.
-            </p>
-            <p className="text-stone-500 leading-relaxed mb-4">
-              Holding official Hajj Enrollment #{enrollment}, we operate under
-              the full authorization of the Ministry of Religious Affairs of
-              Pakistan and comply with all Saudi and Pakistani government
-              regulations.
-            </p>
-            <p className="text-stone-500 leading-relaxed">
-              Our mission is simple — to take care of every detail so your heart
-              stays focused on worship, not worry.
-            </p>
-          </Reveal>
-
-          {/* Accreditations — contact info from backend */}
-          <Reveal delay={150}>
-            <div className="space-y-4">
-              {[
-                {
-                  label: "Hajj Enrollment",
-                  value: `#${enrollment} — Ministry of Religious Affairs, Pakistan`,
-                },
-                {
-                  label: "IATA Member",
-                  value: "International Air Transport Association",
-                },
-                {
-                  label: "NVOCC Licensed",
-                  value: "National Haj Organizers of Pakistan",
-                },
-                { label: "Office", value: address },
-                { label: "Phone", value: phone },
-                { label: "Email", value: email },
-                { label: "Website", value: "www.rgtravels.pk" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="flex gap-4 bg-white rounded-xl border border-stone-200 px-5 py-4"
-                >
-                  <span className="text-xs font-bold text-stone-400 uppercase tracking-wide w-28 flex-shrink-0 mt-0.5">
-                    {item.label}
-                  </span>
-                  <span className="text-sm text-stone-700 font-medium">
-                    {item.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── MAP ── */}
-      <section className="bg-stone-200">
-        <div className="grid md:grid-cols-2">
-          <div className="h-72 md:h-96">
-            <iframe
-              title="RG Tour & Travels Office Location"
-              src="https://www.google.com/maps?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore&output=embed"
-              className="w-full h-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+    <>
+      <SEO
+        title="About Us"
+        description="RG Tours & Travels (Pvt) Ltd — 20+ years of serving pilgrims. Licensed Hajj operator, Enrollment #3127, based in Lahore, Pakistan."
+        keywords="RG Tours Travels, Hajj operator Lahore, about RG Travels"
+        url="/about"
+      />
+      <main className="overflow-x-hidden">
+        {/* ── HERO — 100% static ── */}
+        <section
+          className="relative py-28 text-white text-center"
+          style={{
+            background:
+              "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+            <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
           </div>
-          <div className="flex items-center justify-center bg-[#1a6b3c] text-white p-10 text-center md:text-left">
-            <div>
-              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-                Visit Our Office
-              </p>
-              <h3 className="text-2xl font-bold mb-4">
-                12-E 2nd Basement, Nabi Center
-              </h3>
-              <p className="text-stone-300 text-sm leading-relaxed mb-6">
-                Chowk Rang Mahal, Shah Alam Market, Lahore — open Monday to
-                Saturday, 9:00 AM to 7:00 PM.
-              </p>
-              <a
-                href="https://maps.google.com/?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-6 py-3 rounded-xl transition-all hover:scale-105"
+          <div className="relative max-w-3xl mx-auto px-6">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+              Our Story
+            </p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Serving Pilgrims with
+              <br />
+              <span className="text-[#D4A017]">Heart & Dedication</span>
+            </h1>
+            <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
+              For over 20 years, RG Tour & Travels has been guiding Muslims from
+              Pakistan on their most sacred journeys — with care, expertise, and
+              unwavering devotion.
+            </p>
+          </div>
+        </section>
+
+        {/* ── STATS — 100% static ── */}
+        <section ref={statsRef} className="bg-[#1a6b3c] py-14">
+          <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {staticStats.map((s, i) => (
+              <div
+                key={s.label}
+                style={{
+                  opacity: counted ? 1 : 0,
+                  transform: counted ? "translateY(0)" : "translateY(20px)",
+                  transition: `opacity 0.6s ease ${i * 120}ms, transform 0.6s ease ${i * 120}ms`,
+                }}
               >
-                Open in Google Maps →
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── OUR VALUES — static ── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="text-center mb-14">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              What Drives Us
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Our Values
-            </h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {staticValues.map((v, i) => (
-              <Reveal key={v.title} delay={i * 80}>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-7 hover:border-[#D4A017]/40 hover:shadow-sm transition-all">
-                  <span className="text-3xl block mb-4">{v.icon}</span>
-                  <h3 className="font-bold text-stone-900 text-lg mb-2">
-                    {v.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">
-                    {v.desc}
-                  </p>
-                </div>
-              </Reveal>
+                <p className="text-3xl md:text-4xl font-bold text-[#D4A017]">
+                  {s.value}
+                </p>
+                <p className="text-stone-400 text-sm mt-1">{s.label}</p>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── TIMELINE — static ── */}
-      <section
-        className="py-24 text-white relative overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
-        }}
-      >
-        <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#D4A017]/5 blur-3xl pointer-events-none" />
-        <div className="relative max-w-4xl mx-auto px-6">
-          <Reveal className="text-center mb-14">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              Our Journey
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              20 Years of Service
-            </h2>
-          </Reveal>
-          <div className="relative">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
-            <div className="space-y-10">
-              {staticMilestones.map((m, i) => (
-                <Reveal key={m.year} delay={i * 80}>
+        {/* ── WHO WE ARE — accreditations from backend ── */}
+        <section className="py-24 bg-[#FDFAF5]">
+          <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+            <Reveal>
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                Who We Are
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-5 leading-snug">
+                Pakistan's Trusted Hajj & Umrah Specialists
+              </h2>
+              <p className="text-stone-500 leading-relaxed mb-4">
+                RG Tour & Travels (Pvt) Ltd is a government-licensed Hajj and
+                Umrah operator based in Lahore, Pakistan. Founded over two
+                decades ago, we have had the honour of serving tens of thousands
+                of pilgrims on their journey to the holy cities of Makkah and
+                Madinah.
+              </p>
+              <p className="text-stone-500 leading-relaxed mb-4">
+                Holding official Hajj Enrollment #{enrollment}, we operate under
+                the full authorization of the Ministry of Religious Affairs of
+                Pakistan and comply with all Saudi and Pakistani government
+                regulations.
+              </p>
+              <p className="text-stone-500 leading-relaxed">
+                Our mission is simple — to take care of every detail so your
+                heart stays focused on worship, not worry.
+              </p>
+            </Reveal>
+
+            {/* Accreditations — contact info from backend */}
+            <Reveal delay={150}>
+              <div className="space-y-4">
+                {[
+                  {
+                    label: "Hajj Enrollment",
+                    value: `#${enrollment} — Ministry of Religious Affairs, Pakistan`,
+                  },
+                  {
+                    label: "IATA Member",
+                    value: "International Air Transport Association",
+                  },
+                  {
+                    label: "NVOCC Licensed",
+                    value: "National Haj Organizers of Pakistan",
+                  },
+                  { label: "Office", value: address },
+                  { label: "Phone", value: phone },
+                  { label: "Email", value: email },
+                  { label: "Website", value: "www.rgtravels.pk" },
+                ].map((item) => (
                   <div
-                    className={`relative flex items-start gap-6 md:gap-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                    key={item.label}
+                    className="flex gap-4 bg-white rounded-xl border border-stone-200 px-5 py-4"
                   >
-                    <div
-                      className={`md:w-[45%] pl-10 md:pl-0 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}
-                    >
-                      <span className="text-[#D4A017] font-bold text-lg">
-                        {m.year}
-                      </span>
-                      <p className="text-stone-300 text-sm mt-1 leading-relaxed">
-                        {m.event}
-                      </p>
-                    </div>
-                    <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#D4A017] border-2 border-[#1a6b3c] mt-1.5" />
-                    <div className="md:w-[45%]" />
+                    <span className="text-xs font-bold text-stone-400 uppercase tracking-wide w-28 flex-shrink-0 mt-0.5">
+                      {item.label}
+                    </span>
+                    <span className="text-sm text-stone-700 font-medium">
+                      {item.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── MAP ── */}
+        <section className="bg-stone-200">
+          <div className="grid md:grid-cols-2">
+            <div className="h-72 md:h-96">
+              <iframe
+                title="RG Tour & Travels Office Location"
+                src="https://www.google.com/maps?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore&output=embed"
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+            <div className="flex items-center justify-center bg-[#1a6b3c] text-white p-10 text-center md:text-left">
+              <div>
+                <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+                  Visit Our Office
+                </p>
+                <h3 className="text-2xl font-bold mb-4">
+                  12-E 2nd Basement, Nabi Center
+                </h3>
+                <p className="text-stone-300 text-sm leading-relaxed mb-6">
+                  Chowk Rang Mahal, Shah Alam Market, Lahore — open Monday to
+                  Saturday, 9:00 AM to 7:00 PM.
+                </p>
+                <a
+                  href="https://maps.google.com/?q=Chowk+Rang+Mahal+Shah+Alam+Market+Lahore"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-6 py-3 rounded-xl transition-all hover:scale-105"
+                >
+                  Open in Google Maps →
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── OUR VALUES — static ── */}
+        <section className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                What Drives Us
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Our Values
+              </h2>
+            </Reveal>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {staticValues.map((v, i) => (
+                <Reveal key={v.title} delay={i * 80}>
+                  <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-7 hover:border-[#D4A017]/40 hover:shadow-sm transition-all">
+                    <span className="text-3xl block mb-4">{v.icon}</span>
+                    <h3 className="font-bold text-stone-900 text-lg mb-2">
+                      {v.title}
+                    </h3>
+                    <p className="text-stone-500 text-sm leading-relaxed">
+                      {v.desc}
+                    </p>
                   </div>
                 </Reveal>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── TEAM — from backend ── */}
-      <section className="py-24 bg-[#FDFAF5]">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="text-center mb-14">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              The People Behind RG Travels
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Meet Our Team
-            </h2>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-6">
-            {team.map((member, i) => (
-              <Reveal key={member.name} delay={i * 100}>
-                <div className="bg-white rounded-2xl border border-stone-200 p-7 hover:border-[#D4A017]/40 hover:shadow-md transition-all">
-                  <div className="w-16 h-16 rounded-full bg-[#1a6b3c] flex items-center justify-center text-[#D4A017] text-2xl font-bold mb-5">
-                    {member.name.charAt(0)}
+        {/* ── TIMELINE — static ── */}
+        <section
+          className="py-24 text-white relative overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
+          }}
+        >
+          <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#D4A017]/5 blur-3xl pointer-events-none" />
+          <div className="relative max-w-4xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                Our Journey
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
+                20 Years of Service
+              </h2>
+            </Reveal>
+            <div className="relative">
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2" />
+              <div className="space-y-10">
+                {staticMilestones.map((m, i) => (
+                  <Reveal key={m.year} delay={i * 80}>
+                    <div
+                      className={`relative flex items-start gap-6 md:gap-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                    >
+                      <div
+                        className={`md:w-[45%] pl-10 md:pl-0 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}
+                      >
+                        <span className="text-[#D4A017] font-bold text-lg">
+                          {m.year}
+                        </span>
+                        <p className="text-stone-300 text-sm mt-1 leading-relaxed">
+                          {m.event}
+                        </p>
+                      </div>
+                      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#D4A017] border-2 border-[#1a6b3c] mt-1.5" />
+                      <div className="md:w-[45%]" />
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── TEAM — from backend ── */}
+        <section className="py-24 bg-[#FDFAF5]">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                The People Behind RG Travels
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Meet Our Team
+              </h2>
+            </Reveal>
+            <div className="grid md:grid-cols-3 gap-6">
+              {team.map((member, i) => (
+                <Reveal key={member.name} delay={i * 100}>
+                  <div className="bg-white rounded-2xl border border-stone-200 p-7 hover:border-[#D4A017]/40 hover:shadow-md transition-all">
+                    <div className="w-16 h-16 rounded-full bg-[#1a6b3c] flex items-center justify-center text-[#D4A017] text-2xl font-bold mb-5">
+                      {member.name.charAt(0)}
+                    </div>
+                    <h3 className="font-bold text-stone-900 text-lg">
+                      {member.name}
+                    </h3>
+                    <p className="text-[#c49010] text-xs font-semibold uppercase tracking-wide mt-0.5 mb-4">
+                      {member.role}
+                    </p>
+                    <p className="text-stone-500 text-sm leading-relaxed mb-5">
+                      {member.bio}
+                    </p>
+                    <a
+                      href={`tel:${member.phone}`}
+                      className="flex items-center gap-2 text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors"
+                    >
+                      📞 {member.phone}
+                    </a>
                   </div>
-                  <h3 className="font-bold text-stone-900 text-lg">
-                    {member.name}
-                  </h3>
-                  <p className="text-[#c49010] text-xs font-semibold uppercase tracking-wide mt-0.5 mb-4">
-                    {member.role}
-                  </p>
-                  <p className="text-stone-500 text-sm leading-relaxed mb-5">
-                    {member.bio}
-                  </p>
-                  <a
-                    href={`tel:${member.phone}`}
-                    className="flex items-center gap-2 text-sm font-semibold text-[#1a6b3c] hover:text-[#c49010] transition-colors"
-                  >
-                    📞 {member.phone}
-                  </a>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── WHY CHOOSE US — static ── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="text-center mb-14">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              Why RG Travels
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Why Pilgrims Trust Us
+        {/* ── WHY CHOOSE US — static ── */}
+        <section className="py-24 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                Why RG Travels
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Why Pilgrims Trust Us
+              </h2>
+            </Reveal>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  title: "Government Licensed",
+                  desc: `Fully accredited with Hajj Enrollment #${enrollment} by the Ministry of Religious Affairs.`,
+                },
+                {
+                  title: "20+ Years Experience",
+                  desc: "Decades of expertise mean we've handled every situation with calm and competence.",
+                },
+                {
+                  title: "50,000+ Pilgrims",
+                  desc: "Tens of thousands of satisfied pilgrims trust us with their most sacred journey.",
+                },
+                {
+                  title: "Expert Scholars",
+                  desc: "Trained scholars guide every group through Manasik Hajj and Umrah rituals.",
+                },
+                {
+                  title: "End-to-End Service",
+                  desc: "Visa, hotels, transport, meals — we handle everything so you don't have to.",
+                },
+                {
+                  title: "24/7 Support",
+                  desc: "Our on-ground team is available around the clock throughout your entire journey.",
+                },
+              ].map((item, i) => (
+                <Reveal key={item.title} delay={i * 70}>
+                  <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 hover:border-[#D4A017]/40 transition-all">
+                    <div className="w-8 h-0.5 bg-[#D4A017] mb-4" />
+                    <h3 className="font-bold text-stone-900 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-stone-500 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CTA — static ── */}
+        <section className="py-20 bg-[#D4A017] text-center">
+          <Reveal className="max-w-2xl mx-auto px-6">
+            <h2 className="text-3xl font-bold text-[#1a6b3c] mb-4">
+              Ready to Begin Your Sacred Journey?
             </h2>
+            <p className="text-[#1a6b3c]/70 mb-8">
+              Join thousands of pilgrims who have trusted RG Tour & Travels with
+              their Hajj and Umrah.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/hajj/packages"
+                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              >
+                View Hajj Packages
+              </Link>
+              <Link
+                to="/contact"
+                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
+              >
+                Contact Us
+              </Link>
+            </div>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              {
-                title: "Government Licensed",
-                desc: `Fully accredited with Hajj Enrollment #${enrollment} by the Ministry of Religious Affairs.`,
-              },
-              {
-                title: "20+ Years Experience",
-                desc: "Decades of expertise mean we've handled every situation with calm and competence.",
-              },
-              {
-                title: "50,000+ Pilgrims",
-                desc: "Tens of thousands of satisfied pilgrims trust us with their most sacred journey.",
-              },
-              {
-                title: "Expert Scholars",
-                desc: "Trained scholars guide every group through Manasik Hajj and Umrah rituals.",
-              },
-              {
-                title: "End-to-End Service",
-                desc: "Visa, hotels, transport, meals — we handle everything so you don't have to.",
-              },
-              {
-                title: "24/7 Support",
-                desc: "Our on-ground team is available around the clock throughout your entire journey.",
-              },
-            ].map((item, i) => (
-              <Reveal key={item.title} delay={i * 70}>
-                <div className="bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 hover:border-[#D4A017]/40 transition-all">
-                  <div className="w-8 h-0.5 bg-[#D4A017] mb-4" />
-                  <h3 className="font-bold text-stone-900 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA — static ── */}
-      <section className="py-20 bg-[#D4A017] text-center">
-        <Reveal className="max-w-2xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#1a6b3c] mb-4">
-            Ready to Begin Your Sacred Journey?
-          </h2>
-          <p className="text-[#1a6b3c]/70 mb-8">
-            Join thousands of pilgrims who have trusted RG Tour & Travels with
-            their Hajj and Umrah.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/hajj/packages"
-              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-            >
-              View Hajj Packages
-            </Link>
-            <Link
-              to="/contact"
-              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </Reveal>
-      </section>
-    </main>
+        </section>
+      </main>
+    </>
   );
 }

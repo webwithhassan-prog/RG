@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 function useReveal() {
   const ref = useRef(null);
@@ -166,309 +167,321 @@ export default function HajjFacilities() {
   const activeFacility = facilities.find((f) => f.id === active);
 
   return (
-    <main className="overflow-x-hidden">
-      {/* ── HERO ── */}
-      <section
-        className="relative py-24 text-white text-center"
-        style={{
-          background:
-            "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
-        }}
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
-          <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
-        </div>
-        <div className="relative max-w-3xl mx-auto px-6">
-          <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-            Hajj 2026
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Hajj Facilities
-          </h1>
-          <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
-            Everything we provide to make your sacred journey comfortable, safe,
-            and spiritually fulfilling — from departure to return.
-          </p>
-        </div>
-      </section>
-
-      {/* ── HIGHLIGHTS STRIP ── */}
-      <section className="bg-[#1a6b3c] py-10">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {highlights.map((h, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 text-sm text-stone-300"
-              >
-                <span>{h.icon}</span>
-                <span>{h.text}</span>
-              </div>
-            ))}
+    <>
+      <SEO
+        title="Hajj Facilities"
+        description="RG Travels Hajj facilities — accommodation, meals, transport, Mina tents, scholar guidance, visa processing and 24/7 support."
+        keywords="Hajj facilities, Hajj accommodation, Hajj transport, Mina tents"
+        url="/hajj/facilities"
+      />
+      <main className="overflow-x-hidden">
+        {/* ── HERO ── */}
+        <section
+          className="relative py-24 text-white text-center"
+          style={{
+            background:
+              "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
+            <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
           </div>
-        </div>
-      </section>
-
-      {/* ── FACILITY EXPLORER ── */}
-      <section className="py-20 bg-[#FDFAF5]">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="mb-14">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              What We Provide
+          <div className="relative max-w-3xl mx-auto px-6">
+            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
+              Hajj 2026
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Our Facilities
-            </h2>
-            <p className="text-stone-500 mt-2 text-sm">
-              Select a facility to learn more
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Hajj Facilities
+            </h1>
+            <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
+              Everything we provide to make your sacred journey comfortable,
+              safe, and spiritually fulfilling — from departure to return.
             </p>
-          </Reveal>
+          </div>
+        </section>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Sidebar tabs */}
-            <div className="lg:col-span-1">
-              <div className="space-y-2 sticky top-24">
-                {facilities.map((f) => (
-                  <button
-                    key={f.id}
-                    onClick={() => setActive(f.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-200 ${
-                      active === f.id
-                        ? "bg-[#1a6b3c] text-white shadow-md"
-                        : "bg-white border border-stone-200 text-stone-600 hover:border-amber-300 hover:bg-[#fdf8e7]"
-                    }`}
-                  >
-                    <span className="text-xl flex-shrink-0">{f.icon}</span>
-                    <div>
-                      <p
-                        className={`text-sm font-bold ${active === f.id ? "text-white" : "text-stone-800"}`}
-                      >
-                        {f.title}
-                      </p>
-                      <p className="text-xs mt-0.5 text-stone-400">
-                        {f.subtitle}
-                      </p>
-                    </div>
-                    {active === f.id && (
-                      <span className="ml-auto text-[#D4A017]">→</span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Detail panel */}
-            <div className="lg:col-span-2">
-              {activeFacility && (
+        {/* ── HIGHLIGHTS STRIP ── */}
+        <section className="bg-[#1a6b3c] py-10">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {highlights.map((h, i) => (
                 <div
-                  key={activeFacility.id}
-                  style={{ animation: "fadeIn 0.3s ease" }}
+                  key={i}
+                  className="flex items-center gap-2 text-sm text-stone-300"
                 >
-                  {/* Banner instead of image */}
+                  <span>{h.icon}</span>
+                  <span>{h.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── FACILITY EXPLORER ── */}
+        <section className="py-20 bg-[#FDFAF5]">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                What We Provide
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Our Facilities
+              </h2>
+              <p className="text-stone-500 mt-2 text-sm">
+                Select a facility to learn more
+              </p>
+            </Reveal>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Sidebar tabs */}
+              <div className="lg:col-span-1">
+                <div className="space-y-2 sticky top-24">
+                  {facilities.map((f) => (
+                    <button
+                      key={f.id}
+                      onClick={() => setActive(f.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-200 ${
+                        active === f.id
+                          ? "bg-[#1a6b3c] text-white shadow-md"
+                          : "bg-white border border-stone-200 text-stone-600 hover:border-amber-300 hover:bg-[#fdf8e7]"
+                      }`}
+                    >
+                      <span className="text-xl flex-shrink-0">{f.icon}</span>
+                      <div>
+                        <p
+                          className={`text-sm font-bold ${active === f.id ? "text-white" : "text-stone-800"}`}
+                        >
+                          {f.title}
+                        </p>
+                        <p className="text-xs mt-0.5 text-stone-400">
+                          {f.subtitle}
+                        </p>
+                      </div>
+                      {active === f.id && (
+                        <span className="ml-auto text-[#D4A017]">→</span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Detail panel */}
+              <div className="lg:col-span-2">
+                {activeFacility && (
                   <div
-                    className="rounded-2xl h-48 flex items-center justify-center mb-6 relative overflow-hidden"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 60%, #155c33 100%)",
-                    }}
+                    key={activeFacility.id}
+                    style={{ animation: "fadeIn 0.3s ease" }}
                   >
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-[#D4A017]/10 blur-2xl" />
+                    {/* Banner instead of image */}
+                    <div
+                      className="rounded-2xl h-48 flex items-center justify-center mb-6 relative overflow-hidden"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 60%, #155c33 100%)",
+                      }}
+                    >
+                      <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-[#D4A017]/10 blur-2xl" />
+                      </div>
+                      <div className="relative text-center">
+                        <span className="text-5xl block mb-3">
+                          {activeFacility.icon}
+                        </span>
+                        <p className="text-white text-xl font-bold">
+                          {activeFacility.title}
+                        </p>
+                        <p className="text-stone-400 text-sm mt-1">
+                          {activeFacility.subtitle}
+                        </p>
+                      </div>
                     </div>
-                    <div className="relative text-center">
-                      <span className="text-5xl block mb-3">
-                        {activeFacility.icon}
-                      </span>
-                      <p className="text-white text-xl font-bold">
+
+                    {/* Details */}
+                    <div className="bg-white rounded-2xl border border-stone-200 p-7">
+                      <h3 className="text-xl font-bold text-stone-900 mb-5">
                         {activeFacility.title}
-                      </p>
-                      <p className="text-stone-400 text-sm mt-1">
-                        {activeFacility.subtitle}
-                      </p>
+                      </h3>
+                      <div className="grid sm:grid-cols-2 gap-3">
+                        {activeFacility.details.map((d, i) => (
+                          <div
+                            key={i}
+                            className="flex items-start gap-3 text-sm text-stone-600"
+                          >
+                            <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0 mt-0.5">
+                              ✓
+                            </span>
+                            {d}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
 
-                  {/* Details */}
-                  <div className="bg-white rounded-2xl border border-stone-200 p-7">
-                    <h3 className="text-xl font-bold text-stone-900 mb-5">
-                      {activeFacility.title}
+        {/* ── ALL FACILITIES GRID ── */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                At a Glance
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Everything Included
+              </h2>
+            </Reveal>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {facilities.map((f, i) => (
+                <Reveal key={f.id} delay={i * 60}>
+                  <button
+                    onClick={() => {
+                      setActive(f.id);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className="group w-full bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 text-left hover:border-amber-300 hover:shadow-sm transition-all"
+                  >
+                    <span className="text-3xl block mb-3">{f.icon}</span>
+                    <h3 className="font-bold text-stone-900 text-sm mb-1 group-hover:text-[#c49010] transition-colors">
+                      {f.title}
                     </h3>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {activeFacility.details.map((d, i) => (
-                        <div
-                          key={i}
-                          className="flex items-start gap-3 text-sm text-stone-600"
+                    <p className="text-stone-400 text-xs leading-relaxed">
+                      {f.subtitle}
+                    </p>
+                  </button>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── MAKTAB COMPARISON ── */}
+        <section
+          className="py-20 text-white"
+          style={{
+            background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
+          }}
+        >
+          <div className="max-w-4xl mx-auto px-6">
+            <Reveal className="text-center mb-12">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                Package Comparison
+              </p>
+              <h2 className="text-3xl font-bold text-white">
+                Maktab A vs Maktab B
+              </h2>
+              <p className="text-stone-400 mt-2 text-sm">
+                Same quality service — different category and price point
+              </p>
+            </Reveal>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  label: "Maktab A",
+                  badge: "Premium",
+                  color: "border-[#D4A017]",
+                  hotel: "Biot Altamyoz Hotel Azizia",
+                  tier: "Silver (13–14 days) & Comfort (10–11 days)",
+                  features: [
+                    "Premium hotel category",
+                    "Closer proximity to Haram",
+                    "Higher comfort level",
+                    "Ideal for those preferring luxury",
+                  ],
+                },
+                {
+                  label: "Maktab B",
+                  badge: "Value",
+                  color: "border-white/20",
+                  hotel: "Nozol Royal Inn Hotel",
+                  tier: "Silver (13–14 days) & Comfort (10–11 days)",
+                  features: [
+                    "Quality accommodation",
+                    "Excellent value for money",
+                    "Same trusted RG service",
+                    "Ideal for budget-conscious pilgrims",
+                  ],
+                },
+              ].map((m, i) => (
+                <Reveal key={m.label} delay={i * 100}>
+                  <div className={`border-2 ${m.color} rounded-2xl p-7`}>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-white">
+                        {m.label}
+                      </h3>
+                      <span className="bg-[#D4A017] text-[#1a6b3c] text-xs font-bold px-2.5 py-1 rounded-full">
+                        {m.badge}
+                      </span>
+                    </div>
+                    <p className="text-[#D4A017] text-sm font-semibold mb-1">
+                      {m.hotel}
+                    </p>
+                    <p className="text-stone-400 text-xs mb-5">{m.tier}</p>
+                    <ul className="space-y-2.5">
+                      {m.features.map((feat) => (
+                        <li
+                          key={feat}
+                          className="flex items-center gap-2 text-sm text-stone-300"
                         >
-                          <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0 mt-0.5">
+                          <span className="text-[#D4A017] flex-shrink-0">
                             ✓
                           </span>
-                          {d}
-                        </div>
+                          {feat}
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
-                </div>
-              )}
+                </Reveal>
+              ))}
             </div>
+            <Reveal delay={200} className="mt-8 text-center">
+              <Link
+                to="/hajj/packages"
+                className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              >
+                View All Packages →
+              </Link>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── ALL FACILITIES GRID ── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal className="text-center mb-14">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              At a Glance
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-              Everything Included
+        {/* ── CTA ── */}
+        <section className="py-14 bg-[#D4A017] text-center">
+          <Reveal>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
+              Ready to Book Your Hajj Package?
             </h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {facilities.map((f, i) => (
-              <Reveal key={f.id} delay={i * 60}>
-                <button
-                  onClick={() => {
-                    setActive(f.id);
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className="group w-full bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 text-left hover:border-amber-300 hover:shadow-sm transition-all"
-                >
-                  <span className="text-3xl block mb-3">{f.icon}</span>
-                  <h3 className="font-bold text-stone-900 text-sm mb-1 group-hover:text-[#c49010] transition-colors">
-                    {f.title}
-                  </h3>
-                  <p className="text-stone-400 text-xs leading-relaxed">
-                    {f.subtitle}
-                  </p>
-                </button>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── MAKTAB COMPARISON ── */}
-      <section
-        className="py-20 text-white"
-        style={{
-          background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-6">
-          <Reveal className="text-center mb-12">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-              Package Comparison
+            <p className="text-[#1a6b3c]/70 mb-7">
+              All facilities are included — just bring your faith and we'll
+              handle the rest.
             </p>
-            <h2 className="text-3xl font-bold text-white">
-              Maktab A vs Maktab B
-            </h2>
-            <p className="text-stone-400 mt-2 text-sm">
-              Same quality service — different category and price point
-            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/hajj/packages"
+                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+              >
+                View Packages
+              </Link>
+              <Link
+                to="/contact"
+                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
+              >
+                Contact Us
+              </Link>
+            </div>
           </Reveal>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                label: "Maktab A",
-                badge: "Premium",
-                color: "border-[#D4A017]",
-                hotel: "Biot Altamyoz Hotel Azizia",
-                tier: "Silver (13–14 days) & Comfort (10–11 days)",
-                features: [
-                  "Premium hotel category",
-                  "Closer proximity to Haram",
-                  "Higher comfort level",
-                  "Ideal for those preferring luxury",
-                ],
-              },
-              {
-                label: "Maktab B",
-                badge: "Value",
-                color: "border-white/20",
-                hotel: "Nozol Royal Inn Hotel",
-                tier: "Silver (13–14 days) & Comfort (10–11 days)",
-                features: [
-                  "Quality accommodation",
-                  "Excellent value for money",
-                  "Same trusted RG service",
-                  "Ideal for budget-conscious pilgrims",
-                ],
-              },
-            ].map((m, i) => (
-              <Reveal key={m.label} delay={i * 100}>
-                <div className={`border-2 ${m.color} rounded-2xl p-7`}>
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold text-white">{m.label}</h3>
-                    <span className="bg-[#D4A017] text-[#1a6b3c] text-xs font-bold px-2.5 py-1 rounded-full">
-                      {m.badge}
-                    </span>
-                  </div>
-                  <p className="text-[#D4A017] text-sm font-semibold mb-1">
-                    {m.hotel}
-                  </p>
-                  <p className="text-stone-400 text-xs mb-5">{m.tier}</p>
-                  <ul className="space-y-2.5">
-                    {m.features.map((feat) => (
-                      <li
-                        key={feat}
-                        className="flex items-center gap-2 text-sm text-stone-300"
-                      >
-                        <span className="text-[#D4A017] flex-shrink-0">✓</span>
-                        {feat}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={200} className="mt-8 text-center">
-            <Link
-              to="/hajj/packages"
-              className="inline-flex items-center gap-2 bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-            >
-              View All Packages →
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+        </section>
 
-      {/* ── CTA ── */}
-      <section className="py-14 bg-[#D4A017] text-center">
-        <Reveal>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
-            Ready to Book Your Hajj Package?
-          </h2>
-          <p className="text-[#1a6b3c]/70 mb-7">
-            All facilities are included — just bring your faith and we'll handle
-            the rest.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/hajj/packages"
-              className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
-            >
-              View Packages
-            </Link>
-            <Link
-              to="/contact"
-              className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </Reveal>
-      </section>
-
-      <style>{`
+        <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-    </main>
+      </main>
+    </>
   );
 }
