@@ -18,6 +18,7 @@ import RegistrationPopup from "./pages/RegistrationPopup";
 import HajjRegistrationForm from "./pages/HajjRegistrationForm";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
+import logo from "/com-logo.jpeg";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -60,6 +61,7 @@ function LoadingScreen({ visible }) {
           اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ النَّبِيِّ الأُمِّيِّ وَعَلَى آلِهِ
           وَسَلِّمْ تَسْلِيمًا
         </p>
+
         <p
           style={{
             color: "#D4A017",
@@ -69,8 +71,10 @@ function LoadingScreen({ visible }) {
             animation: "fadeUp 0.8s ease 0.2s both",
           }}
         >
-          O Allah, send blessings upon Muhammad and the family of Muhammad
+          O Allah, send blessings upon Muhammad, the Unlettered Prophet, and
+          upon his family, and grant them peace.
         </p>
+
         <div
           style={{
             width: "44px",
@@ -82,6 +86,7 @@ function LoadingScreen({ visible }) {
             margin: "0 auto 24px",
           }}
         />
+
         <p
           style={{
             color: "rgba(255,255,255,0.4)",
@@ -91,8 +96,24 @@ function LoadingScreen({ visible }) {
             animation: "fadeUp 0.8s ease 0.4s both",
           }}
         >
-          RG Tours & Travels
+          RG Tour & Travels
         </p>
+
+        {/* Fixed Elegant Logo */}
+        <img
+          src={logo}
+          alt="RG Tours & Travels"
+          style={{
+            borderRadius: "100%",
+            width: "60px",
+            height: "auto",
+            margin: "16px auto 0",
+            display: "block",
+            objectFit: "contain",
+            animation:
+              "fadeUp 0.8s ease 0.5s both" /* Staggered to fade in last */,
+          }}
+        />
       </div>
       <style>{`
         @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
