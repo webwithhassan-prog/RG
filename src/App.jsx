@@ -128,8 +128,8 @@ export default function App() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setVisible(false), 2500);
-    const removeTimer = setTimeout(() => setLoading(false), 3300);
+    const fadeTimer = setTimeout(() => setVisible(false), 2800);
+    const removeTimer = setTimeout(() => setLoading(false), 3500);
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
