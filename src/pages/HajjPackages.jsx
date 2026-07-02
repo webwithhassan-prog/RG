@@ -226,9 +226,9 @@ export default function HajjPackages() {
   return (
     <>
       <SEO
-        title="Hajj 2026 Packages"
+        title="Hajj Packages"
         description="Explore RG Travels Hajj 2026 packages — Maktab A & B, Silver & Comfort. Licensed operator Enrollment #3127. Book your sacred journey today."
-        keywords="Hajj 2026 packages, Maktab A, Maktab B, Hajj packages Lahore"
+        keywords="Hajj packages, Maktab A, Maktab B, Hajj packages Lahore"
         url="/hajj/packages"
       />
       <main className="overflow-x-hidden">
