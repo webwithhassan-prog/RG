@@ -66,7 +66,7 @@ export default function RegistrationPopup() {
           onClick={handleRegister}
           className="w-full bg-[#d4af37] hover:bg-[#c9a449] text-[#0a0e0d] font-bold py-3 rounded-xl transition-all hover:scale-[1.02]"
         >
-          Register Now — Seats Limited
+          Register Now — Limited Seats
         </button>
 
         <button
