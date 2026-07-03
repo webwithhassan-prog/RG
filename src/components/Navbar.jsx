@@ -123,7 +123,7 @@ export default function Navbar() {
         className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${scrolled ? "shadow-md" : "shadow-sm"}`}
       >
         {/* Top accent bar */}
-        {/* <div className="h-1 bg-gradient-to-r from-[#1a6b3c] via-[#D4A017] to-[#1a6b3c]" /> */}
+        <div className="h-1 bg-gradient-to-r from-[#1a6b3c] via-[#D4A017] to-[#1a6b3c]" />
 
         <nav className="px-4 md:px-8 border-b border-stone-100">
           <div className="max-w-6xl mx-auto flex items-center justify-between h-20">

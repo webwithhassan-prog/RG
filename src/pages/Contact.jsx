@@ -233,9 +233,9 @@ export default function Contact() {
                         className="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:border-[#D4A017] focus:ring-2 focus:ring-amber-100 transition-all bg-white"
                       >
                         <option value="">Select a package</option>
-                        <option value="hajj-b-comfort">Hajj</option>
+                        <option value="hajj-package">Hajj</option>
 
-                        <option value="umrah-ramadan">Umrah</option>
+                        <option value="umrah-package">Umrah</option>
                         <option value="other">Other / General Enquiry</option>
                       </select>
                     </div>

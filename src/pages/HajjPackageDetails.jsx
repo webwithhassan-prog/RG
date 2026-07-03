@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import SEO from "../components/SEO";
+import { getTierStyle, tierRank } from "../components/HajjTiers.js";
 
 function useReveal() {
   const ref = useRef(null);
@@ -38,21 +39,6 @@ function Reveal({ children, delay = 0, className = "" }) {
     </div>
   );
 }
-
-const requirements = [
-  "Passport valid up to 16 December, 2025",
-  "4 Photographs 3x4 cm with light blue background",
-  "Copy of Valid CNIC",
-  "Copy of Nominee CNIC with relationship & contact number",
-  "Blood Group of Hajj Applicant",
-];
-
-const notes = [
-  "All packages are without air ticket",
-  "Qurbani, PCR Test & additional govt. taxes are not included",
-  "Dates can change subject to moon sight / Hajj dates",
-  "Refunds as per Govt. of Saudi Arabia & Pakistan policy",
-];
 
 export default function HajjPackageDetail() {
   const { id } = useParams();
@@ -107,20 +93,23 @@ export default function HajjPackageDetail() {
   // Updated logic: Treat 2026 as past (as per your requirement)
   const isPast = pkg.year <= currentYear;
 
-  // Separate other packages into Current and Past
+  // Separate other packages into Current and Past.
+  // Sorted by year first, then by tier rank (Silver, Comfort, Gold, Platinum,
+  // Premium — see src/constants/hajjTiers.js) so new tiers slot into a
+  // consistent order automatically, regardless of DB insertion order.
   const currentPackages = allPackages
     .filter((p) => p.slug !== id && p.year > currentYear)
-    .sort((a, b) => b.year - a.year);
+    .sort((a, b) => b.year - a.year || tierRank(a.tier) - tierRank(b.tier));
 
   const pastPackages = allPackages
     .filter((p) => p.slug !== id && p.year <= currentYear)
-    .sort((a, b) => b.year - a.year);
+    .sort((a, b) => b.year - a.year || tierRank(a.tier) - tierRank(b.tier));
 
   return (
     <>
       <SEO
         title={`${pkg.tier} Package — Maktab ${pkg.maktab}`}
-        description={`Hajj 2026 Maktab ${pkg.maktab} ${pkg.tier} package. ${pkg.hotel}. ${pkg.duration}. Book with RG Tours & Travels.`}
+        description={`Hajj 2026 Maktab ${pkg.maktab} ${pkg.tier} package. ${pkg.hotel}. ${pkg.duration}. Book with RG Tour & Travels.`}
         url={`/hajj/${id}`}
         image={pkg.image}
       />
@@ -171,7 +160,9 @@ export default function HajjPackageDetail() {
             <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-3 py-1.5 rounded-lg">
               Maktab {pkg.maktab}
             </span>
-            <span className="bg-white/90 text-stone-800 text-xs font-bold px-3 py-1.5 rounded-lg">
+            <span
+              className={`${getTierStyle(pkg.tier).badge} text-xs font-bold px-3 py-1.5 rounded-lg`}
+            >
               {pkg.tier}
             </span>
             {pkg.badge && (
@@ -315,7 +306,16 @@ export default function HajjPackageDetail() {
                     Visa Requirements
                   </h2>
                   <ul className="space-y-3">
-                    {requirements.map((r, i) => (
+                    {(pkg.requirements?.length > 0
+                      ? pkg.requirements
+                      : [
+                          "Passport valid up to 16 December, 2025",
+                          "4 Photographs 3x4 cm with light blue background",
+                          "Copy of Valid CNIC",
+                          "Copy of Nominee CNIC with relationship & contact number",
+                          "Blood Group of Hajj Applicant",
+                        ]
+                    ).map((r, i) => (
                       <li
                         key={i}
                         className="flex items-start gap-3 text-sm text-stone-600"
@@ -337,7 +337,15 @@ export default function HajjPackageDetail() {
                     Important Notes
                   </h2>
                   <ul className="space-y-3">
-                    {notes.map((n, i) => (
+                    {(pkg.notes?.length > 0
+                      ? pkg.notes
+                      : [
+                          "All packages are without air ticket",
+                          "Qurbani, PCR Test & additional govt. taxes are not included",
+                          "Dates can change subject to moon sight / Hajj dates",
+                          "Refunds as per Govt. of Saudi Arabia & Pakistan policy",
+                        ]
+                    ).map((n, i) => (
                       <li
                         key={i}
                         className="flex items-start gap-3 text-sm text-stone-600"
@@ -490,7 +498,9 @@ export default function HajjPackageDetail() {
                             <span className="bg-[#1a6b3c] text-[#D4A017] text-xs font-bold px-2 py-0.5 rounded">
                               Maktab {p.maktab}
                             </span>
-                            <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
+                            <span
+                              className={`${getTierStyle(p.tier).badge} text-xs font-bold px-2 py-0.5 rounded`}
+                            >
                               {p.tier}
                             </span>
                           </div>
@@ -536,7 +546,9 @@ export default function HajjPackageDetail() {
                               <span className="bg-stone-700 text-amber-300 text-xs font-bold px-2 py-0.5 rounded">
                                 Maktab {p.maktab}
                               </span>
-                              <span className="bg-stone-100 text-stone-600 text-xs font-bold px-2 py-0.5 rounded">
+                              <span
+                                className={`${getTierStyle(p.tier).badge} text-xs font-bold px-2 py-0.5 rounded opacity-80`}
+                              >
                                 {p.tier}
                               </span>
                               <span className="bg-stone-200 text-stone-500 text-xs font-bold px-2 py-0.5 rounded">

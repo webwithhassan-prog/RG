@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../api/axios";
 import SEO from "../components/SEO";
+import { getTierStyle, tierRank } from "../components/HajjTiers.js";
 
 function useReveal() {
   const ref = useRef(null);
@@ -60,13 +61,16 @@ export default function HajjPackages() {
   }, []);
 
   // Current = Hajj 2027 and above
+  // Sorted by year first, then by tier rank (Silver, Comfort, Gold, Platinum,
+  // Premium — see src/constants/hajjTiers.js) so new tiers slot into a
+  // consistent order automatically, regardless of DB insertion order.
   const currentPackages = packages
     .filter((p) => p.year > currentYear)
-    .sort((a, b) => b.year - a.year);
+    .sort((a, b) => b.year - a.year || tierRank(a.tier) - tierRank(b.tier));
 
   const pastPackages = packages
     .filter((p) => p.year <= currentYear)
-    .sort((a, b) => b.year - a.year);
+    .sort((a, b) => b.year - a.year || tierRank(a.tier) - tierRank(b.tier));
 
   // Group by Maktab (A first, then B, then others)
   const groupByMaktab = (pkgs) => {
@@ -108,11 +112,7 @@ export default function HajjPackages() {
             Maktab {pkg.maktab}
           </span>
           <span
-            className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
-              isPast
-                ? "bg-white/90 text-stone-700"
-                : "bg-white/90 text-stone-700"
-            }`}
+            className={`text-xs font-bold px-2.5 py-1 rounded-lg ${getTierStyle(pkg.tier).badge} ${isPast ? "opacity-80" : ""}`}
           >
             {pkg.tier}
           </span>

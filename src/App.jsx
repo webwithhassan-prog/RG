@@ -19,6 +19,7 @@ import HajjRegistrationForm from "./pages/HajjRegistrationForm";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import logo from "/com-logo.jpeg";
+import AnnouncementBar from "./components/AnnouncementBar";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -135,12 +136,15 @@ export default function App() {
       clearTimeout(removeTimer);
     };
   }, []);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   return (
     <>
       {loading && <LoadingScreen visible={visible} />}
       <ScrollToTop />
       <RegistrationPopup />
+      {isHome && <AnnouncementBar />}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
