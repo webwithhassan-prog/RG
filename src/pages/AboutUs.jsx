@@ -466,28 +466,28 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* ── CTA — static ── */}
-        <section className="py-20 bg-[#D4A017] text-center">
+        {/* ── CTA ── */}
+        <section className="py-20 bg-[#1a6b3c] text-center">
           <Reveal className="max-w-2xl mx-auto px-6">
-            <h2 className="text-3xl font-bold text-[#1a6b3c] mb-4">
-              Ready to Begin Your Sacred Journey?
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Ready to Begin Your Journey?
             </h2>
-            <p className="text-[#1a6b3c]/70 mb-8">
-              Join thousands of pilgrims who have trusted RG Tour & Travels with
-              their Hajj and Umrah.
+            <p className="text-white/80 mb-8 max-w-md mx-auto">
+              Explore our Hajj and Umrah packages today.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/hajj/packages"
-                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 w-full sm:w-auto shadow-lg"
               >
-                View Hajj Packages
+                Hajj Packages
               </Link>
               <Link
-                to="/contact"
-                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
+                to="/umrah/packages"
+                className="border-2 border-white/70 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-all hover:bg-white/10 w-full sm:w-auto"
               >
-                Contact Us
+                Umrah Packages
               </Link>
             </div>
           </Reveal>

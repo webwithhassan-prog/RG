@@ -376,25 +376,30 @@ export default function Testimonials() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-14 bg-[#D4A017] text-center">
-          <Reveal>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
+        <section className="py-20 bg-[#1a6b3c] text-center overflow-hidden">
+          <Reveal className="max-w-2xl mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               Ready to Create Your Own Story?
             </h2>
-            <p className="text-[#1a6b3c]/70 mb-7">
+            <p className="text-white/70 mb-7">
               Join thousands of pilgrims who trusted us with their sacred
               journey.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 to="/hajj/packages"
-                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="group bg-[#D4A017] w-full sm:w-auto flex items-center justify-center gap-2 hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg shadow-[#1a6b3c]/20"
               >
                 View Hajj Packages
+                <span className="transition-transform duration-200 group-hover:translate-x-1">
+                  →
+                </span>
               </Link>
+
               <Link
                 to="/umrah/packages"
-                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
+                className="group w-full sm:w-auto flex items-center justify-center gap-2 border-2 border-white/70 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 hover:bg-white/10"
               >
                 View Umrah Packages
               </Link>

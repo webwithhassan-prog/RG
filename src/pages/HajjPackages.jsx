@@ -466,28 +466,34 @@ export default function HajjPackages() {
         )}
 
         {/* ── CTA ── */}
-        <section className="py-14 bg-[#D4A017] text-center">
-          <Reveal>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
+        <section className="py-14 bg-[#1a6b3c] text-center overflow-hidden">
+          <Reveal className="max-w-2xl mx-auto px-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               Interested in Hajj?
             </h2>
-            <p className="text-[#1a6b3c]/70 mb-7">
+            <p className="text-white/70 mb-7">
               Register your interest early and we'll reach out as soon as
               packages are available.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 to="/contact"
-                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="group bg-[#D4A017] w-full sm:w-auto flex items-center justify-center gap-2 bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg shadow-[#1a6b3c]/20"
               >
                 Contact Us
+                <span className="transition-transform duration-200 group-hover:translate-x-1">
+                  →
+                </span>
               </Link>
               <a
                 href="https://wa.me/923218485159"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="group w-full sm:w-auto flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg shadow-green-500/20"
               >
+                <span className="transition-transform duration-200 group-hover:scale-110">
+                  💬
+                </span>
                 WhatsApp Us
               </a>
             </div>
