@@ -2,12 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
-// TEMPORARY placeholder media — replace these with your real imports once files are on this device, e.g.:
-// import makkahHotel1 from "../assets/hajj/makkah-hotel-1.jpg";
-// import minaVideo1 from "../assets/hajj/mina-camp-1.mp4";
-const PLACEHOLDER_IMG = (seed) => `https://picsum.photos/seed/${seed}/800/600`;
-const PLACEHOLDER_VIDEO =
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+// ── MEDIA IMPORTS ──
+import meccaHotel1 from "../assets/Mecca-Hotel.jpeg";
+import meccaHotel2 from "../assets/Mecca-Hotel-2.jpeg";
+import meccaHotel3 from "../assets/Mecca-Hotel-3.jpeg";
+import meccaHotel4 from "../assets/Mecca-Hotel-4.jpeg";
+
+import meal1 from "../assets/Meal.mp4";
+import meal2 from "../assets/Meal-1.mp4";
+import meal3 from "../assets/Meal-2.mp4";
+import madinahMeal from "../assets/Madinah-Full meal.mp4";
+
+import minaCamp from "../assets/MIna-Camp.mp4";
+import minaCampFemale from "../assets/MIna-Camp-Female.mp4";
+import minaCampFemale1 from "../assets/MIna-Camp-Female-1.mp4";
+
+import arafatCampPhoto from "../assets/Arafat-Camp.jpeg";
+import arafatCampF from "../assets/Arafat-Camp-F.jpeg.mp4";
+import arafatCampM from "../assets/Arafat-Camp-M.jpeg.mp4";
+import arafatCampM1 from "../assets/Arafat-Camp-M-1.jpeg.mp4";
 
 function useReveal() {
   const ref = useRef(null);
@@ -45,24 +58,99 @@ function Reveal({ children, delay = 0, className = "" }) {
   );
 }
 
+function StickyNav({ sections }) {
+  const [visible, setVisible] = useState(false);
+  const [activeSection, setActiveSection] = useState(sections[0]?.id);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const observers = sections.map(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-40% 0px -50% 0px" },
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach((o) => o?.disconnect());
+  }, [sections]);
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 150;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div
+      className={`fixed  left-0 right-0 z-60 transition-all duration-300 ${
+        visible
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-full opacity-0 pointer-events-none"
+      }`}
+      style={{ top: "84px" }}
+    >
+      <div className="bg-white backdrop-blur-sm shadow-lg border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar py-3">
+            {sections.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => scrollToSection(s.id)}
+                className={`relative flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
+                  activeSection === s.id
+                    ? "bg-[#D4A017] text-white"
+                    : "text-black hover:text-[#D4A017] hover:bg-white/5"
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </div>
+  );
+}
+
 function Lightbox({ image, onClose }) {
   if (!image) return null;
   return (
     <div
       className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center p-6"
+      style={{ animation: "fadeIn 0.25s ease" }}
       onClick={onClose}
     >
-      <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="max-w-4xl w-full"
+        style={{ animation: "scaleIn 0.3s ease" }}
+        onClick={(e) => e.stopPropagation()}
+      >
         <img
           src={image.src}
-          alt={image.caption}
+          alt={image.title}
           className="w-full max-h-[80vh] object-contain rounded-xl"
         />
-        <p className="text-white text-center mt-4 text-sm">{image.caption}</p>
+        <p className="text-white text-center mt-4 text-sm">{image.title}</p>
       </div>
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 text-white text-3xl hover:text-[#D4A017] transition-colors"
+        className="absolute top-6 right-6 text-white text-3xl hover:text-[#D4A017] hover:rotate-90 transition-all duration-300"
       >
         ✕
       </button>
@@ -70,23 +158,87 @@ function Lightbox({ image, onClose }) {
   );
 }
 
-function VideoGrid({ videos, cardBg = "bg-white" }) {
+function VideoCard({ src, title }) {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  const handlePlay = () => {
+    setPlaying(true);
+    videoRef.current?.play();
+  };
+
   return (
-    <div className="grid md:grid-cols-3 gap-6">
-      {videos.map((v, i) => (
-        <Reveal key={i} delay={i * 100}>
+    <div className="relative w-full h-56 bg-black overflow-hidden group/video">
+      <video
+        ref={videoRef}
+        controls={playing}
+        className="w-full h-full object-cover"
+        preload="metadata"
+        onEnded={() => setPlaying(false)}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+      {!playing && (
+        <button
+          onClick={handlePlay}
+          className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover/video:bg-black/40 transition-colors duration-300"
+        >
+          <span className="relative flex items-center justify-center">
+            <span className="absolute w-16 h-16 rounded-full bg-[#D4A017]/40 animate-ping-slow" />
+            <span className="relative w-14 h-14 rounded-full bg-[#D4A017] flex items-center justify-center shadow-lg group-hover/video:scale-110 transition-transform duration-300">
+              <svg
+                viewBox="0 0 24 24"
+                className="w-6 h-6 text-[#1a6b3c] translate-x-0.5"
+                fill="currentColor"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
+function MediaGrid({ items, cardBg = "bg-white", onImageClick }) {
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {items.map((item, i) => (
+        <Reveal key={i} delay={i * 90}>
           <div
-            className={`rounded-2xl overflow-hidden border border-stone-200 ${cardBg} shadow-sm`}
+            className={`rounded-2xl overflow-hidden border border-stone-200 ${cardBg} shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300`}
           >
-            <video
-              controls
-              className="w-full h-56 object-cover bg-black"
-              preload="metadata"
-            >
-              <source src={v.src} type="video/mp4" />
-            </video>
+            {item.type === "video" ? (
+              <VideoCard src={item.src} title={item.title} />
+            ) : (
+              <button
+                onClick={() => onImageClick?.(item)}
+                className="group relative w-full h-56 block overflow-hidden"
+              >
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute top-3 right-3 bg-black/50 text-white text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-full flex items-center gap-1">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-3 h-3"
+                    fill="currentColor"
+                  >
+                    <path d="M12 5a3 3 0 100 6 3 3 0 000-6zm0 8a5 5 0 100-10 5 5 0 000 10z" />
+                  </svg>
+                  Photo
+                </span>
+                <span className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  {item.title}
+                </span>
+              </button>
+            )}
             <p className="text-stone-700 text-sm font-semibold p-4">
-              {v.title}
+              {item.title}
             </p>
           </div>
         </Reveal>
@@ -220,31 +372,43 @@ const highlights = [
 ];
 
 const hotelGallery = [
-  { src: PLACEHOLDER_IMG("makkah1"), caption: "Makkah Hotel — Hajj 2026/2027" },
-  { src: PLACEHOLDER_IMG("makkah2"), caption: "Makkah Hotel — Hajj 2026/2027" },
-  { src: PLACEHOLDER_IMG("makkah3"), caption: "Makkah Hotel — Hajj 2026/2027" },
-  { src: PLACEHOLDER_IMG("makkah4"), caption: "Makkah Hotel — Hajj 2026/2027" },
+  { src: meccaHotel1, title: "Makkah Hotel — Hajj 2026/2027" },
+  { src: meccaHotel2, title: "Makkah Hotel — Hajj 2026/2027" },
+  { src: meccaHotel3, title: "Makkah Hotel — Hajj 2026/2027" },
+  { src: meccaHotel4, title: "Makkah Hotel — Hajj 2026/2027" },
 ];
 
-const madinahVideos = [
-  { src: PLACEHOLDER_VIDEO, title: "Madinah Hotel — Room Walkthrough" },
-  { src: PLACEHOLDER_VIDEO, title: "Madinah Hotel — Facilities" },
+const mealMedia = [
+  { type: "video", src: meal1, title: "Full Board Meal — Daily Spread" },
+  { type: "video", src: meal2, title: "Full Board Meal — Dining Hall" },
+  { type: "video", src: meal3, title: "Full Board Meal — Service" },
+  { type: "video", src: madinahMeal, title: "Full Board Meal — Madinah" },
 ];
 
-const mealVideos = [
-  { src: PLACEHOLDER_VIDEO, title: "Full Board Meal — Dining Hall" },
-  { src: PLACEHOLDER_VIDEO, title: "Full Board Meal — Daily Spread" },
+const minaMedia = [
+  { type: "video", src: minaCamp, title: "Mina Camp — Tent Overview" },
+  { type: "video", src: minaCampFemale, title: "Mina Camp — Women's Section" },
+  {
+    type: "video",
+    src: minaCampFemale1,
+    title: "Mina Camp — Women's Facilities",
+  },
 ];
 
-const minaVideos = [
-  { src: PLACEHOLDER_VIDEO, title: "Mina Camp — Tent Interior" },
-  { src: PLACEHOLDER_VIDEO, title: "Mina Camp — Facilities Walkthrough" },
-  { src: PLACEHOLDER_VIDEO, title: "Mina Camp — Camp Overview" },
+const arafatMedia = [
+  { type: "image", src: arafatCampPhoto, title: "Arafat Camp — Overview" },
+  { type: "video", src: arafatCampM, title: "Arafat Camp — Men's Section" },
+  { type: "video", src: arafatCampM1, title: "Arafat Camp — Men's Facilities" },
+  { type: "video", src: arafatCampF, title: "Arafat Camp — Women's Section" },
 ];
 
-const arafatVideos = [
-  { src: PLACEHOLDER_VIDEO, title: "Arafat Camp — Overview" },
-  { src: PLACEHOLDER_VIDEO, title: "Arafat Camp — Facilities" },
+const navSections = [
+  { id: "facilities-explorer", label: "Facilities" },
+  { id: "hotel-gallery", label: "Hotel" },
+  { id: "meals-section", label: "Meals" },
+  { id: "mina-section", label: "Mina" },
+  { id: "arafat-section", label: "Arafat" },
+  { id: "compare-section", label: "Compare" },
 ];
 
 export default function HajjFacilities() {
@@ -261,23 +425,37 @@ export default function HajjFacilities() {
         url="/hajj/facilities"
       />
       <main className="overflow-x-hidden">
+        <StickyNav sections={navSections} />
+
         {/* ── HERO ── */}
         <section
-          className="relative py-24 text-white text-center"
+          className="relative py-24 text-white text-center overflow-hidden"
           style={{
             background:
               "linear-gradient(135deg, #0f4d2a 0%, #1a6b3c 50%, #155c33 100%)",
           }}
         >
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl" />
-            <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
+            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#D4A017]/10 blur-3xl animate-float-slow" />
+            <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl animate-float-slower" />
           </div>
           <div className="relative max-w-3xl mx-auto px-6">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <p
+              className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3"
+              style={{ animation: "fadeInUp 0.6s ease" }}
+            >
+              Hajj 2026
+            </p>
+            <h1
+              className="text-4xl md:text-6xl font-bold mb-4"
+              style={{ animation: "fadeInUp 0.6s ease 0.1s both" }}
+            >
               Hajj Facilities
             </h1>
-            <p className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed">
+            <p
+              className="text-stone-300 text-lg max-w-xl mx-auto leading-relaxed"
+              style={{ animation: "fadeInUp 0.6s ease 0.2s both" }}
+            >
               Everything we provide to make your sacred journey comfortable,
               safe, and spiritually fulfilling — from departure to return.
             </p>
@@ -289,20 +467,21 @@ export default function HajjFacilities() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {highlights.map((h, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 text-sm text-stone-300"
-                >
-                  <span>{h.icon}</span>
-                  <span>{h.text}</span>
-                </div>
+                <Reveal key={i} delay={i * 70}>
+                  <div className="flex items-center gap-2 text-sm text-stone-300 hover:text-[#D4A017] transition-colors duration-300 group">
+                    <span className="group-hover:scale-125 transition-transform duration-300 inline-block">
+                      {h.icon}
+                    </span>
+                    <span>{h.text}</span>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
         {/* ── FACILITY EXPLORER ── */}
-        <section className="py-20 bg-[#FDFAF5]">
+        <section id="facilities-explorer" className="py-20 bg-[#FDFAF5]">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="mb-14">
               <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
@@ -317,20 +496,29 @@ export default function HajjFacilities() {
             </Reveal>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              {/* Sidebar tabs */}
               <div className="lg:col-span-1">
                 <div className="space-y-2 sticky top-24">
                   {facilities.map((f) => (
                     <button
                       key={f.id}
                       onClick={() => setActive(f.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-200 ${
+                      className={`relative w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-300 overflow-hidden ${
                         active === f.id
-                          ? "bg-[#1a6b3c] text-white shadow-md"
-                          : "bg-white border border-stone-200 text-stone-600 hover:border-amber-300 hover:bg-[#fdf8e7]"
+                          ? "bg-[#1a6b3c] text-white shadow-md scale-[1.02]"
+                          : "bg-white border border-stone-200 text-stone-600 hover:border-amber-300 hover:bg-[#fdf8e7] hover:translate-x-1"
                       }`}
                     >
-                      <span className="text-xl flex-shrink-0">{f.icon}</span>
+                      {active === f.id && (
+                        <span
+                          className="absolute left-0 top-0 h-full w-1 bg-[#D4A017]"
+                          style={{ animation: "slideDown 0.3s ease" }}
+                        />
+                      )}
+                      <span
+                        className={`text-xl flex-shrink-0 transition-transform duration-300 ${active === f.id ? "scale-110" : ""}`}
+                      >
+                        {f.icon}
+                      </span>
                       <div>
                         <p
                           className={`text-sm font-bold ${active === f.id ? "text-white" : "text-stone-800"}`}
@@ -342,21 +530,21 @@ export default function HajjFacilities() {
                         </p>
                       </div>
                       {active === f.id && (
-                        <span className="ml-auto text-[#D4A017]">→</span>
+                        <span className="ml-auto text-[#D4A017] animate-bounce-x">
+                          →
+                        </span>
                       )}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Detail panel */}
               <div className="lg:col-span-2">
                 {activeFacility && (
                   <div
                     key={activeFacility.id}
-                    style={{ animation: "fadeIn 0.3s ease" }}
+                    style={{ animation: "fadeInUp 0.4s ease" }}
                   >
-                    {/* Banner instead of image */}
                     <div
                       className="rounded-2xl h-48 flex items-center justify-center mb-6 relative overflow-hidden"
                       style={{
@@ -365,10 +553,13 @@ export default function HajjFacilities() {
                       }}
                     >
                       <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-[#D4A017]/10 blur-2xl" />
+                        <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-[#D4A017]/10 blur-2xl animate-float-slow" />
                       </div>
                       <div className="relative text-center">
-                        <span className="text-5xl block mb-3">
+                        <span
+                          className="text-5xl block mb-3"
+                          style={{ animation: "popIn 0.4s ease" }}
+                        >
                           {activeFacility.icon}
                         </span>
                         <p className="text-white text-xl font-bold">
@@ -380,7 +571,6 @@ export default function HajjFacilities() {
                       </div>
                     </div>
 
-                    {/* Details */}
                     <div className="bg-white rounded-2xl border border-stone-200 p-7">
                       <h3 className="text-xl font-bold text-stone-900 mb-5">
                         {activeFacility.title}
@@ -390,6 +580,9 @@ export default function HajjFacilities() {
                           <div
                             key={i}
                             className="flex items-start gap-3 text-sm text-stone-600"
+                            style={{
+                              animation: `fadeInUp 0.4s ease ${i * 60}ms both`,
+                            }}
                           >
                             <span className="w-5 h-5 bg-[#1a6b3c] rounded-full flex items-center justify-center text-[#D4A017] text-xs flex-shrink-0 mt-0.5">
                               ✓
@@ -407,7 +600,7 @@ export default function HajjFacilities() {
         </section>
 
         {/* ── MAKKAH HOTEL GALLERY ── */}
-        <section className="py-20 bg-white">
+        <section id="hotel-gallery" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="text-center mb-14">
               <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
@@ -425,16 +618,16 @@ export default function HajjFacilities() {
                 <Reveal key={i} delay={i * 80}>
                   <button
                     onClick={() => setLightboxImage(img)}
-                    className="group relative w-full h-56 rounded-2xl overflow-hidden block"
+                    className="group relative w-full h-56 rounded-2xl overflow-hidden block shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
                   >
                     <img
                       src={img.src}
-                      alt={img.caption}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      alt={img.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 group-hover:from-black/70 transition-colors flex items-end p-4">
-                      <p className="text-white text-xs font-semibold">
-                        {img.caption}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 group-hover:from-black/70 transition-colors duration-300 flex items-end p-4">
+                      <p className="text-white text-xs font-semibold translate-y-1 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        {img.title}
                       </p>
                     </div>
                   </button>
@@ -444,26 +637,8 @@ export default function HajjFacilities() {
           </div>
         </section>
 
-        {/* ── MADINAH HOTEL VIDEOS ── */}
-        <section className="py-20 bg-[#FDFAF5]">
-          <div className="max-w-6xl mx-auto px-6">
-            <Reveal className="text-center mb-14">
-              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
-                🏨 Madinah Hotel
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
-                Your Stay in Madinah
-              </h2>
-              <p className="text-stone-500 mt-2 text-sm">
-                A walkthrough of our Madinah accommodation
-              </p>
-            </Reveal>
-            <VideoGrid videos={madinahVideos} cardBg="bg-white" />
-          </div>
-        </section>
-
-        {/* ── FULL BOARD MEAL VIDEOS ── */}
-        <section className="py-20 bg-white">
+        {/* ── FULL BOARD MEALS ── */}
+        <section id="meals-section" className="py-20 bg-[#FDFAF5]">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="text-center mb-14">
               <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
@@ -476,12 +651,16 @@ export default function HajjFacilities() {
                 Halal Pakistani and Arabic cuisine, served daily
               </p>
             </Reveal>
-            <VideoGrid videos={mealVideos} cardBg="bg-[#FDFAF5]" />
+            <MediaGrid
+              items={mealMedia}
+              cardBg="bg-white"
+              onImageClick={setLightboxImage}
+            />
           </div>
         </section>
 
-        {/* ── MINA CAMP VIDEOS ── */}
-        <section className="py-20 bg-[#FDFAF5]">
+        {/* ── MINA CAMP ── */}
+        <section id="mina-section" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="text-center mb-14">
               <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
@@ -491,15 +670,19 @@ export default function HajjFacilities() {
                 Inside Our Mina Tents
               </h2>
               <p className="text-stone-500 mt-2 text-sm">
-                See the camp, tents, and facilities for yourself
+                Separate sections for men and women, see for yourself
               </p>
             </Reveal>
-            <VideoGrid videos={minaVideos} cardBg="bg-white" />
+            <MediaGrid
+              items={minaMedia}
+              cardBg="bg-[#FDFAF5]"
+              onImageClick={setLightboxImage}
+            />
           </div>
         </section>
 
-        {/* ── ARAFAT CAMP VIDEOS ── */}
-        <section className="py-20 bg-white">
+        {/* ── ARAFAT CAMP ── */}
+        <section id="arafat-section" className="py-20 bg-[#FDFAF5]">
           <div className="max-w-6xl mx-auto px-6">
             <Reveal className="text-center mb-14">
               <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
@@ -512,7 +695,11 @@ export default function HajjFacilities() {
                 The most important day of Hajj, and where you'll spend it
               </p>
             </Reveal>
-            <VideoGrid videos={arafatVideos} cardBg="bg-[#FDFAF5]" />
+            <MediaGrid
+              items={arafatMedia}
+              cardBg="bg-white"
+              onImageClick={setLightboxImage}
+            />
           </div>
         </section>
 
@@ -535,9 +722,11 @@ export default function HajjFacilities() {
                       setActive(f.id);
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
-                    className="group w-full bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 text-left hover:border-amber-300 hover:shadow-sm transition-all"
+                    className="group w-full bg-[#FDFAF5] rounded-2xl border border-stone-100 p-6 text-left hover:border-amber-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                   >
-                    <span className="text-3xl block mb-3">{f.icon}</span>
+                    <span className="text-3xl block mb-3 group-hover:scale-125 group-hover:-rotate-6 transition-transform duration-300 inline-block">
+                      {f.icon}
+                    </span>
                     <h3 className="font-bold text-stone-900 text-sm mb-1 group-hover:text-[#c49010] transition-colors">
                       {f.title}
                     </h3>
@@ -553,6 +742,7 @@ export default function HajjFacilities() {
 
         {/* ── MAKTAB COMPARISON ── */}
         <section
+          id="compare-section"
           className="py-20 text-white"
           style={{
             background: "linear-gradient(135deg, #1a6b3c 0%, #155c33 100%)",
@@ -600,7 +790,9 @@ export default function HajjFacilities() {
                 },
               ].map((m, i) => (
                 <Reveal key={m.label} delay={i * 100}>
-                  <div className={`border-2 ${m.color} rounded-2xl p-7`}>
+                  <div
+                    className={`border-2 ${m.color} rounded-2xl p-7 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300`}
+                  >
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-xl font-bold text-white">
                         {m.label}
@@ -614,10 +806,13 @@ export default function HajjFacilities() {
                     </p>
                     <p className="text-stone-400 text-xs mb-5">{m.tier}</p>
                     <ul className="space-y-2.5">
-                      {m.features.map((feat) => (
+                      {m.features.map((feat, fi) => (
                         <li
                           key={feat}
                           className="flex items-center gap-2 text-sm text-stone-300"
+                          style={{
+                            animation: `fadeInUp 0.4s ease ${fi * 70}ms both`,
+                          }}
                         >
                           <span className="text-[#D4A017] flex-shrink-0">
                             ✓
@@ -642,8 +837,11 @@ export default function HajjFacilities() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-14 bg-[#D4A017] text-center">
-          <Reveal>
+        <section className="py-14 bg-[#D4A017] text-center relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-40 bg-white/10 blur-3xl rounded-full animate-float-slow" />
+          </div>
+          <Reveal className="relative">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
               Ready to Book Your Hajj Package?
             </h2>
@@ -654,13 +852,13 @@ export default function HajjFacilities() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/hajj/packages"
-                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 relative animate-pulse-glow"
               >
                 View Packages
               </Link>
               <Link
                 to="/contact"
-                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all"
+                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all hover:scale-105"
               >
                 Contact Us
               </Link>
@@ -675,8 +873,56 @@ export default function HajjFacilities() {
 
         <style>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(14px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+          from { opacity: 0; transform: scale(0.92); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes popIn {
+          0%   { opacity: 0; transform: scale(0.5); }
+          70%  { transform: scale(1.1); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideDown {
+          from { transform: scaleY(0); }
+          to   { transform: scaleY(1); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(15px, -20px); }
+        }
+        .animate-float-slow {
+          animation: float 8s ease-in-out infinite;
+        }
+        .animate-float-slower {
+          animation: float 11s ease-in-out infinite reverse;
+        }
+        @keyframes bounceX {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(4px); }
+        }
+        .animate-bounce-x {
+          animation: bounceX 1.2s ease-in-out infinite;
+        }
+        @keyframes pingSlow {
+          0% { transform: scale(1); opacity: 0.7; }
+          75%, 100% { transform: scale(1.6); opacity: 0; }
+        }
+        .animate-ping-slow {
+          animation: pingSlow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes pulseGlow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(26,107,60,0.4); }
+          50% { box-shadow: 0 0 0 10px rgba(26,107,60,0); }
+        }
+        .animate-pulse-glow {
+          animation: pulseGlow 2.2s ease-in-out infinite;
         }
       `}</style>
       </main>
