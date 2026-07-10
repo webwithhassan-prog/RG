@@ -2,6 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../api/axios";
 import SEO from "../components/SEO";
+import logo1 from "../assets/C-logo-1.jpeg";
+import logo2 from "../assets/C-logo-2.jpeg";
+import logo3 from "../assets/C-logo-3.jpeg";
+import logo4 from "../assets/C-logo-4.jpeg";
+import logo5 from "../assets/C-logo-5.jpeg";
 
 function useReveal() {
   const ref = useRef(null);
@@ -46,6 +51,13 @@ const stats = [
   { value: "24/7", label: "On-Ground Support" },
 ];
 
+const certifications = [
+  { src: logo1, alt: "Certification 1" },
+  { src: logo2, alt: "Certification 2" },
+  { src: logo3, alt: "Certification 3" },
+  { src: logo4, alt: "Certification 4" },
+  { src: logo5, alt: "Certification 5" },
+];
 const services = [
   {
     icon: "🕋",
@@ -116,6 +128,42 @@ function SectionHeading({ children }) {
     <h2 className="text-3xl md:text-4xl font-bold text-stone-900 leading-snug">
       {children}
     </h2>
+  );
+}
+function CertifiedMarquee() {
+  // Duplicate the array so the scroll loops seamlessly
+  const loop = [...certifications, ...certifications];
+  return (
+    <div className="relative overflow-hidden py-4">
+      <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#1a6b3c] to-transparent z-10" />
+      <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#1a6b3c] to-transparent z-10" />
+      <div className="flex w-max animate-marquee gap-10 items-center">
+        {loop.map((cert, i) => (
+          <div
+            key={i}
+            className="bg-white rounded-2xl px-6 py-4 flex items-center justify-center shadow-md border border-[#D4A017]/20"
+          >
+            <img
+              src={cert.src}
+              alt={cert.alt}
+              className="h-20 md:h-28 w-auto object-contain"
+            />
+          </div>
+        ))}
+      </div>
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -915,6 +963,16 @@ export default function Home() {
               </Link>
             </div>
           </Reveal>
+        </section>
+
+        {/* ── CERTIFICATIONS ── */}
+        <section className="py-16 bg-[#1a6b3c] mt-20">
+          <div className="max-w-6xl mx-auto px-6">
+            <p className="text-center text-[#D4A017] text-lg font-bold uppercase tracking-widest mb-8">
+              Certified & Approved By
+            </p>
+            <CertifiedMarquee />
+          </div>
         </section>
       </main>
     </>
