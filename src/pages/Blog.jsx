@@ -318,23 +318,23 @@ export default function Blog() {
 
         {/* ── CTA ── */}
         <section className="py-14 bg-[#1a6b3c] text-center">
-          <Reveal>
+          <Reveal className="px-6">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               Ready to Begin Your Journey?
             </h2>
-            <p className="text-stone-300 mb-7">
+            <p className="text-stone-300 mb-7 text-sm md:text-base">
               Explore our Hajj and Umrah packages today.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xs sm:max-w-none mx-auto">
               <Link
                 to="/hajj/packages"
-                className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="w-full sm:w-auto bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
               >
                 Hajj Packages
               </Link>
               <Link
                 to="/umrah/packages"
-                className="border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-all"
+                className="w-full sm:w-auto border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
               >
                 Umrah Packages
               </Link>

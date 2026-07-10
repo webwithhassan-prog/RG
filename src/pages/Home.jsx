@@ -7,6 +7,7 @@ import logo2 from "../assets/C-logo-2.jpeg";
 import logo3 from "../assets/C-logo-3.jpeg";
 import logo4 from "../assets/C-logo-4.jpeg";
 import logo5 from "../assets/C-logo-5.jpeg";
+import CertifiedMarquee from "../components/CertifiedMarquee";
 
 function useReveal() {
   const ref = useRef(null);
@@ -51,13 +52,13 @@ const stats = [
   { value: "24/7", label: "On-Ground Support" },
 ];
 
-const certifications = [
-  { src: logo1, alt: "Certification 1" },
-  { src: logo2, alt: "Certification 2" },
-  { src: logo3, alt: "Certification 3" },
-  { src: logo4, alt: "Certification 4" },
-  { src: logo5, alt: "Certification 5" },
-];
+// const certifications = [
+//   { src: logo1, alt: "Certification 1" },
+//   { src: logo2, alt: "Certification 2" },
+//   { src: logo3, alt: "Certification 3" },
+//   { src: logo4, alt: "Certification 4" },
+//   { src: logo5, alt: "Certification 5" },
+// ];
 const services = [
   {
     icon: "🕋",
@@ -130,42 +131,46 @@ function SectionHeading({ children }) {
     </h2>
   );
 }
-function CertifiedMarquee() {
-  // Duplicate the array so the scroll loops seamlessly
-  const loop = [...certifications, ...certifications];
-  return (
-    <div className="relative overflow-hidden py-4">
-      <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#1a6b3c] to-transparent z-10" />
-      <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#1a6b3c] to-transparent z-10" />
-      <div className="flex w-max animate-marquee gap-10 items-center">
-        {loop.map((cert, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-2xl px-6 py-4 flex items-center justify-center shadow-md border border-[#D4A017]/20"
-          >
-            <img
-              src={cert.src}
-              alt={cert.alt}
-              className="h-20 md:h-28 w-auto object-contain"
-            />
-          </div>
-        ))}
-      </div>
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-    </div>
-  );
-}
+
+// function CertifiedMarquee() {
+//   // Duplicate the array so the scroll loops seamlessly
+//   const loop = [...certifications, ...certifications];
+//   return (
+//     <div className="relative overflow-hidden py-4">
+//       <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#0f4d2a] to-transparent z-10" />
+//       <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#0f4d2a] to-transparent z-10" />
+//       <div className="flex w-max animate-marquee gap-10 items-center">
+//         {loop.map((cert, i) => (
+//           <div
+//             key={i}
+//             className="bg-white rounded-2xl px-6 py-4 flex items-center justify-center shadow-md border border-[#D4A017]/20"
+//           >
+//             <img
+//               src={cert.src}
+//               alt={cert.alt}
+//               className="h-20 md:h-28 w-auto object-contain"
+//             />
+//           </div>
+//         ))}
+//       </div>
+//       <style>{`
+//         @keyframes marquee {
+//           0% { transform: translateX(0); }
+//           100% { transform: translateX(-50%); }
+//         }
+//         .animate-marquee {
+//           animation: marquee 25s linear infinite;
+//         }
+//         .animate-marquee:hover {
+//           animation-play-state: paused;
+//         }
+//         @media (prefers-reduced-motion: reduce) {
+//           .animate-marquee { animation: none; }
+//         }
+//       `}</style>
+//     </div>
+//   );
+// }
 
 function TestimonialSlider() {
   const [current, setCurrent] = useState(0);
@@ -333,16 +338,16 @@ export default function Home() {
               has guided thousands of pilgrims to Makkah and Madinah with care,
               expertise, and heartfelt devotion.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xs sm:max-w-none mx-auto">
               <Link
                 to="/hajj/packages"
-                className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="w-full sm:w-auto bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
               >
                 Explore Hajj Packages
               </Link>
               <Link
                 to="/umrah/packages"
-                className="border border-white/40 hover:border-[#D4A017] hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-xl transition-all"
+                className="w-full sm:w-auto border border-white/40 hover:border-[#D4A017] hover:bg-white/10 text-white font-semibold px-8 py-3.5 sm:py-4 rounded-xl transition-all active:scale-95 text-sm sm:text-base"
               >
                 Umrah Packages
               </Link>
@@ -598,18 +603,18 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xs sm:max-w-none mx-auto">
                     <a
                       href="https://wa.me/923218485159"
                       target="_blank"
                       rel="noreferrer"
-                      className="bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                      className="w-full sm:w-auto bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
                     >
                       Register Interest via WhatsApp
                     </a>
                     <Link
                       to="/contact"
-                      className="bg-[#D4A017]/20 hover:bg-[#D4A017]/30 border border-[#D4A017]/40 text-amber-300 font-bold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                      className="w-full sm:w-auto bg-[#D4A017]/20 hover:bg-[#D4A017]/30 border border-[#D4A017]/40 text-amber-300 font-bold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
                     >
                       Contact Us
                     </Link>
@@ -948,16 +953,16 @@ export default function Home() {
               Speak to our team today and let us guide you every step of the
               way.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xs sm:max-w-none mx-auto">
               <Link
                 to="/contact"
-                className="bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 active:scale-95"
+                className="w-full sm:w-auto bg-[#D4A017] hover:bg-[#e8b820] text-[#1a6b3c] font-bold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
               >
                 Contact Us
               </Link>
               <Link
                 to="/about"
-                className="border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-4 rounded-xl transition-all active:scale-95"
+                className="w-full sm:w-auto border-2 border-white/30 hover:border-white text-white font-semibold px-8 py-3.5 sm:py-4 rounded-xl transition-all active:scale-95 text-sm sm:text-base"
               >
                 Learn About Us
               </Link>
@@ -966,14 +971,7 @@ export default function Home() {
         </section>
 
         {/* ── CERTIFICATIONS ── */}
-        <section className="py-16 bg-[#1a6b3c] mt-20">
-          <div className="max-w-6xl mx-auto px-6">
-            <p className="text-center text-[#D4A017] text-lg font-bold uppercase tracking-widest mb-8">
-              Certified & Approved By
-            </p>
-            <CertifiedMarquee />
-          </div>
-        </section>
+        <CertifiedMarquee />
       </main>
     </>
   );
