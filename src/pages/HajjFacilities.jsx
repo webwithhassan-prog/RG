@@ -841,24 +841,24 @@ export default function HajjFacilities() {
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-40 bg-white/10 blur-3xl rounded-full animate-float-slow" />
           </div>
-          <Reveal className="relative">
+          <Reveal className="relative px-6">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1a6b3c] mb-3">
               Ready to Book Your Hajj Package?
             </h2>
-            <p className="text-[#1a6b3c]/70 mb-7">
+            <p className="text-[#1a6b3c]/70 mb-7 text-sm md:text-base">
               All facilities are included — just bring your faith and we'll
               handle the rest.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xs sm:max-w-none mx-auto">
               <Link
                 to="/hajj/packages"
-                className="bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105 relative animate-pulse-glow"
+                className="w-full sm:w-auto bg-[#1a6b3c] hover:bg-[#155c33] text-white font-bold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 relative animate-pulse-glow text-sm sm:text-base"
               >
                 View Packages
               </Link>
               <Link
                 to="/contact"
-                className="border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-4 rounded-xl transition-all hover:scale-105"
+                className="w-full sm:w-auto border-2 border-[#1a6b3c]/30 hover:border-[#1a6b3c] text-[#1a6b3c] font-semibold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:scale-105 active:scale-95 text-sm sm:text-base"
               >
                 Contact Us
               </Link>
