@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
+// TEMPORARY placeholder media — replace these with your real imports once files are on this device, e.g.:
+// import makkahHotel1 from "../assets/hajj/makkah-hotel-1.jpg";
+// import minaVideo1 from "../assets/hajj/mina-camp-1.mp4";
+const PLACEHOLDER_IMG = (seed) => `https://picsum.photos/seed/${seed}/800/600`;
+const PLACEHOLDER_VIDEO =
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+
 function useReveal() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -34,6 +41,56 @@ function Reveal({ children, delay = 0, className = "" }) {
       }}
     >
       {children}
+    </div>
+  );
+}
+
+function Lightbox({ image, onClose }) {
+  if (!image) return null;
+  return (
+    <div
+      className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center p-6"
+      onClick={onClose}
+    >
+      <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+        <img
+          src={image.src}
+          alt={image.caption}
+          className="w-full max-h-[80vh] object-contain rounded-xl"
+        />
+        <p className="text-white text-center mt-4 text-sm">{image.caption}</p>
+      </div>
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 text-white text-3xl hover:text-[#D4A017] transition-colors"
+      >
+        ✕
+      </button>
+    </div>
+  );
+}
+
+function VideoGrid({ videos, cardBg = "bg-white" }) {
+  return (
+    <div className="grid md:grid-cols-3 gap-6">
+      {videos.map((v, i) => (
+        <Reveal key={i} delay={i * 100}>
+          <div
+            className={`rounded-2xl overflow-hidden border border-stone-200 ${cardBg} shadow-sm`}
+          >
+            <video
+              controls
+              className="w-full h-56 object-cover bg-black"
+              preload="metadata"
+            >
+              <source src={v.src} type="video/mp4" />
+            </video>
+            <p className="text-stone-700 text-sm font-semibold p-4">
+              {v.title}
+            </p>
+          </div>
+        </Reveal>
+      ))}
     </div>
   );
 }
@@ -162,8 +219,37 @@ const highlights = [
   { icon: "🤝", text: "24/7 on-ground support" },
 ];
 
+const hotelGallery = [
+  { src: PLACEHOLDER_IMG("makkah1"), caption: "Makkah Hotel — Hajj 2026/2027" },
+  { src: PLACEHOLDER_IMG("makkah2"), caption: "Makkah Hotel — Hajj 2026/2027" },
+  { src: PLACEHOLDER_IMG("makkah3"), caption: "Makkah Hotel — Hajj 2026/2027" },
+  { src: PLACEHOLDER_IMG("makkah4"), caption: "Makkah Hotel — Hajj 2026/2027" },
+];
+
+const madinahVideos = [
+  { src: PLACEHOLDER_VIDEO, title: "Madinah Hotel — Room Walkthrough" },
+  { src: PLACEHOLDER_VIDEO, title: "Madinah Hotel — Facilities" },
+];
+
+const mealVideos = [
+  { src: PLACEHOLDER_VIDEO, title: "Full Board Meal — Dining Hall" },
+  { src: PLACEHOLDER_VIDEO, title: "Full Board Meal — Daily Spread" },
+];
+
+const minaVideos = [
+  { src: PLACEHOLDER_VIDEO, title: "Mina Camp — Tent Interior" },
+  { src: PLACEHOLDER_VIDEO, title: "Mina Camp — Facilities Walkthrough" },
+  { src: PLACEHOLDER_VIDEO, title: "Mina Camp — Camp Overview" },
+];
+
+const arafatVideos = [
+  { src: PLACEHOLDER_VIDEO, title: "Arafat Camp — Overview" },
+  { src: PLACEHOLDER_VIDEO, title: "Arafat Camp — Facilities" },
+];
+
 export default function HajjFacilities() {
   const [active, setActive] = useState("accommodation");
+  const [lightboxImage, setLightboxImage] = useState(null);
   const activeFacility = facilities.find((f) => f.id === active);
 
   return (
@@ -188,9 +274,6 @@ export default function HajjFacilities() {
             <div className="absolute bottom-0 -left-10 w-60 h-60 rounded-full bg-[#e8b820]/5 blur-2xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-6">
-            <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-3">
-              Hajj 2026
-            </p>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
               Hajj Facilities
             </h1>
@@ -320,6 +403,116 @@ export default function HajjFacilities() {
                 )}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ── MAKKAH HOTEL GALLERY ── */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                Hajj 2026 / 2027
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Our Makkah Hotel
+              </h2>
+              <p className="text-stone-500 mt-2 text-sm">
+                A closer look at where you'll be staying
+              </p>
+            </Reveal>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {hotelGallery.map((img, i) => (
+                <Reveal key={i} delay={i * 80}>
+                  <button
+                    onClick={() => setLightboxImage(img)}
+                    className="group relative w-full h-56 rounded-2xl overflow-hidden block"
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.caption}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 group-hover:from-black/70 transition-colors flex items-end p-4">
+                      <p className="text-white text-xs font-semibold">
+                        {img.caption}
+                      </p>
+                    </div>
+                  </button>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── MADINAH HOTEL VIDEOS ── */}
+        <section className="py-20 bg-[#FDFAF5]">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                🏨 Madinah Hotel
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Your Stay in Madinah
+              </h2>
+              <p className="text-stone-500 mt-2 text-sm">
+                A walkthrough of our Madinah accommodation
+              </p>
+            </Reveal>
+            <VideoGrid videos={madinahVideos} cardBg="bg-white" />
+          </div>
+        </section>
+
+        {/* ── FULL BOARD MEAL VIDEOS ── */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                🍽️ Full Board Meals
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Meals Throughout Your Journey
+              </h2>
+              <p className="text-stone-500 mt-2 text-sm">
+                Halal Pakistani and Arabic cuisine, served daily
+              </p>
+            </Reveal>
+            <VideoGrid videos={mealVideos} cardBg="bg-[#FDFAF5]" />
+          </div>
+        </section>
+
+        {/* ── MINA CAMP VIDEOS ── */}
+        <section className="py-20 bg-[#FDFAF5]">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                ⛺ Mina Camp
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                Inside Our Mina Tents
+              </h2>
+              <p className="text-stone-500 mt-2 text-sm">
+                See the camp, tents, and facilities for yourself
+              </p>
+            </Reveal>
+            <VideoGrid videos={minaVideos} cardBg="bg-white" />
+          </div>
+        </section>
+
+        {/* ── ARAFAT CAMP VIDEOS ── */}
+        <section className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <Reveal className="text-center mb-14">
+              <p className="text-[#D4A017] text-sm font-semibold uppercase tracking-widest mb-2">
+                🏕️ Arafat Camp
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+                A Day at Arafat
+              </h2>
+              <p className="text-stone-500 mt-2 text-sm">
+                The most important day of Hajj, and where you'll spend it
+              </p>
+            </Reveal>
+            <VideoGrid videos={arafatVideos} cardBg="bg-[#FDFAF5]" />
           </div>
         </section>
 
@@ -474,6 +667,11 @@ export default function HajjFacilities() {
             </div>
           </Reveal>
         </section>
+
+        <Lightbox
+          image={lightboxImage}
+          onClose={() => setLightboxImage(null)}
+        />
 
         <style>{`
         @keyframes fadeIn {
