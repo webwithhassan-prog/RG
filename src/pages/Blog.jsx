@@ -159,7 +159,7 @@ export default function Blog() {
     <>
       <SEO
         title="Blog & Guides"
-        description="Hajj tips, Umrah guides, travel advice and news from RG Tours & Travels. Everything pilgrims need to know before their sacred journey."
+        description="Hajj tips, Umrah guides, travel advice and news from RG Tour & Travels. Everything pilgrims need to know before their sacred journey."
         keywords="Hajj tips, Umrah guide, pilgrimage tips, Hajj preparation"
         url="/blog"
       />

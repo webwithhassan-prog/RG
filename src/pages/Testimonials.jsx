@@ -256,7 +256,7 @@ export default function Testimonials() {
     <>
       <SEO
         title="Testimonials"
-        description="Read what 50,000+ pilgrims say about RG Tours & Travels. Real reviews from Hajj and Umrah travelers across Pakistan."
+        description="Read what 50,000+ pilgrims say about RG Tour & Travels. Real reviews from Hajj and Umrah travelers across Pakistan."
         keywords="RG Travels reviews, Hajj testimonials, Umrah reviews Pakistan"
         url="/testimonials"
       />

@@ -218,7 +218,7 @@ export default function HajjFAQ() {
     <>
       <SEO
         title="Hajj FAQ"
-        description="Answers to common Hajj questions — visa requirements, package differences, Maktab A vs B, what's included and more. RG Tours & Travels."
+        description="Answers to common Hajj questions — visa requirements, package differences, Maktab A vs B, what's included and more. RG Tour & Travels."
         keywords="Hajj FAQ, Hajj questions, Maktab A Maktab B difference, Hajj visa Pakistan"
         url="/hajj/faq"
       />

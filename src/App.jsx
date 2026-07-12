@@ -145,6 +145,7 @@ export default function App() {
       <ScrollToTop />
       <RegistrationPopup />
       {isHome && <AnnouncementBar />}
+      {/* {isHome && <AnnouncementBar />} */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

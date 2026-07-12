@@ -139,8 +139,8 @@ export default function AboutUs() {
     <>
       <SEO
         title="About Us"
-        description="RG Tours & Travels (Pvt) Ltd — 20+ years of serving pilgrims. Licensed Hajj operator, Enrollment #3127, based in Lahore, Pakistan."
-        keywords="RG Tours Travels, Hajj operator Lahore, about RG Travels"
+        description="RG Tour & Travels (Pvt) Ltd — 20+ years of serving pilgrims. Licensed Hajj operator, Enrollment #3127, based in Lahore, Pakistan."
+        keywords="RG Tour Travels, Hajj operator Lahore, about RG Travels"
         url="/about"
       />
       <main className="overflow-x-hidden">

@@ -218,7 +218,7 @@ export default function BlogDetail() {
                         {blog.author}
                       </p>
                       <p className="text-stone-400 text-xs">
-                        RG Tours & Travels
+                        RG Tour & Travels
                       </p>
                     </div>
                   </div>

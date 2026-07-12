@@ -96,7 +96,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact & Book Now"
-        description="Contact RG Tours & Travels to book your Hajj or Umrah package. Call, WhatsApp or visit our office in Lahore."
+        description="Contact RG Tour & Travels to book your Hajj or Umrah package. Call, WhatsApp or visit our office in Lahore."
         keywords="contact RG Travels, book Hajj, book Umrah, Hajj booking Lahore"
         url="/contact"
       />

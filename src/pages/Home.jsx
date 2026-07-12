@@ -2,11 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../api/axios";
 import SEO from "../components/SEO";
-import logo1 from "../assets/C-logo-1.jpeg";
-import logo2 from "../assets/C-logo-2.jpeg";
-import logo3 from "../assets/C-logo-3.jpeg";
-import logo4 from "../assets/C-logo-4.jpeg";
-import logo5 from "../assets/C-logo-5.jpeg";
 import CertifiedMarquee from "../components/CertifiedMarquee";
 
 function useReveal() {
@@ -131,46 +126,6 @@ function SectionHeading({ children }) {
     </h2>
   );
 }
-
-// function CertifiedMarquee() {
-//   // Duplicate the array so the scroll loops seamlessly
-//   const loop = [...certifications, ...certifications];
-//   return (
-//     <div className="relative overflow-hidden py-4">
-//       <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#0f4d2a] to-transparent z-10" />
-//       <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#0f4d2a] to-transparent z-10" />
-//       <div className="flex w-max animate-marquee gap-10 items-center">
-//         {loop.map((cert, i) => (
-//           <div
-//             key={i}
-//             className="bg-white rounded-2xl px-6 py-4 flex items-center justify-center shadow-md border border-[#D4A017]/20"
-//           >
-//             <img
-//               src={cert.src}
-//               alt={cert.alt}
-//               className="h-20 md:h-28 w-auto object-contain"
-//             />
-//           </div>
-//         ))}
-//       </div>
-//       <style>{`
-//         @keyframes marquee {
-//           0% { transform: translateX(0); }
-//           100% { transform: translateX(-50%); }
-//         }
-//         .animate-marquee {
-//           animation: marquee 25s linear infinite;
-//         }
-//         .animate-marquee:hover {
-//           animation-play-state: paused;
-//         }
-//         @media (prefers-reduced-motion: reduce) {
-//           .animate-marquee { animation: none; }
-//         }
-//       `}</style>
-//     </div>
-//   );
-// }
 
 function TestimonialSlider() {
   const [current, setCurrent] = useState(0);
@@ -303,8 +258,8 @@ export default function Home() {
     <>
       <SEO
         title="Hajj & Umrah Packages Pakistan"
-        description="RG Tours & Travels — Licensed Hajj & Umrah operator from Lahore. Enrollment #3127. Trusted by 50,000+ pilgrims for over 20 years."
-        keywords="Hajj packages Pakistan, Umrah packages Lahore, Hajj 2026, RG Tours Travels"
+        description="RG Tour & Travels — Licensed Hajj & Umrah operator from Lahore. Enrollment #3127. Trusted by 50,000+ pilgrims for over 20 years."
+        keywords="Hajj packages Pakistan, Umrah packages Lahore, Hajj 2026, RG Tour Travels"
         url="/"
       />
       <main className="overflow-x-hidden">
@@ -333,7 +288,7 @@ export default function Home() {
             </h1>
             <p className="text-stone-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
               <span className="text-[#D4A017] font-bold">
-                RG Tours & Travels
+                RG Tour & Travels
               </span>{" "}
               has guided thousands of pilgrims to Makkah and Madinah with care,
               expertise, and heartfelt devotion.
@@ -972,6 +927,18 @@ export default function Home() {
 
         {/* ── CERTIFICATIONS ── */}
         <CertifiedMarquee />
+        {/* ── FLOATING WHATSAPP BUTTON ── */}
+        <a
+          href="https://wa.me/923218485159"
+          target="_blank"
+          rel="noreferrer"
+          className="fixed bottom-6 left-2 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 hover:bg-green-400 shadow-lg hover:scale-110 active:scale-95 transition-all duration-200"
+          aria-label="Chat on WhatsApp"
+        >
+          <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.48 1.32 5L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.14h-.01c-1.5 0-2.96-.4-4.24-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.14 8.14 0 0 1-1.26-4.36c0-4.51 3.67-8.19 8.19-8.19 4.51 0 8.19 3.68 8.19 8.19 0 4.51-3.68 8.23-8.19 8.23Zm4.48-6.14c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.21-1.44-1.35-1.68-.14-.24-.01-.37.11-.49.11-.11.24-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.75-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z" />
+          </svg>
+        </a>
       </main>
     </>
   );
