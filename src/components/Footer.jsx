@@ -11,7 +11,7 @@ const Footer = () => {
               to="/"
               className="text-2xl font-bold text-white tracking-wider"
             >
-              RG <span className="text-[#D4A017]">Tours & Travels</span>
+              RG <span className="text-[#D4A017]">Tour & Travels</span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed">
               Guiding pilgrims with care and devotion since 2004.
@@ -112,7 +112,7 @@ const Footer = () => {
 
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
           <p>
-            © {new Date().getFullYear()} RG Tours & Travels. All rights
+            © {new Date().getFullYear()} RG Tour & Travels. All rights
             reserved.
           </p>
           <div className="flex gap-5">
